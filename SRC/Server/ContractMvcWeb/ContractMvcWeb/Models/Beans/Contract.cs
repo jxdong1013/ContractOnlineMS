@@ -53,10 +53,24 @@ namespace ContractMvcWeb.Models.Beans
         /// 合同类型1：中标合同，2：协议合同3：零星合同
         /// </summary>
         private int _type = 1;
-
+        
         //新增的查询条件
         private string _pkey;
         private string _pvalue;
+        //排序字段
+        private string _sortkey;
+        public string sortkey
+        {
+            get { return _sortkey; }
+            set { _sortkey = value; }
+        }
+        //排序方式
+        private string _sorttype;
+        public string sorttype
+        {
+            get { return _sorttype; }
+            set { _sorttype = value; }
+        }
         public string pkey
         {
             get { return _pkey; }

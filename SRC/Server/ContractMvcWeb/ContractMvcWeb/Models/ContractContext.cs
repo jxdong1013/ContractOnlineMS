@@ -19,7 +19,7 @@ namespace ContractMvcWeb.Models
 
             string where = GetWhere(query);
             string limit = string.Format( " limit {0} , {1}" , pageidx <1 ? 0 : (pageidx-1)* pagesize , pagesize );
-            string orderby = "order by modifytime desc";
+            string orderby = GetSortString( query.sortkey , query.sorttype ); //"order by modifytime desc";
             string sql = string.Format( "select count(1) from t_contract where {0} " , where );
             int totalrecord = 0;
             object obj = MySqlHelper.GetSingle( sql );
@@ -43,6 +43,16 @@ namespace ContractMvcWeb.Models
             }
             page.Data = list;      
             return page;
+        }
+
+        protected string GetSortString(string sortkey , string sorttype)
+        {
+            string sortString =   "order by modifytime desc";
+            if (string.IsNullOrEmpty(sortkey) == false && string.IsNullOrEmpty(sorttype)==false)
+            {
+                sortString = " order by "+ sortkey + " "+ sorttype;
+            }
+            return sortString;
         }
 
         protected Contract DataRowToContract(DataRow row)

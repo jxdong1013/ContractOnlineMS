@@ -275,9 +275,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ExcelTemplate\ContractTemplate.xls" />
+    <Content Include="ExcelTemplate\XYTemplate.xls" />
     <None Include="Properties\PublishProfiles\ContractPublish.pubxml" />
     <Content Include="Images\admin-arrow.png" />
     <Content Include="Images\bg.jpg" />
+    <Content Include="Images\down.png" />
+    <Content Include="Images\error.png" />
     <Content Include="Images\excel.png" />
     <Content Include="Images\login_btn.png" />
     <Content Include="Images\login_icon.png" />
@@ -345,6 +348,7 @@
     <Content Include="Views\Contract\PageBarPartial.cshtml" />
     <Content Include="Views\User\PageBarPartial.cshtml" />
     <Content Include="Views\Contract\ContractQuery.cshtml" />
+    <Content Include="Views\Contract\ImportXYContract.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

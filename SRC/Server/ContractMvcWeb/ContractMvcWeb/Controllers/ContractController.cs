@@ -19,7 +19,7 @@ namespace ContractMvcWeb.Controllers
 
         public ActionResult ContractList( string seq, string contractnum, string projectnum,
             string projectname, string rfid, string contractplace,
-            string bcompany, string money, string pvalue, string pkey = "seq", int pageidx = 1, int pagesize = 20)
+            string bcompany, string money, string pvalue, string pkey = "seq", string sortkey= "" , string sorttype="",  int pageidx = 1, int pagesize = 20)
         {
 
             Contract query = new Contract();
@@ -35,6 +35,9 @@ namespace ContractMvcWeb.Controllers
             //
             query.pkey = pkey;
             query.pvalue = pvalue;
+            //
+            query.sortkey = sortkey;
+            query.sorttype = sorttype;
 
             Page<Contract> page = GetData(query, pageidx, pagesize);
 
@@ -77,6 +80,11 @@ namespace ContractMvcWeb.Controllers
 
         public ActionResult ImportContract()
         {                             
+            return View();
+        }
+
+        public ActionResult ImportXYContract()
+        {
             return View();
         }
 
@@ -138,6 +146,65 @@ namespace ContractMvcWeb.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult ImportXYContract(string msg = "")
+        {
+            HttpPostedFileBase file = Request.Files["uploadFile"];
+            if (file == null)
+            {
+                return View("ImportXYContract");
+            }
+            string filename = file.FileName;
+            string prefix = System.IO.Path.GetExtension(filename).ToLower().Trim();
+            if (prefix.Equals(".xls") == false && prefix.Equals(".xlsx") == false)
+            {
+                ModelState.AddModelError("fileerror", "请上传Excel格式的文件。");
+                return View("ImportXYContract");
+            }
+
+            string folder = Request.MapPath("~/Uploadfiles/");
+            if (System.IO.Directory.Exists(folder) == false)
+            {
+                System.IO.Directory.CreateDirectory(folder);
+            }
+            if (folder.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()) == false)
+            {
+                folder += System.IO.Path.DirectorySeparatorChar;
+            }
+
+            string filepath = folder + "caigou_"+ DateTime.Now.ToString("yyyyMMddHhmmss") + prefix;
+            file.SaveAs(filepath);
+
+            List<Models.Beans.Contract> list = Utils.ExcelUtils.ParseExcel(filepath);
+            ContractMvcWeb.Models.ContractContext dbContext = new Models.ContractContext();
+            //int result = dbContext.BatchAddContracts(list , User.Identity.Name);
+            Models.Beans.BatchImportResult result = dbContext.BatchAddContracts(list, User.Identity.Name);
+
+            string message = string.Empty;
+            message += "共" + result.TotalCount + " 条,新增 " + result.AddCount + "条,更新 " + result.UpdateCount + "条";
+            if (result.FailureCount != 0)
+            {
+                message += ",失败 " + result.FailureCount + "条。";
+            }
+            ModelState.AddModelError("summary", message);
+            if (result.ErrorList != null && result.ErrorList.Count > 0)
+            {
+                message = "";
+                foreach (Models.Beans.BatchImportResult.ExcelErrorLine item in result.ErrorList)
+                {
+                    string temp = string.Format("行号:{0},信息:{1}", item.Line, item.Error);
+                    message += temp;
+
+                    ModelState.AddModelError(item.Line, temp);
+                }
+
+            }
+
+            return View("ImportContract");
+        }
+
+
+
         public FileResult ExportExcel(string seq, string contractnum, string projectnum,
             string projectname, string rfid, string contractplace,
             string bcompany, string money)
@@ -181,6 +248,20 @@ namespace ContractMvcWeb.Controllers
             {
                 ModelState.AddModelError("", "模板文件不存在.");
                 return View("ImportContract");
+            }  
+        }
+
+        public ActionResult DownloadExcelXieYiTemplate()
+        {
+            string fileName = Server.MapPath("~/ExcelTemplate/XYTemplate.xls");
+            if (System.IO.File.Exists(fileName))
+            {
+                return File(fileName, "application/vnd.ms-excel", "采购合同导入模板.xls");
+            }
+            else
+            {
+                ModelState.AddModelError("", "模板文件不存在.");
+                return View("ImportXYContract");
             }  
         }
          
