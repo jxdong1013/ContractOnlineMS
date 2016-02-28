@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contractNo"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="14sp"
+        android:layout_weight="2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/projectName"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_weight="2"  />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bcompany"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_weight="2"  />
+
+    <TextView
+        android:id="@+id/heanderCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:gravity="right"
+        android:textSize="14sp"
+        android:layout_weight="2" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contractOperateTime"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:layout_weight="1" />
+
+</LinearLayout>

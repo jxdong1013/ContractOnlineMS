@@ -1,0 +1,143 @@
+﻿@model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.Contract> 
+
+<div class="pager">
+    <div id="scott2" style="text-align:center;">
+
+         @if( Model !=null)
+    {
+        using (@Html.BeginForm("ContractList","Contract",FormMethod.Get))
+        {          
+            @Html.Hidden("seq", @Request["seq"])
+            @Html.Hidden("contractnum", @Request["contractnum"])
+            @Html.Hidden("projectnum", @Request["projectnum"])
+            @Html.Hidden("projectname", @Request["projectname"])
+            @Html.Hidden("rfid", @Request["rfid"])                
+            @Html.Hidden("contractplace", @Request["contractplace"])    
+            @Html.Hidden("bcompany", @Request["bcompany"])      
+            @Html.Hidden("money", @Request["money"])      
+            
+             if(Model.PageIdx>1 )
+             {
+                   @Html.ActionLink("首页" , "ContractList", new
+                        {
+                            seq = @Request["seq"],
+                            contractnum = @Request["contractnum"],
+                            projectnum = @Request["projectnum"],
+                            projectname = @Request["projectname"],
+                            rfid = @Request["rfid"],
+                            contractplace = @Request["contractplace"],
+                            bcompany = @Request["bcompany"],
+                            money = @Request["money"],
+                            pageidx = 1
+                        });
+         }
+             
+      if( Model.PageIdx ==1)
+      { 
+          @Html.Label("首页", new { @class = "disabled" });
+       }
+      
+        if( Model.PageIdx >1) 
+        {
+            @Html.ActionLink("上一页", "ContractList",new
+                        {
+                            seq = @Request["seq"],
+                            contractnum = @Request["contractnum"],
+                            projectnum = @Request["projectnum"],
+                            projectname = @Request["projectname"],
+                            rfid = @Request["rfid"],
+                            contractplace = @Request["contractplace"],
+                            bcompany = @Request["bcompany"],
+                            money = @Request["money"],
+                            pageidx = Model.PageIdx -1
+                        }); 
+        }
+        else{   
+            @Html.Label("上一页", new { @class="disabled"});
+      }
+            
+              int leftPages = Model.PageIdx - 2;
+              if (leftPages < 1)
+               {
+                  leftPages = 1;
+              }
+
+               int rightPages = leftPages + 4;
+               if (rightPages >= Model.TotalPages)
+              {
+                  rightPages = Model.TotalPages;
+               }
+            
+
+            for (int i = leftPages ; i <= rightPages; i++)
+            {  
+                  if( Model.PageIdx == i )
+                  {
+                      @Html.Label(i.ToString(), new {@class="current"});
+                  }
+                  else 
+                  {                                    
+                        @Html.ActionLink( i.ToString(), "ContractList", new
+                   {
+                       seq = @Request["seq"],
+                       contractnum = @Request["contractnum"],
+                       projectnum = @Request["projectnum"],
+                       projectname = @Request["projectname"],
+                       rfid = @Request["rfid"],
+                       contractplace = @Request["contractplace"],
+                       bcompany = @Request["bcompany"],
+                       money = @Request["money"],
+                       pageidx = i
+                   
+                   });                    
+                    }
+                }              
+               
+                   
+               
+                
+               
+            if( Model.PageIdx < Model.TotalPages ) 
+            {
+                @Html.ActionLink("下一页","ContractList", new {
+                    seq = @Request["seq"],
+                       contractnum = @Request["contractnum"],
+                       projectnum = @Request["projectnum"],
+                       projectname = @Request["projectname"],
+                       rfid = @Request["rfid"],
+                       contractplace = @Request["contractplace"],
+                       bcompany = @Request["bcompany"],
+                       money = @Request["money"],
+                       pageidx = Model.PageIdx +1
+                });
+            }
+            else {
+                @Html.Label("下一页", new {@class="disabled"});
+            }
+            
+            if( Model.PageIdx < Model.TotalPages ){
+                @Html.ActionLink("末页","Contractlist", new {
+                    seq = @Request["seq"],
+                       contractnum = @Request["contractnum"],
+                       projectnum = @Request["projectnum"],
+                       projectname = @Request["projectname"],
+                       rfid = @Request["rfid"],
+                       contractplace = @Request["contractplace"],
+                       bcompany = @Request["bcompany"],
+                       money = @Request["money"],
+                       pageidx = Model.TotalPages
+                });
+            }
+     
+            if( Model.PageIdx == Model.TotalPages || Model.TotalPages <2 ){
+             @Html.Label("末页", new {@class="disabled"});   
+            }      
+                
+            @Html.Label("共"+Model.TotalRecords+"条 ");
+            @Html.Label("跳到:")@Html.TextBox("pageidx", Model.PageIdx , new  {@class="pageInput"})@Html.Label("页")
+            <input type="submit" class="go" value="GO" />
+        }
+    }
+
+    </div>
+</div>

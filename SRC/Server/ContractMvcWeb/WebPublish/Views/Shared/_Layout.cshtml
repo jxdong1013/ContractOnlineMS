@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - RFID合同管理系统</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+            @*<div class="h-auto">            
+                <div class="float-right">
+                    
+                     @Html.Partial("_LoginPartial")
+                                   
+                </div>
+            </div>*@
+
+            <div class="head-nav">
+                        <div class="nav">
+                            <div id="menu">          
+                                <ul>                                                                                 
+                                <li class=@(ViewBag.PageCode == "C001"? "current":"") > @Html.ActionLink("合同查询","ContractList","Contract")</li>                                    
+                                <li class=@(ViewBag.PageCode == "C004"? "current":"") > @Html.ActionLink("合同导入","ImportContract","Contract")</li>
+                                <li class=@(ViewBag.PageCode == "C002"? "current":"") >@Html.ActionLink("合同登记","AddContract","Contract")</li>
+                                <li class=@(ViewBag.PageCode == "U001"? "current":"") >@Html.ActionLink("用户管理","UserList","User")</li>
+                                @*<li class=@(ViewBag.PageCode == "A001"? "current":"") >@Html.ActionLink("关于", "About", "Home")</li>*@
+                            </ul>                                
+                            <div class="float-right">                           
+                                @Html.Partial("_LoginPartial")
+                            </div>                     
+                        </div>
+                          
+                    </div>
+
+             </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+              <div class="footer_float-right">
+                    <p> RFID 合同管理系统 &copy;-@DateTime.Now.Year 北京科美乾坤智能科技有限公司</>
+              </div>            
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

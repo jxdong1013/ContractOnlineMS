@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "关于";
+    ViewBag.PageCode = "A001";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>
+    <p>
+        @using (Html.BeginForm("LogOffRest", "Account", FormMethod.Post))
+        {
+            //@Html.AntiForgeryToken()
+            <button value="注销" type ="submit"></button>
+        }
+    </p>
+</article>

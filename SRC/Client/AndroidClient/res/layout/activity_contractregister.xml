@@ -1,0 +1,274 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+					<include android:id="@+id/ilActionbar" layout="@layout/layout_actionbar"/>
+
+
+
+   <ScrollView
+        android:id="@+id/svcontent"
+        android:layout_below="@+id/ilActionbar"
+        android:layout_above="@+id/llRegisterbotton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:fadingEdge="vertical">
+    <RelativeLayout
+        android:id="@+id/llinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp">
+                <TextView
+                    android:id="@+id/tvseq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/seq" />
+                <EditText
+                    android:id="@+id/seq"
+                    android:layout_toRightOf="@id/tvseq"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvcontractno"
+                    android:layout_below="@+id/tvseq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/contractNo" />
+                <EditText
+                    android:id="@+id/contractnum"
+                    android:layout_toRightOf="@id/tvcontractno"
+                    android:layout_below="@id/seq"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvregisterprojectno"
+                    android:layout_below="@id/tvcontractno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/projectNo" />
+                <EditText
+                    android:id="@+id/projectNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_below="@id/contractnum"
+
+                    android:layout_toRightOf="@+id/tvregisterprojectno"
+                    android:inputType="text" />
+
+
+                <TextView
+                    android:id="@+id/tvprojectname"
+                    android:layout_below="@id/tvregisterprojectno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/projectName" />
+
+                <EditText
+                    android:id="@+id/projectname"
+                    android:layout_below="@id/projectNo"
+                    android:layout_toRightOf="@id/tvprojectname"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvprojectmanager"
+                    android:layout_below="@id/tvprojectname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/projectManager" />
+                <EditText
+                    android:id="@+id/projectManager"
+                    android:layout_below="@id/projectname"
+                    android:layout_toRightOf="@id/tvprojectmanager"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvtel"
+                    android:layout_below="@id/tvprojectmanager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/tel" />
+
+                <EditText
+                    android:id="@+id/projectTel"
+                    android:layout_below="@id/projectManager"
+                    android:layout_toRightOf="@id/tvtel"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvdepart"
+                    android:layout_below="@id/tvtel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/depart" />
+                <EditText
+                    android:id="@+id/projectDepart"
+                    android:layout_toRightOf="@id/tvdepart"
+                    android:layout_below="@id/projectTel"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvcontractplace"
+                    android:layout_below="@id/tvdepart"
+                    android:layout_width="wrap_content"
+                     android:gravity="center_vertical"
+                    android:layout_height="36dp"
+                    android:text="@string/contractPlace" />
+
+                <EditText
+                    android:id="@+id/contractplace"
+                    android:layout_toRightOf="@id/tvcontractplace"
+                    android:layout_below="@id/projectDepart"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvbcompany"
+                    android:layout_below="@id/tvcontractplace"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_height="36dp"
+                    android:text="@string/bcompany" />
+
+                <EditText
+                    android:id="@+id/contractcompanyb"
+                    android:layout_below="@id/contractplace"
+                    android:layout_toRightOf="@id/tvbcompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+
+                <TextView
+                    android:id="@+id/tvlinker"
+                    android:layout_below="@id/tvbcompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/linker" />
+                <EditText
+                    android:id="@+id/projectLinker"
+                    android:layout_below="@id/contractcompanyb"
+                    android:layout_toRightOf="@id/tvlinker"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+
+                <TextView
+                    android:id="@+id/tvmoney"
+                    android:layout_below="@id/tvlinker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/money" />
+
+                <EditText
+                    android:id="@+id/projectMoney"
+                    android:layout_below="@id/projectLinker"
+                    android:layout_toRightOf="@id/tvmoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvsigningdate"
+                    android:layout_below="@id/tvmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/signingdate" />
+
+                <EditText
+                    android:id="@+id/contractsigningdate"
+                    android:layout_below="@id/projectMoney"
+                    android:layout_toRightOf="@id/tvsigningdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/tvpaymethod"
+                    android:layout_below="@id/tvsigningdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                     android:gravity="center_vertical"
+                    android:text="@string/payMethod" />
+
+                <EditText
+                    android:id="@+id/projectPayMethod"
+                    android:layout_below="@id/contractsigningdate"
+                    android:layout_toRightOf="@id/tvpaymethod"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:inputType="text" />
+
+            <TextView
+                android:id="@+id/tvrfiduid"
+                android:layout_below="@id/tvpaymethod"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                 android:gravity="center_vertical"
+                android:text="@string/contractRFIDF1" />
+            <EditText
+                android:id="@+id/rfiduid"
+                android:layout_below="@id/projectPayMethod"
+                android:layout_toRightOf="@id/tvrfiduid"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="text"
+                android:singleLine="false" />
+
+
+        </RelativeLayout>
+        </ScrollView>
+    <LinearLayout
+        android:id="@+id/llRegisterbotton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+		 android:background="#303538"
+        android:gravity="center"
+        android:orientation="horizontal" >
+        <Button
+            android:id="@+id/savenext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#303538"
+            android:textColor="#ffffff"
+            android:text="@string/save" />
+        <Button
+            android:id="@+id/cancelquit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+             android:background="#303538"
+            android:textColor="#ffffff"
+            android:text="@string/cancelquit" />
+    </LinearLayout>
+
+</RelativeLayout>

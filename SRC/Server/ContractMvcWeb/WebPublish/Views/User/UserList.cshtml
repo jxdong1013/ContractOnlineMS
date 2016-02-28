@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "用户管理";
+    ViewBag.PageCode = "U001";
+}
+@model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.User>
+
+<div class="content">
+<h3>用户管理</h3>
+
+   @using( @Html.BeginForm("userlist","user", FormMethod.Get)){
+       var enableItems =( List<SelectListItem>) ViewData["enableItems"];
+<table>
+         <tr><td>用户名:</td><td>@Html.TextBox("username")</td><td>状态:</td><td>@Html.DropDownList("state",  enableItems )</td>
+             <td><button type="submit" value="query" class="blue_btn button_90">查询</button></td>
+             <td><a href="adduser" class="blue_btn link_90" >新增</a></td>
+         </tr>
+    <tr><td>@Html.Hidden("pageidx",1)</td></tr>
+    <tr></tr>
+    </table>
+    }
+
+
+<table width="100%">
+    <tr class="tr_header">
+@*        <td width="10%">ID</td>*@
+        <td width="15%">用户名</td>
+        <td width="5%">性别</td>
+        <td width="5%">状态</td>
+        <td width="15%">联系方式</td>
+        <td width="30%">地址</td>
+        <td width="15%">创建时间</td>
+        <td width="15%">更新时间</td>
+    </tr>
+
+ @if (Model != null && Model.Data != null)
+ {
+     
+  foreach (ContractMvcWeb.Models.Beans.User p in Model.Data)
+        {
+      <tr class="old_row">
+            @*<td width="15%">@p.userid</td>*@
+            <td width="15%">@Html.ActionLink(@p.username, "EditUser", new { userid=@p.userid })</td>
+          <td width="5%">@p.sex</td>
+            <td width="5%">@(p.enable == 0? "停用":"启用" )</td>
+          <td width="15%">@p.link </td>
+          <td width="30%">@p.address</td>
+            <td width="15%">@p.modifytime</td>
+            <td width="15%">@p.createtime</td>          
+          </tr>
+        }
+ }
+</table>
+
+
+@*<table >
+    @using (@Html.BeginForm())
+    {
+
+        for (int i = 0; i < Model.TotalPages; i++)
+        {
+            if( i>= Model.PageIdx && i<= Model.PageIdx + 5 ){
+                @Html.ActionLink( (i+1).ToString(), "UserList",  new  { username= @Request["username"] , state=@Request["state"] ,  pageidx= i });
+            }
+            else if( i< Model.PageIdx )
+            {
+                @Html.ActionLink( (i+1).ToString(), "UserList", new{ username=@Request["username"], state=Request["state"] , pageidx=i }); 
+            }
+        }
+    }
+</table>*@
+
+    @Html.Partial("PageBarPartial")
+
+    </div>

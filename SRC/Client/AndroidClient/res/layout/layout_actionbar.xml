@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:id="@+id/rlActionbar"
+    android:background="#303538"
+    android:orientation="vertical" >
+    <Button android:id="@+id/btnMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/navigation_btn_pressed"/>
+
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"></TextView>
+
+        <TextView android:id="@+id/tvAppTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/tvUser"
+        android:layout_toRightOf="@+id/btnMenu"
+        android:text="@string/app_name"/>
+
+</RelativeLayout>

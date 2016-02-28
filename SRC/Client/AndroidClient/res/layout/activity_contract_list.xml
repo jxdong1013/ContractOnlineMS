@@ -1,0 +1,108 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+         android:id="@+id/rightcontent"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:background="@android:color/white" >
+         <LinearLayout
+                     android:id="@+id/llre1"
+        			android:layout_width="match_parent"
+        			android:layout_height="wrap_content"
+        			android:layout_alignParentTop="true"
+        			android:orientation="vertical" >
+					<include android:id="@+id/ilActionbar" layout="@layout/layout_actionbar"/>
+		 </LinearLayout>
+
+    <include android:id="@+id/archiveheader"  layout="@layout/contractlistviewheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llre1" />
+
+    <LinearLayout
+        android:id="@+id/llBottonMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#303538"
+        android:padding="2dp" >
+        <LinearLayout
+            android:id="@+id/llmenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+             android:background="#303538"
+            android:orientation="horizontal">
+		<Button
+            android:id="@+id/btnAddContract"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:background="#303538"
+            android:textColor="#ffffff"
+            android:layout_height="wrap_content"
+            android:text="@string/newContract"></Button>
+
+		<Button
+            android:id="@+id/btnDeleteContract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#303538"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:text="@string/deleteContract"></Button>
+		</LinearLayout>
+		</RelativeLayout>
+		<LinearLayout
+		    android:id="@+id/lldeletemenu"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:background="#303538"
+		    android:visibility="gone">
+             <CheckBox
+                 android:id="@+id/chkAllSelected"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textColor="@color/white"
+                 android:layout_weight="1"
+                 android:button="@drawable/check"
+                 android:padding="2dp"
+                 android:text="@string/allselect"></CheckBox>
+		    <Button android:id="@+id/btnDeleteConfirm"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		         android:background="#303538"
+               android:textColor="#ffffff"
+		        android:layout_weight="1"
+		        android:text="@string/confirm"/>
+		    <Button android:id="@+id/btnDeleteCancel"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		          android:background="#303538"
+            android:textColor="#ffffff"
+		        android:layout_weight="1"
+		        android:text="@string/cancel"/>
+		</LinearLayout>
+       </LinearLayout>
+
+       <com.jxd.contractonlinems.widget.XListView
+        android:id="@+id/lvContract"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/archiveheader"
+        android:layout_above="@id/llBottonMenu"
+        android:cacheColorHint="#00000000" >
+    </com.jxd.contractonlinems.widget.XListView>
+</RelativeLayout>
+</RelativeLayout>

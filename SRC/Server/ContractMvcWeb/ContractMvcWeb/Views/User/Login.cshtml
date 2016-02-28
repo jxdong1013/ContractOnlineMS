@@ -1,0 +1,59 @@
+﻿@model ContractMvcWeb.Models.LoginModel
+
+@{
+    ViewBag.Title = "登录";
+}
+
+
+<div class="logincontent">
+    
+    
+    <div class="login-main">
+    
+    <div class="login_info">
+               @using (@Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()   
+                    
+                    <div class="info_list">
+                        <div class="login_form_row"><label class="input_info">用户名:</label>
+                            <p class="login_form_input">
+                                
+                                @Html.TextBoxFor(m => m.UserName, new {  id="userName", name="username" , @class="login_form_input_ipt"})                                
+                                <i class="ico_uid"></i>
+                            </p>
+                        </div>
+                        <div class="login_form_row"><label class="input_info">登录密码:</label>
+                            <p class="login_form_input">  
+                                 @Html.PasswordFor(m => m.Password, new { id="password", name="password" , @class="login_form_input_ipt"})                                                           
+                                <i class="ico_pwd"></i>
+                            </p>
+                        </div>
+                       @* <div id="verifyCode" class="login_form_row hide"><label class="input_info">验证码:</label>
+                            <p class="validate_form">
+                                <input class="text_input w75 mr10" type="text" id="securityCode" name="captchaAnswer" minlength="6" maxlength="6"><img class="validateImg mr10" src=""><a id="refreshCode" class="blue_link" href="javascript:;">刷新</a>
+                            </p>
+                        </div>*@
+                        @*<div class="login_form_row">
+                          <input type="checkbox" name="rememberMe" id="rememberMe" value="true" checked="checked">
+                          <label class="input_info">一天内免登录</label>
+                          <i class="ico_rememberMe"></i>
+                        </div>*@
+                     
+                        <div class="login_form_row">
+                            <input type="submit" accesskey="l" tabindex="3" class="login_form_btn" id="loginBtn" value="" title="登录">                            
+                        </div>
+                      @*  <div class="login_form_row">
+                            <input type="button" class="login_form_reg" id="registerBtn" title="注册">
+                        </div>*@
+                    </div>
+               }
+            </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+</div>

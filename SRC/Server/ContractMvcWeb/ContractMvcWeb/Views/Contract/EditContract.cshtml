@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "编辑合同信息";
+    ViewBag.PageCode = "C002";
+}
+
+@model ContractMvcWeb.Models.Beans.Contract 
+
+<div class="content">
+<h3>编辑合同</h3>
+
+@using( Html.BeginForm("EditContract" , "Contract", FormMethod.Post ))
+{
+ @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.contractid);
+    
+<table class="new_info_table">
+    <tr>
+        <td><b class="red">*</b>合同编号:@Html.TextBoxFor(m=>m.contractnum)</td>
+        <td><b class="red">*</b>序号:@Html.TextBoxFor(m=>m.seq)</td>
+        <td><b class="red">*</b>项目编号:@Html.TextBoxFor(m=>m.projectnum)</td>
+    </tr>
+     <tr>
+        <td><b class="red">*</b>项目名称:@Html.TextBoxFor(m=>m.projectname)</td>
+         <td>项目负责人:@Html.TextBoxFor(m=>m.projectmanager)</td>
+         <td>联系方式:@Html.TextBoxFor(m=>m.tel)</td>
+    </tr>
+     <tr>
+        <td>分管部门:@Html.TextBoxFor(m=>m.depart)</td>
+         <td>分包名称:@Html.TextBoxFor(m=>m.packageName)</td>
+         <td>分包预算(万元):@Html.TextBoxFor(m=>m.packageBudget )</td>
+    </tr>
+     <tr>
+        <td>招标编号:@Html.TextBoxFor(m=>m.tendarNum)</td>
+         <td>招标公司:@Html.TextBoxFor(m=>m.tendarCompany)</td>
+         <td>开标时间:@Html.TextBoxFor(m=>m.tendarStartTime)</td>
+    </tr>
+     <tr>
+        <td>付款方式:@Html.TextBoxFor(m=>m.paymethod)</td>
+         <td>中标公司:@Html.TextBoxFor(m=>m.bcompany)</td>
+         <td>联系人:@Html.TextBoxFor(m=>m.linker)</td>
+    </tr>
+     <tr>
+        <td>手机号码:@Html.TextBoxFor(m=>m.phone )</td>
+         <td>中标金额(万元):@Html.TextBoxFor(m=>m.money)</td>
+         <td>签合同日期:@Html.TextBoxFor(m=>m.signingdate)</td>
+    </tr>
+     <tr>
+        <td>交货时间:@Html.TextBoxFor(m=>m.deliveryTime)</td>
+         <td>验收情况:@Html.TextBoxFor(m=>m.inspection)</td>
+         <td>进度:@Html.TextBoxFor(m=>m.progress)</td>
+    </tr>
+     <tr>
+        <td>支付全款:@Html.TextBoxFor(m=>m.isPayAll)</td>
+         <td>押款:@Html.TextBoxFor(m=>m.isArmoured)</td>
+         <td>退款:@Html.TextBoxFor(m=>m.isRefund)</td>
+    </tr>
+    <tr>
+        <td>存放位置:@Html.TextBoxFor(m=>m.contractplace)</td>
+        @*<td>标签:@Html.TextBoxFor(m=>m.contractrfid)</td>*@
+        <td>备注:@Html.TextBoxFor(m => m.remark)</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan ="3">@Html.ValidationSummary()</td>
+        </tr>
+     <tr>
+            <td colspan ="3" style="text-align:center">
+                <button id="btnSave" value="保存" class="blue_btn button_90 mr20" type="submit">保存</button>
+             </td>
+    </tr>
+
+</table>
+}
+    </div>

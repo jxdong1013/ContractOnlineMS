@@ -1,0 +1,316 @@
+﻿@{
+    ViewBag.Title = "合同查询";
+    ViewBag.PageCode = "C001";
+}
+@model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans .Contract> 
+
+
+<script type="text/javascript">
+    function afterSuccess() {
+        alert("upload success!");
+    }
+</script>
+
+<div class="content" > 
+<h3>合同查询</h3>
+    <input id="hdDeleteContract" type="hidden" value="/contract/DeleteContracts" />
+
+   @using (@Html.BeginForm("contractlist", "contract", FormMethod.Get))
+   {
+       //var enableItems =( List<SelectListItem>) ViewData["enableItems"];
+
+    @*<table>
+        <tr>
+            <td>序号:</td>
+            <td>@Html.TextBox("seq")</td>
+            <td>合同编号:</td>
+            <td>@Html.TextBox("contractnum")</td>
+            <td>项目编号:</td>
+            <td>@Html.TextBox("projectnum")</td>
+            <td>项目名称:</td>
+            <td>@Html.TextBox("projectname")</td>
+            <td><button type="submit" value="query" class="blue_btn button_90">查询</button></td>
+        </tr>
+        <tr>
+            <td>存放位置(精确匹配):</td>
+            <td>@Html.TextBox("contractplace")</td>
+            <td>中标公司:</td>
+            <td>@Html.TextBox("bcompany")</td>
+            <td>中标金额(万元):</td>
+            <td>@Html.TextBox("money")</td>
+            <td colspan="2">                
+
+                @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"], projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"], contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], oney = @Request["money"] }, new { @class = "blue_btn link_90" })
+
+                <button class="blue_btn button_90" id="btnDelete" type="button">删除</button>
+            </td>
+        </tr>
+
+
+    </table>*@
+
+    <div class="container-fluid">
+        <div class="col-xs-2"></div>
+        <div class="input-group col-xs-8">
+            <div class="input-group-btn">
+                <button id="btnOneQuery" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">序号 <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" onclick="selectonekey('序号')">序号</a></li>
+                    <li><a href="#" onclick="selectonekey('合同编号')">合同编号</a></li>
+                    <li><a href="#" onclick="selectonekey('项目编号')">项目编号</a></li>
+                    <li><a href="#" onclick="selectonekey('项目名称')">项目名称</a></li>
+                    <li><a href="#" onclick="selectonekey('存放位置(精确匹配)')">存放位置(精确匹配)</a></li>
+                    <li><a href="#" onclick="selectonekey('中标公司')">中标公司</a></li>
+                    <li><a href="#" onclick="selectonekey('中标金额(万元)')">中标金额(万元)</a></li>
+                </ul>
+            </div>
+            <input type="text" class="form-control" placeholder="请输入搜索内容">
+            <div class="input-group-btn">
+                <button id="btnquery" onclick="s()" type="button" class="btn btn-default">搜索一下</button>
+            </div><!-- /btn-group -->
+
+        </div><!-- /input-group -->
+        <div class="col-xs-2"></div>
+
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-xs-4">
+                @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"], projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"], contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], oney = @Request["money"] } )
+                <a  id="btnDelete" href="#">删除</a>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+    
+
+
+
+   }
+
+    
+
+<table width="100%">
+    <tr class="tr_header">
+        <td width="1%"><input id="ckbAll" type="checkbox" value="全选"/></td>
+        <td width="3%">合同号</td>
+        <td width="2%">序号</td>
+        <td width="4%">项目编号</td>
+        <td width="8%">项目名称</td>
+        <td width="3%">项目负责人</td>
+        <td width="5%">联系方式</td>
+        <td width="5%">分管部门</td>
+        <td width="5%">分包名称</td>
+        <td width="5%">分包预算(万元)</td>
+        <td width="3%">招标编号</td>
+        <td width="8%">招标公司</td>
+        <td width="5%">开标时间</td>
+        <td width="3%">付款方式</td>
+        <td width="8%">中标公司名称</td>
+        <td width="3%">联系人</td>
+        <td width="5%">中标金额(万元)</td>
+        <td width="5%">签合同日期</td>
+        <td width="5%">交货时间</td>
+        <td width="3%">支付全款</td>
+        <td width="2%">押款</td>
+        <td width="2%">退款</td>
+    </tr>
+    </table>
+
+<table width="100%" class="data_table">
+   
+ @if (Model != null && Model.Data != null)
+ {
+     decimal fbys_sum = 0;
+     decimal money_sum=0;
+     
+      foreach (ContractMvcWeb.Models.Beans.Contract  p in Model.Data)
+        {
+            decimal temp = 0;
+          decimal.TryParse( p.packageBudget ==null ? "0.00": p.packageBudget , out temp);
+          fbys_sum += temp;
+          decimal.TryParse( p.money ==null? "0.00":p.money , out temp );
+          money_sum +=temp;
+          
+        <tr class="old_row">
+           <td width="1%"><input type="checkbox" value="" name="checkRow"/><input type="hidden" value="@p.contractid" name="hdcontractid" /></td>
+           <td width="3%">@Html.ActionLink( @p.contractnum , "EditContract", new { contractid = @p.contractid}) </td>
+           <td width="2%">@p.seq</td>
+           <td width="4%">@p.projectnum</td>
+           <td width="8%">@p.projectname</td>
+           <td width="3%">@p.projectmanager</td>          
+           <td width="5%">@p.tel</td>
+           <td width="5%">@p.depart</td>
+           <td width="5%">@p.packageName</td>
+           <td width="5%">@p.packageBudget</td>
+           <td width="3%">@p.tendarNum</td>
+           <td width="8%">@p.tendarCompany</td>
+           <td width="5%">@p.tendarStartTime</td>
+           <td width="3%">@p.paymethod</td>
+           <td width="8%">@p.bcompany</td>
+           <td width="3%">@p.linker</td>
+           <td width="5%">@p.money</td>
+           <td width="5%">@p.signingdate</td>
+           <td width="5%">@p.deliveryTime</td>
+           <td width="3%">@p.isPayAll</td>
+           <td width="2%">@p.isArmoured</td>
+           <td width="2%">@p.isRefund</td>
+          </tr>
+    }
+    <tr  class="blue_row">
+        <td colspan="2" width="1%">合计</td>
+        <td width="2%"></td>
+        <td width="4%"></td>
+        <td width="8%"></td>
+        <td width="3%"></td> 
+        <td width="5%"></td> 
+        <td width="5%"></td>
+        <td width="5%"></td>
+        <td width="5%">@Html.Raw( fbys_sum.ToString()) </td>
+        <td width="3%"></td>
+        <td width="8%"></td>
+        <td width="5%"></td>
+        <td width="3%"></td>
+        <td width="8%"></td>
+        <td width="3%"></td>
+        <td width="5%">@Html.Raw( money_sum.ToString())</td>
+        <td width="5%"></td>
+        <td width="5%"></td>
+        <td width="3%"></td>
+        <td width="2%"></td>
+        <td width="2%"></td>
+    </tr>
+ }
+</table>
+
+
+@*<div class="pager">
+    <div id="scott2" style="text-align:center;">
+    @if( Model !=null)
+    {
+        using (@Html.BeginForm())
+        {
+
+            for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                if (i == 1)
+                {
+                    if( i == Model.PageIdx )
+                    {
+                        @Html.Label("首页", new { @class="disabled"});
+                        @Html.Label("上一页", new { @class = "disabled" });
+                    }
+                    else 
+                    {
+                         @Html.ActionLink("首页", "ContractList", new
+                        {
+                            seq = @Request["seq"],
+                            contractnum = @Request["contractnum"],
+                            projectnum = @Request["projectnum"],
+                            projectname = @Request["projectname"],
+                            rfid = @Request["rfid"],
+                            contractplace = @Request["contractplace"],
+                            bcompany = @Request["bcompany"],
+                            money = @Request["money"],
+                            pageidx = i
+                        });
+                        @Html.ActionLink("上一页", "ContractList", new
+                        {
+                            seq = @Request["seq"],
+                            contractnum = @Request["contractnum"],
+                            projectnum = @Request["projectnum"],
+                            projectname = @Request["projectname"],
+                            rfid = @Request["rfid"],
+                            contractplace = @Request["contractplace"],
+                            bcompany = @Request["bcompany"],
+                            money = @Request["money"],
+                            pageidx = i
+                        });
+                    }
+                }
+                
+                if (i == Model.PageIdx)
+                {
+                    @Html.Label(i.ToString(), new { @class="current" });
+                }                                    
+                else if (i > Model.PageIdx && i <= Model.PageIdx + 2)
+                {                   
+                    
+                        @Html.ActionLink( i.ToString(), "ContractList", new
+                   {
+                       seq = @Request["seq"],
+                       contractnum = @Request["contractnum"],
+                       projectnum = @Request["projectnum"],
+                       projectname = @Request["projectname"],
+                       rfid = @Request["rfid"],
+                       contractplace = @Request["contractplace"],
+                       bcompany = @Request["bcompany"],
+                       money = @Request["money"],
+                       pageidx = i
+                   });                    
+                }
+                else if (i < Model.PageIdx && i>= Model.PageIdx -2 )
+                {
+                        @Html.ActionLink( i.ToString(), "ContractList", new
+                   {
+                       seq = @Request["seq"],
+                       contractnum = @Request["contractnum"],
+                       projectnum = @Request["projectnum"],
+                       projectname = @Request["projectname"],
+                       rfid = @Request["rfid"],
+                       contractplace = @Request["contractplace"],
+                       bcompany = @Request["bcompany"],
+                       money = @Request["money"],
+                       pageidx = i
+                   });
+                }
+                else if (i == (Model.PageIdx + 3))
+                {
+                      @Html.ActionLink("下一页", "ContractList", new
+                        {
+                            seq = @Request["seq"],
+                            contractnum = @Request["contractnum"],
+                            projectnum = @Request["projectnum"],
+                            projectname = @Request["projectname"],
+                            rfid = @Request["rfid"],
+                            contractplace = @Request["contractplace"],
+                            bcompany = @Request["bcompany"],
+                            money = @Request["money"],
+                            pageidx = i
+                        }); 
+                     @Html.ActionLink("末页", "ContractList", new
+                        {
+                            seq = @Request["seq"],
+                            contractnum = @Request["contractnum"],
+                            projectnum = @Request["projectnum"],
+                            projectname = @Request["projectname"],
+                            rfid = @Request["rfid"],
+                            contractplace = @Request["contractplace"],
+                            bcompany = @Request["bcompany"],
+                            money = @Request["money"],
+                            pageidx = Model.TotalPages
+                        });
+                }
+                
+                 if (i == Model.PageIdx && i == Model.TotalPages )
+                {
+                    @Html.Label("下一页", new { @class="disabled"});
+                    @Html.Label("末页", new { @class = "disabled" });
+                }
+                else 
+                {
+                     
+                }
+                
+            }
+            @Html.Label("共"+Model.TotalRecords+"条 ");
+            @Html.Label("跳到:")@Html.TextBox("pageidx", "" , new  {@class="pageInput"})@Html.Label("页")
+            <input type="submit" class="go" value="GO" />
+        }
+    }
+        </div>
+</div>*@
+
+
+@Html.Partial("PageBarPartial")
+
+    </div>

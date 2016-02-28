@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+         <LinearLayout
+            android:id="@+id/rightcontent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+                    <LinearLayout
+                     android:id="@+id/llre1"
+        			android:layout_width="match_parent"
+        			android:layout_height="wrap_content"
+        			android:orientation="vertical" >
+					<include android:id="@+id/ilActionbar" layout="@layout/layout_actionbar"/>
+				</LinearLayout>
+
+<LinearLayout android:id="@+id/contractqueryll20"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+         android:background="@drawable/style_top_round">
+        <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             style="@style/textviewstyle"
+             android:layout_margin="4dp"
+             android:text="@string/seq"></TextView>
+         <EditText android:id="@+id/contractqueryseq"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:inputType="text"
+             android:layout_margin="4dp"/>
+       </LinearLayout>
+
+      <LinearLayout android:id="@+id/contractqueryll21"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+         android:background="@drawable/style_center_round">
+        <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             style="@style/textviewstyle"
+             android:layout_margin="4dp"
+             android:text="@string/contractNo"></TextView>
+         <EditText android:id="@+id/contractqueryno"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:inputType="text"
+             android:layout_margin="4dp"/>
+       </LinearLayout>
+
+        <LinearLayout android:id="@+id/contractqueryll211"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp"
+         android:background="@drawable/style_center_round">
+         <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="4dp"
+             style="@style/textviewstyle"
+             android:text="@string/projectNo"></TextView>
+         <EditText android:layout_width="fill_parent"
+             android:inputType="text"
+             android:id="@+id/contractqueryprojectno"
+             android:layout_margin="4dp"
+             android:layout_height="wrap_content"></EditText>
+     </LinearLayout>
+
+      <LinearLayout android:id="@+id/contractqueryll22"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp"
+         android:background="@drawable/style_center_round">
+         <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="4dp"
+             style="@style/textviewstyle"
+             android:text="@string/projectName"></TextView>
+         <EditText android:layout_width="fill_parent"
+             android:inputType="text"
+             android:id="@+id/contractqueryprojectname"
+             android:layout_margin="4dp"
+             android:layout_height="wrap_content"></EditText>
+     </LinearLayout>
+     <LinearLayout android:id="@+id/contractqueryll23"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+         android:background="@drawable/style_center_round">
+          <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="4dp"
+             style="@style/textviewstyle"
+             android:text="@string/contractRFID"></TextView>
+          <com.jxd.contractonlinems.widget.RightClickEditText android:id="@+id/contractqueryrfid"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="10dp"
+              android:drawableRight="@drawable/close"
+              android:gravity="center_vertical"
+              android:inputType="text">
+              </com.jxd.contractonlinems.widget.RightClickEditText>
+         </LinearLayout>
+
+        <LinearLayout android:id="@+id/contractqueryll25"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+         android:background="@drawable/style_center_round">
+          <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="4dp"
+             style="@style/textviewstyle"
+             android:text="@string/contractPlacejq"></TextView>
+          <EditText android:id="@+id/contractqueryplace"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="10dp"
+              android:inputType="text"/>
+         </LinearLayout>
+
+        <LinearLayout android:id="@+id/contractqueryll26"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+         android:background="@drawable/style_center_round">
+          <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="4dp"
+             style="@style/textviewstyle"
+             android:text="@string/bcompany"></TextView>
+          <EditText android:id="@+id/contractquerybcompany"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="10dp"
+              android:inputType="text"/>
+         </LinearLayout>
+
+         <LinearLayout android:id="@+id/contractqueryll27"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+         android:background="@drawable/style_botton_round">
+          <TextView android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="4dp"
+             style="@style/textviewstyle"
+             android:text="@string/money"></TextView>
+          <EditText android:id="@+id/contractquerymoney"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="10dp"
+              android:inputType="text"/>
+         </LinearLayout>
+    </LinearLayout>
+
+         <LinearLayout
+		    android:id="@+id/contractqueryll28"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:layout_alignParentBottom="true"
+		    android:background="#303538">
+          <Button android:id="@+id/contractqueryquery"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                android:background="#303538"
+            android:textColor="@color/white"
+              android:layout_weight="1"
+              android:text="@string/query"></Button>
+         <Button android:id="@+id/contractqueryscan"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/scanrfid"
+             android:gravity="center_horizontal"
+               android:background="#303538"
+            android:textColor="@color/white"
+              android:layout_weight="1" />
+      </LinearLayout>
+
+
+</RelativeLayout>

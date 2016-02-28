@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RFID合同管理WIFI版</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="et_account_hint">用户名</string>
+    <string name="et_password_hint">密码</string>
+    <string name="login">登入</string>
+    <string name="url_config">地址配置</string>
+    <string name="loginTip">正在登录,请稍等</string>
+     <string name="menuRegister">登记</string>
+     <string name="leftmenutitle">菜单</string>
+     <string name="menuContractQuery">合同查询</string>
+         <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="xlistview_footer_hint_loading">正在加载</string>
+        <string name="query">查询(F2)</string>
+   <string name="hintsearch">请输入合同编号或名称</string>
+     <string name="newContract">登记</string>
+       <string name="importConract">导入</string>
+        <string name="deleteContract">删除</string>
+           <string name="allselect">全选</string>
+  <string name="confirm">确定</string>
+     <string name="cancel">取消</string>
+        <string name="contractNo">合同编号</string>
+         <string name="projectNo">项目编号</string>
+     <string name="projectName">项目名称</string>
+     <string name="projectManager">项目负责人</string>
+       <string name="bcompany">中标公司</string>
+ <string name="contractOperateTime">操作日期</string>
+     <string name="seq">序号</string>
+    <string name="unShelve">下架</string>
+     <string name="tel">联系方式</string>
+   <string name="depart">分管部门</string>
+  <string name="contractPlace">存放位置</string>
+     <string name="linker">联系人</string>
+     <string name="money">中标金额(万元)</string>
+     <string name="signingdate">签订日期</string>
+     <string name="payMethod">付款方式</string>
+     <string name="contractRFIDF1">标签号(F1)</string>
+                 <string name="savenext">保存(下一个F2)</string>
+                 <string name="save">保存(F2)</string>
+    <string name="cancelquit">返回</string>
+ <string name="savetip">正在保存,请稍等</string>
+ <string name="scantip">正在扫描标签,请稍等</string>
+   <string name="contractRFID">标  签  号</string>
+    <string name="contractPlacejq">存放位置(精确匹配)</string>
+                  <string name="scanrfid">扫描(F1)</string>
+                    <string name="deletetip">正在删除,请稍等</string>
+                       <string name="importexceltip">正在导入数据,请稍等</string>
+ <string name="passwordAlert">请输入密码:</string>
+
+ <string name="configSetting">参数设置</string>
+ <string name="saveConfig">保存</string>
+ <string name="url">URL地址</string>
+ <string name="port">端口</string>
+ <string name="copyright">北京科美乾坤智能科技有限公司</string>
+</resources>
