@@ -175,8 +175,8 @@ namespace ContractMvcWeb.Controllers
             string filepath = folder + "caigou_"+ DateTime.Now.ToString("yyyyMMddHhmmss") + prefix;
             file.SaveAs(filepath);
 
-            List<Models.Beans.Contract> list = Utils.ExcelUtils.ParseExcel(filepath);
-            ContractMvcWeb.Models.ContractContext dbContext = new Models.ContractContext();
+            List<Models.Beans.ContractCG> list = Utils.ExcelUtils.ParseCGExcel(filepath);
+            ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
             //int result = dbContext.BatchAddContracts(list , User.Identity.Name);
             Models.Beans.BatchImportResult result = dbContext.BatchAddContracts(list, User.Identity.Name);
 
@@ -200,10 +200,9 @@ namespace ContractMvcWeb.Controllers
 
             }
 
-            return View("ImportContract");
+            return View("ImportXYContract");
         }
-
-
+        
 
         public FileResult ExportExcel(string seq, string contractnum, string projectnum,
             string projectname, string rfid, string contractplace,
@@ -309,6 +308,11 @@ namespace ContractMvcWeb.Controllers
             return View();
         }
 
+        public ActionResult AddCaiGouContract()
+        {
+            return View();
+        }
+
         protected bool CheckContractData(Contract model)
         {
             if (model == null) return false;
@@ -401,6 +405,98 @@ namespace ContractMvcWeb.Controllers
             }
         }
 
+        protected bool CheckContractCGData(ContractCG model)
+        {
+            if (model == null) return false;
+
+            bool isok = true;
+            if (string.IsNullOrEmpty(model.contractnum))
+            {
+                ModelState.AddModelError("ht1", "合同编号不能空。");
+                isok = false;
+            }
+
+            if (string.IsNullOrEmpty(model.seq))
+            {
+                ModelState.AddModelError("ht3", "采购编号不能空。");
+                isok = false;
+            }
+
+            if (string.IsNullOrEmpty(model.content))
+            {
+                ModelState.AddModelError("ht2", "采购内容不能空。");
+                isok = false;
+            }
+            //if (string.IsNullOrEmpty(model.projectname))
+            //{
+            //    ModelState.AddModelError("ht", "项目名称不能空。");
+            //    isok = false;
+            //}
+
+            //decimal fbys = 0;
+
+            //if (string.IsNullOrEmpty(model.packageBudget))
+            //{
+            //    model.packageBudget = "0.00";
+            //}
+            //if (decimal.TryParse(model.packageBudget, out fbys) == false)
+            //{
+            //    ModelState.AddModelError("fbys", "分包预算必须是数字。");
+            //    isok = false;
+            //}
+
+            //if (string.IsNullOrEmpty(model.money))
+            //{
+            //    model.money = "0.00";
+            //}
+            //decimal zbje = 0;
+            //if (decimal.TryParse(model.money, out zbje) == false)
+            //{
+            //    ModelState.AddModelError("zbje", "中标金额必须是数字。");
+            //    isok = false;
+            //}
+            return isok;
+        }
+
+
+        [HttpPost]
+        public ActionResult AddCaiGouContract(ContractCG model)
+        {
+            try
+            {
+                if (ModelState.IsValid == false) return View();
+                bool isok = CheckContractCGData(model);
+
+                if (isok == false) return View();
+
+                ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
+                bool isExist = dbContext.ExistContractByContractNumAndSeqAndprojectNum( model.contractnum , model.seq, model.projectnum);
+                if (isExist)
+                {
+                    ModelState.AddModelError("e1", "合同编号，序号和项目编号已经存在，操作失败。");
+                    return View();
+                }
+                model.createtime = DateTime.Now;
+                model.modifytime = model.createtime;
+                model.operatorName = Request.RequestContext.HttpContext.User.Identity.Name;
+                //model.operatorId = 
+
+                bool result = dbContext.AddContract(model);
+                if (result == false)
+                {
+                    ModelState.AddModelError("e2", "新增失败。");
+                    return View();
+                }
+
+                return new RedirectResult("~/contract/contractcglist");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("e3", ex.Message);
+                return View();
+            }
+        }
+
         [HttpPost]
         public JsonResult DeleteContracts(List<int> contractids)
         {
@@ -415,5 +511,32 @@ namespace ContractMvcWeb.Controllers
             json.Data = new Models.Result((int)Models.ResultCodeEnum.Success, "", "");
             return json;
         }
+
+
+        public ActionResult CGContractList( string pvalue, string pkey = "seq", string sortkey= "" , string sorttype="",  int pageidx = 1, int pagesize = 20)
+        {
+            ContractCG query = new ContractCG();        
+            //
+            query.pkey = pkey;
+            query.pvalue = pvalue;
+            //
+            query.sortkey = sortkey;
+            query.sorttype = sorttype;
+
+            Page<ContractCG> page = GetData(query, pageidx, pagesize);
+            
+
+            return View(page);  
+
+        }
+
+       
+        protected Page<ContractCG> GetData(ContractCG query, int pageidx, int pagesize)
+        {
+            Models.ContractCGContext dbContext = new Models.ContractCGContext();
+            Page<ContractCG> page = dbContext.QueryByPage(query, pageidx, pagesize);
+            return page;
+        }
+    
     }
 }

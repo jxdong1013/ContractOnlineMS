@@ -202,11 +202,13 @@
     </Compile>
     <Compile Include="Models\AccountContext.cs" />
     <Compile Include="Models\Beans\BatchImportResult.cs" />
+    <Compile Include="Models\Beans\ContractCG.cs" />
     <Compile Include="Models\Beans\ContractQuery.cs" />
     <Compile Include="Models\Beans\KeyValue.cs" />
     <Compile Include="Models\Beans\Contract.cs" />
     <Compile Include="Models\Beans\Page.cs" />
     <Compile Include="Models\Beans\User.cs" />
+    <Compile Include="Models\ContractCGContext.cs" />
     <Compile Include="Models\ContractContext.cs" />
     <Compile Include="Models\MySqlHelper.cs" />
     <Compile Include="Models\Result.cs" />
@@ -276,7 +278,6 @@
     <Content Include="Global.asax" />
     <Content Include="ExcelTemplate\ContractTemplate.xls" />
     <Content Include="ExcelTemplate\XYTemplate.xls" />
-    <None Include="Properties\PublishProfiles\ContractPublish.pubxml" />
     <Content Include="Images\admin-arrow.png" />
     <Content Include="Images\bg.jpg" />
     <Content Include="Images\down.png" />
@@ -285,12 +286,16 @@
     <Content Include="Images\login_btn.png" />
     <Content Include="Images\login_icon.png" />
     <Content Include="Images\nav-ico.png" />
+    <Content Include="Images\right.png" />
+    <Content Include="Images\up.png" />
+    <Content Include="Images\updown.png" />
     <Content Include="Scripts\bootstrap-3.3.5-min.js" />
     <Content Include="Scripts\bootstrap-3.3.5.js" />
     <Content Include="Scripts\contract.js" />
     <Content Include="Scripts\contract2.js" />
     <Content Include="Scripts\jquery-1.12.0.js" />
     <Content Include="Scripts\jquery-1.12.0.min.js" />
+    <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -349,6 +354,8 @@
     <Content Include="Views\User\PageBarPartial.cshtml" />
     <Content Include="Views\Contract\ContractQuery.cshtml" />
     <Content Include="Views\Contract\ImportXYContract.cshtml" />
+    <Content Include="Views\Contract\AddCaiGouContract.cshtml" />
+    <Content Include="Views\Contract\CGContractList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

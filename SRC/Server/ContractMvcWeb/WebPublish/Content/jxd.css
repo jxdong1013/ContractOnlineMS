@@ -3,6 +3,7 @@
     font-size: 12px;
     font-family: "宋体";
     background: #eff4f8;
+    line-height:200%;
 }
 
 .main-content
@@ -180,10 +181,25 @@ margin-bottom: 25px;
     .tr_header td
     {
         text-align: center;
-        height: 45px;
+        height: 40px;
         line-height: 28px;
         border-right: #fff 1px solid;
         padding: 0 1px;
+        /*background:url('../Images/updown.png') no-repeat center right;*/
+    }
+
+ .tr_header .sort {
+    background:url('../Images/updown.png') no-repeat center right;
+    cursor:pointer;
+}
+
+    .tr_header .sort_desc {
+          background:url('../Images/down.png') no-repeat center right;
+          cursor:pointer;
+    }
+    .tr_header .sort_asc {
+          background:url('../Images/up.png') no-repeat center right;
+          cursor:pointer;
     }
 
 .login_table
@@ -200,22 +216,24 @@ margin-bottom: 25px;
 {
     border: #e0e0e0 1px solid;
     border-top: 0;
-    -webkit-border-bottom-right-radius: 2px;
+    text-align: center;
+    /*-webkit-border-bottom-right-radius: 2px;
     -moz-border-radius-bottomright: 2px;
     border-bottom-right-radius: 2px;
     -webkit-border-bottom-left-radius: 2px;
     -moz-border-radius-bottomleft: 2px;
-    border-bottom-left-radius: 2px;
-    font-size: 12px;
+    border-bottom-left-radius: 2px;*/
+    font-size: 14px;
 }
 
 tr.old_row
 {
     margin: 0;
-    padding: 0;
+    padding: 4px 4px;
     border: 0;
     font-size: 100%;
     font: inherit;
+    line-height:200%;
     /* vertical-align: baseline; */
 }
 
@@ -229,11 +247,22 @@ tr.blue_row td
     background: #c4e9ff;
 }
 
+tr.blue2_row 
+{
+    margin: 0;
+    padding: 4px 4px;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    background: #DFF0D8;
+    line-height:200%;
+}
+
 .pager 
 {
-padding-top: 17px;
-height: 40px;
-line-height: 40px;
+padding-top: 10px;
+height:auto;
+line-height:inherit;
 overflow: hidden;
 font-size: 12px;
 }
@@ -241,12 +270,12 @@ font-size: 12px;
 #scott2 a {
 border: #d4d1d1 1px solid;
 border-radius: 2px;
--moz-border-radius: 2px;
--webkit-border-radius: 2px;
-padding: 2px 6px;
+/*-moz-border-radius: 2px;
+-webkit-border-radius: 2px;*/
+padding: 4px 8px;
 color: #666666;
 margin: 0 3px;
-height: 24px;
+/*height: 24px;*/
 cursor: pointer;
 background: #ededed;
 text-decoration:none;
@@ -254,10 +283,10 @@ text-decoration:none;
 
 #scott2 label.current {
 border: #2eadde 1px solid;
--webkit-border-radius: 2px;
--moz-border-radius: 2px;
+/*-webkit-border-radius: 2px;
+-moz-border-radius: 2px;*/
 border-radius: 2px;
-padding: 2px 6px;
+padding: 4px 8px;
 color: #fff;
 margin: 0 3px;
 background-color: #4abde9;
@@ -266,20 +295,21 @@ background-color: #4abde9;
 #scott2 label.disabled {
 font-size: 12px;
 border: #ddd 1px solid;
--webkit-border-radius: 2px;
--moz-border-radius: 2px;
+/*-webkit-border-radius: 2px;
+-moz-border-radius: 2px;*/
 border-radius: 2px;
-padding: 2px 6px;
+padding: 4px 8px;
 color: #ccc;
 margin-right: 8px;
 }
 
 .pageInput {
 width: 35px;
-height: 18px;
+/*height: 18px;*/
 text-align: center;
 margin-right: 2px;
-line-height: 18px;
+margin-left:2px;
+/*line-height: 18px;*/
 border: 1px solid #ccc;
 ime-mode: disabled;
 }
@@ -288,12 +318,14 @@ ime-mode: disabled;
 color: #ffffff;
 background: #aaaaaa;
 border: #888888 1px solid;
-width: 30px;
+/*width: 30px;*/
 font-size: 12px;
 cursor: pointer;
 -webkit-border-radius: 2px;
 -moz-border-radius: 2px;
 border-radius: 2px;
+padding: 4px 8px;
+margin-left:4px;
 }
 
 .bd_tit {

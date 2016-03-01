@@ -81,6 +81,7 @@ $('body').on('click', '#selectFile', function () {
     var isok = confirm("您确定要删除选中的记录吗?");
     if (isok) {
         var urlstring = $('#hdDeleteContract').val();
+        //alert(urlstring);
         var contractids = "";
         $.each(checkedRows, function (i, v) {
             //contractids.push($(v).siblings(':hidden[name="hdcontractid"]').val());
@@ -101,7 +102,7 @@ $('body').on('click', '#selectFile', function () {
             data: dataString,
             contentType: 'application/json',
             success: function (re) {               
-
+                //alert("ok");
                 window.location.reload(true);
             },
             error: function (msg, status) {

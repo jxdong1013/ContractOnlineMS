@@ -15,6 +15,10 @@
             @Html.Hidden("contractplace", @Request["contractplace"])    
             @Html.Hidden("bcompany", @Request["bcompany"])      
             @Html.Hidden("money", @Request["money"])      
+             @Html.Hidden("pkey",@Request["pkey"])
+             @Html.Hidden("pvalue",@Request["pvalue"])
+             @Html.Hidden("sortkey",@Request["sortkey"])
+             @Html.Hidden("sorttype",@Request["sorttype"])
             
              if(Model.PageIdx>1 )
              {
@@ -28,6 +32,10 @@
                             contractplace = @Request["contractplace"],
                             bcompany = @Request["bcompany"],
                             money = @Request["money"],
+                            pkey=@Request["pkey"],
+                            pvalue=@Request["pvalue"],
+                            sortkey=@Request["sortkey"],
+                            sorttype=@Request["sorttype"],
                             pageidx = 1
                         });
          }
@@ -49,6 +57,10 @@
                             contractplace = @Request["contractplace"],
                             bcompany = @Request["bcompany"],
                             money = @Request["money"],
+                            pkey=@Request["pkey"],
+                            pvalue=@Request["pvalue"],
+                            sortkey=@Request["sortkey"],
+                            sorttype=@Request["sorttype"],
                             pageidx = Model.PageIdx -1
                         }); 
         }
@@ -87,6 +99,10 @@
                        contractplace = @Request["contractplace"],
                        bcompany = @Request["bcompany"],
                        money = @Request["money"],
+                       pkey=@Request["pkey"],
+                       pvalue=@Request["pvalue"],
+                       sortkey=@Request["sortkey"],
+                       sorttype=@Request["sorttype"],
                        pageidx = i
                    
                    });                    
@@ -108,6 +124,10 @@
                        contractplace = @Request["contractplace"],
                        bcompany = @Request["bcompany"],
                        money = @Request["money"],
+                       pkey=@Request["pkey"],
+                       pvalue=@Request["pvalue"],
+                       sortkey=@Request["sortkey"],
+                       sorttype=@Request["sorttype"],
                        pageidx = Model.PageIdx +1
                 });
             }
@@ -125,6 +145,10 @@
                        contractplace = @Request["contractplace"],
                        bcompany = @Request["bcompany"],
                        money = @Request["money"],
+                        pkey=@Request["pkey"],
+                       pvalue=@Request["pvalue"],
+                       sortkey=@Request["sortkey"],
+                       sorttype=@Request["sorttype"],
                        pageidx = Model.TotalPages
                 });
             }

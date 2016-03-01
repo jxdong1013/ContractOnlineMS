@@ -12,7 +12,7 @@
 </script>
 
 <div class="content" > 
-<h4>合同查询</h4>
+<h3>合同查询</h3>
     <input id="hdDeleteContract" type="hidden" value="/contract/DeleteContracts" />
 
    @using (@Html.BeginForm("contractlist", "contract", FormMethod.Get))
@@ -49,116 +49,72 @@
 
     </table>*@
 
+    <div class="container-fluid">
+        <div class="col-xs-2"></div>
+        <div class="input-group col-xs-8">
+            <div class="input-group-btn">
+                <button id="btnOneQuery" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">序号 <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" onclick="selectonekey('序号')">序号</a></li>
+                    <li><a href="#" onclick="selectonekey('合同编号')">合同编号</a></li>
+                    <li><a href="#" onclick="selectonekey('项目编号')">项目编号</a></li>
+                    <li><a href="#" onclick="selectonekey('项目名称')">项目名称</a></li>
+                    <li><a href="#" onclick="selectonekey('存放位置(精确匹配)')">存放位置(精确匹配)</a></li>
+                    <li><a href="#" onclick="selectonekey('中标公司')">中标公司</a></li>
+                    <li><a href="#" onclick="selectonekey('中标金额(万元)')">中标金额(万元)</a></li>
+                </ul>
+            </div>
+            <input type="text" class="form-control" placeholder="请输入搜索内容">
+            <div class="input-group-btn">
+                <button id="btnquery" onclick="s()" type="button" class="btn btn-default">搜索一下</button>
+            </div><!-- /btn-group -->
 
+        </div><!-- /input-group -->
+        <div class="col-xs-2"></div>
 
-
-    <div class="container">
         <div class="row">
-            <div class="col-lg-2">
-                <input type="hidden" id="pkey" name="pkey" value=@(Request["pkey"]==null|| Request["pkey"].ToString()==""?"seq":Request["pkey"]) />
-                <input type="hidden" id="sortkey" name="sortkey" value="@(Request["sortkey"]==null||Request["sortkey"].ToString()==""?"":Request["sortkey"])" />
-                <input type="hidden" id="sorttype" name="sorttype" value="@(Request["sorttype"]==null||Request["sorttype"].ToString()==""?"":Request["sorttype"])" />
-
+            <div class="col-lg-4"></div>
+            <div class="col-xs-4">
+                @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"], projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"], contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], oney = @Request["money"] } )
+                <a  id="btnDelete" href="#">删除</a>
             </div>
-            <div class="input-group col-lg-8">
-                <div class="input-group-btn">
-                    <button id="btnOneQuery" name="btnOneQuery" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="序号">
-                        @(Request["pkey"] == null || Request["pkey"].ToString() == "" ? "序号" :
-           Request["pkey"] == "seq" ? "序号" : Request["pkey"] == "contractnum" ? "合同编号" : Request["pkey"] == "projectnum" ? "项目编号" :
-           Request["pkey"] == "projectname" ? "项目名称" : Request["pkey"] == "contractplace" ? "存放位置(精确匹配)" :
-           Request["pkey"] == "bcompany" ? "中标公司" : Request["pkey"] == "money" ? "中标金额(万元)" : ""
-                        ) <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" onclick="selectonekey('序号','seq')">序号</a></li>
-                        <li><a href="#" onclick="selectonekey('合同编号', 'contractnum')">合同编号</a></li>
-                        <li><a href="#" onclick="selectonekey('项目编号', 'projectnum')">项目编号</a></li>
-                        <li><a href="#" onclick="selectonekey('项目名称', 'projectname')">项目名称</a></li>
-                        <li><a href="#" onclick="selectonekey('存放位置(精确匹配)', 'contractplace')">存放位置(精确匹配)</a></li>
-                        <li><a href="#" onclick="selectonekey('中标公司', 'bcompany')">中标公司</a></li>
-                        <li><a href="#" onclick="selectonekey('中标金额(万元)', 'money')">中标金额(万元)</a></li>
-                    </ul>
-                </div>
-
-                <input type="text" id="pvalue" name="pvalue" class="form-control" placeholder="请输入搜索内容" value="@Request["pvalue"]">
-                <div class="input-group-btn">
-                    <button id="btnquery" type="submit" value="query" class="btn btn-default">搜索一下</button>
-                </div><!-- /btn-group -->
-            </div><!-- /input-group -->
-
-            <div class="col-lg-2">
-                @*@Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"], projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"], contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], money = @Request["money"], pkey = @Request["pkey"], pvalue = Request["pvalue"] })
-
-
-                <a id="btnDelete" href="#">删除</a>*@
-            </div>
+            <div class="col-lg-4"></div>
         </div>
-
-            <div class="row">
-                <div class="col-lg-7"></div>
-                <div class="col-xs-5">
-                   
-                    @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"], 
-                   projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"],
-                   contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], money = @Request["money"], 
-                   pkey = @Request["pkey"], pvalue = Request["pvalue"] })
-                    <a id="btnDelete" href="#">删除</a>
-                    
-                </div>
-     
-            </div>
-        </div>
+    </div>
     
 
 
-   
+
+   }
 
     
 
 <table width="100%">
     <tr class="tr_header">
         <td width="1%"><input id="ckbAll" type="checkbox" value="全选"/></td>
-        <td width="4%" onclick="sort('isPayAll')" 
-            class = @(  Request["sortkey"]==null || Request["sortkey"] !="isPayAll" ? "sort": @Request["sorttype"]=="asc" ?"sort_asc" : "sort_desc")>支付全款</td>
-        <td width="2%">押款</td>
-        <td width="2%">退款</td>
-        <td width="5%" onclick="sort('tel')"  
-            class = @(  Request["sortkey"]==null || Request["sortkey"] !="tel" ? "sort": @Request["sorttype"]=="asc" ?"sort_asc" : "sort_desc")>联系方式</td>
-        <td width="5%" onclick="sort('contractnum')"
-            class=@( Request["sortkey"]==null || Request["sortkey"] !="contractnum"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>合同号
-          </td>
-        <td width="4%" onclick="sort('linker')"
-             class=@( Request["sortkey"]==null || Request["sortkey"] !="linker"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")  >中标联系人</td>
-        <td width="3%">招标编号</td>
-        <td width="3%">付款方式</td>
-        <td width="5%" onclick="sort('signingdate')"
-             class="@( Request["sortkey"]==null || Request["sortkey"] !="signingdate"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")">签合同日期</td>
-        <td width="5%" onclick="sort('deliveryTime')"
-             class="@( Request["sortkey"]==null || Request["sortkey"] !="deliveryTime"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")">交货时间</td>
-        <td width="5%">进度</td>
-        @*<td width="2%">序号</td>
+        <td width="3%">合同号</td>
+        <td width="2%">序号</td>
         <td width="4%">项目编号</td>
         <td width="8%">项目名称</td>
         <td width="3%">项目负责人</td>
-        
+        <td width="5%">联系方式</td>
         <td width="5%">分管部门</td>
         <td width="5%">分包名称</td>
         <td width="5%">分包预算(万元)</td>
-       
+        <td width="3%">招标编号</td>
         <td width="8%">招标公司</td>
         <td width="5%">开标时间</td>
- 
+        <td width="3%">付款方式</td>
         <td width="8%">中标公司名称</td>
-       
-        <td width="5%">中标金额(万元)</td>*@
-      
-       
-    
-        
+        <td width="3%">联系人</td>
+        <td width="5%">中标金额(万元)</td>
+        <td width="5%">签合同日期</td>
+        <td width="5%">交货时间</td>
+        <td width="3%">支付全款</td>
+        <td width="2%">押款</td>
+        <td width="2%">退款</td>
     </tr>
     </table>
-   
-   }
 
 <table width="100%" class="data_table">
    
@@ -166,52 +122,41 @@
  {
      decimal fbys_sum = 0;
      decimal money_sum=0;
-     int idx = 0;
-     foreach (ContractMvcWeb.Models.Beans.Contract  p in Model.Data)
-     {
-         idx++;
-         decimal temp = 0;
-         decimal.TryParse( p.packageBudget ==null ? "0.00": p.packageBudget , out temp);
-         fbys_sum += temp;
-         decimal.TryParse( p.money ==null? "0.00":p.money , out temp );
-         money_sum +=temp;
-
-        <tr class= @(idx % 2==1 ? "old_row" : "blue2_row") >
+     
+      foreach (ContractMvcWeb.Models.Beans.Contract  p in Model.Data)
+        {
+            decimal temp = 0;
+          decimal.TryParse( p.packageBudget ==null ? "0.00": p.packageBudget , out temp);
+          fbys_sum += temp;
+          decimal.TryParse( p.money ==null? "0.00":p.money , out temp );
+          money_sum +=temp;
+          
+        <tr class="old_row">
            <td width="1%"><input type="checkbox" value="" name="checkRow"/><input type="hidden" value="@p.contractid" name="hdcontractid" /></td>
-            <td width="4%">@p.isPayAll</td>
-            <td width="2%">@p.isArmoured</td>
-            <td width="2%">@p.isRefund</td>
-            <td width="5%">@p.tel</td>
-            <td width="5%">@Html.ActionLink( @p.contractnum , "EditContract", new { contractid = @p.contractid}) </td>
-            <td width="3%">@p.linker</td>
-            <td width="3%">@p.tendarNum</td>
-            <td width="3%">@p.paymethod</td>
-            <td width="5%">@p.signingdate</td>
-            <td width="5%">@p.deliveryTime</td>
-            <td width="5%">@p.progress</td>
-
-           @*<td width="2%">@p.seq</td>
+           <td width="3%">@Html.ActionLink( @p.contractnum , "EditContract", new { contractid = @p.contractid}) </td>
+           <td width="2%">@p.seq</td>
            <td width="4%">@p.projectnum</td>
            <td width="8%">@p.projectname</td>
            <td width="3%">@p.projectmanager</td>          
-          
+           <td width="5%">@p.tel</td>
            <td width="5%">@p.depart</td>
            <td width="5%">@p.packageName</td>
            <td width="5%">@p.packageBudget</td>
-           
+           <td width="3%">@p.tendarNum</td>
            <td width="8%">@p.tendarCompany</td>
            <td width="5%">@p.tendarStartTime</td>
-    
+           <td width="3%">@p.paymethod</td>
            <td width="8%">@p.bcompany</td>
-         
-           <td width="5%">@p.money</td>*@
-         
-        
-           
-           
+           <td width="3%">@p.linker</td>
+           <td width="5%">@p.money</td>
+           <td width="5%">@p.signingdate</td>
+           <td width="5%">@p.deliveryTime</td>
+           <td width="3%">@p.isPayAll</td>
+           <td width="2%">@p.isArmoured</td>
+           <td width="2%">@p.isRefund</td>
           </tr>
     }
-    @*<tr  class="blue_row">
+    <tr  class="blue_row">
         <td colspan="2" width="1%">合计</td>
         <td width="2%"></td>
         <td width="4%"></td>
@@ -233,7 +178,7 @@
         <td width="3%"></td>
         <td width="2%"></td>
         <td width="2%"></td>
-    </tr>*@
+    </tr>
  }
 </table>
 

@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "合同查询";
+    ViewBag.Title = "采购合同查询";
     ViewBag.PageCode = "C001";
 }
-@model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.Contract> 
+@model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.ContractCG> 
 
 
 <script type="text/javascript">
@@ -12,46 +12,11 @@
 </script>
 
 <div class="content" > 
-<h4>合同查询</h4>
+<h4>采购合同查询</h4>
     <input id="hdDeleteContract" type="hidden" value="/contract/DeleteContracts" />
 
-   @using (@Html.BeginForm("contractlist", "contract", FormMethod.Get))
-   {
-       //var enableItems =( List<SelectListItem>) ViewData["enableItems"];
-
-    @*<table>
-        <tr>
-            <td>序号:</td>
-            <td>@Html.TextBox("seq")</td>
-            <td>合同编号:</td>
-            <td>@Html.TextBox("contractnum")</td>
-            <td>项目编号:</td>
-            <td>@Html.TextBox("projectnum")</td>
-            <td>项目名称:</td>
-            <td>@Html.TextBox("projectname")</td>
-            <td><button type="submit" value="query" class="blue_btn button_90">查询</button></td>
-        </tr>
-        <tr>
-            <td>存放位置(精确匹配):</td>
-            <td>@Html.TextBox("contractplace")</td>
-            <td>中标公司:</td>
-            <td>@Html.TextBox("bcompany")</td>
-            <td>中标金额(万元):</td>
-            <td>@Html.TextBox("money")</td>
-            <td colspan="2">                
-
-                @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"], projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"], contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], oney = @Request["money"] }, new { @class = "blue_btn link_90" })
-
-                <button class="blue_btn button_90" id="btnDelete" type="button">删除</button>
-            </td>
-        </tr>
-
-
-    </table>*@
-
-
-
-
+   @using (@Html.BeginForm("cgcontractlist", "contract", FormMethod.Get))
+   {      
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
@@ -109,10 +74,6 @@
             </div>
         </div>
     
-
-
-   
-
     
 
 <table width="100%">
@@ -135,26 +96,8 @@
              class="@( Request["sortkey"]==null || Request["sortkey"] !="signingdate"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")">签合同日期</td>
         <td width="5%" onclick="sort('deliveryTime')"
              class="@( Request["sortkey"]==null || Request["sortkey"] !="deliveryTime"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")">交货时间</td>
-        <td width="5%">进度</td>
-        @*<td width="2%">序号</td>
-        <td width="4%">项目编号</td>
-        <td width="8%">项目名称</td>
-        <td width="3%">项目负责人</td>
-        
-        <td width="5%">分管部门</td>
-        <td width="5%">分包名称</td>
-        <td width="5%">分包预算(万元)</td>
-       
-        <td width="8%">招标公司</td>
-        <td width="5%">开标时间</td>
- 
-        <td width="8%">中标公司名称</td>
-       
-        <td width="5%">中标金额(万元)</td>*@
-      
-       
-    
-        
+        <td width="5%">进度</td>    
+               
     </tr>
     </table>
    

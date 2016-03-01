@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "AddCaiGouContract";
+}
+@model ContractMvcWeb.Models.Beans.ContractCG 
+
+@*<h2>AddCaiGouContract</h2>*@
+<h3>合同登记</h3>
+
+<div class="content">
+
+    <div>
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="~/Contract/AddContract">中标合同登记</a></li>
+            <li role="presentation" class="active"><a href=#">采购合同登记</a></li>
+            <li role="presentation"><a href="#">零星合同登记</a></li>
+        </ul>
+    </div>
+
+    @using (Html.BeginForm("AddCaiGouContract", "Contract", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <table class="new_info_table">
+            <tr>
+                <td><b class="red">*</b>合同编号:@Html.TextBoxFor(m => m.contractnum)</td>
+                <td><b class="red">*</b>采购编号:@Html.TextBoxFor(m => m.seq)</td>
+                <td>采购部门:@Html.TextBoxFor(m => m.department)</td>
+            </tr>
+            <tr>
+                <td>采购联系人:@Html.TextBoxFor(m => m.linker)</td>
+                <td>采购类型:@Html.TextBoxFor(m => m.type)</td>
+                <td><b class="red">*</b>采购内容:@Html.TextBoxFor(m => m.content)</td>
+                
+            </tr>
+            <tr>
+                <td>联系电话:@Html.TextBoxFor(m => m.tel)</td>
+                <td>项目编号:@Html.TextBoxFor(m => m.projectnum)</td>
+                <td>经费来源:@Html.TextBoxFor(m => m.fundsource)</td>                             
+            </tr>
+            <tr>
+                <td>预算金额:@Html.TextBoxFor(m => m.budgetamount)</td>
+                <td>供货单位:@Html.TextBoxFor(m => m.super)</td>
+                <td>供货联系人:@Html.TextBoxFor(m => m.superlinker)</td>
+            </tr>
+            <tr>
+                <td>联系电话:@Html.TextBoxFor(m => m.supertel)</td>
+                <td>结算金额:@Html.TextBoxFor(m => m.settleamount)</td>
+                <td>赠送内容:@Html.TextBoxFor(m => m.freecontent)</td>
+            </tr>
+            <tr>
+                <td>赠送价值:@Html.TextBoxFor(m => m.freevalue)</td>
+                <td>验收情况:@Html.TextBoxFor(m => m.validate)</td>
+                <td>记录位置:@Html.TextBoxFor(m => m.place)</td>
+            </tr>
+            <tr>
+                <td>支付进度:@Html.TextBoxFor(m => m.payprogress)</td>
+                <td>分管部门:@Html.TextBoxFor(m => m.chargedepartment)</td>
+                <td>备注:@Html.TextBoxFor(m => m.remark)</td>
+            </tr>
+            <tr>
+                <td colspan="3">@Html.ValidationSummary()</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align:center">
+                    <button id="btnSave" class="blue_btn button_90 mr20" value="新增" type="submit">新增</button>
+                </td>
+            </tr>
+        </table>
+
+    }
+
+</div>

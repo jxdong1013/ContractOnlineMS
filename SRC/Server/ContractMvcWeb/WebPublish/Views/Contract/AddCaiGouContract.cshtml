@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "AddCaiGouContract";
+}
+
+<h2>AddCaiGouContract</h2>
+
+@using(Html.BeginForm("AddCaiGouContract","Contract",FormMethod.Post)){
+    @Html.AntiForgeryToken()
+
+    <div class="control-group">
+        <label class="control-label">采购编号</label>
+        <div class="control">
+            <input type="text" placeholder="采购编号" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">采购编号</label>
+        <div class="control">
+            <input type="text" placeholder="采购编号" />
+        </div>
+    </div>
+     <div class="control-group">
+        <label class="control-label">采购编号</label>
+        <div class="control">
+            <input type="text" placeholder="采购编号" />
+        </div>
+    </div>
+}
