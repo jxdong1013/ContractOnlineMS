@@ -195,6 +195,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Attributes\MyAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\LXContractController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,6 +204,7 @@
     <Compile Include="Models\AccountContext.cs" />
     <Compile Include="Models\Beans\BatchImportResult.cs" />
     <Compile Include="Models\Beans\ContractCG.cs" />
+    <Compile Include="Models\Beans\ContractLX.cs" />
     <Compile Include="Models\Beans\ContractQuery.cs" />
     <Compile Include="Models\Beans\KeyValue.cs" />
     <Compile Include="Models\Beans\Contract.cs" />
@@ -210,6 +212,7 @@
     <Compile Include="Models\Beans\User.cs" />
     <Compile Include="Models\ContractCGContext.cs" />
     <Compile Include="Models\ContractContext.cs" />
+    <Compile Include="Models\ContractLXContext.cs" />
     <Compile Include="Models\MySqlHelper.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\user.cs" />
@@ -220,6 +223,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jxd.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -356,6 +360,8 @@
     <Content Include="Views\Contract\ImportXYContract.cshtml" />
     <Content Include="Views\Contract\AddCaiGouContract.cshtml" />
     <Content Include="Views\Contract\CGContractList.cshtml" />
+    <Content Include="Views\LXContract\ContractList.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
