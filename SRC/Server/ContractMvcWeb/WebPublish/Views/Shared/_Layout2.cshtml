@@ -112,9 +112,10 @@
                         </a>
                         <ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
                             <li><a href="~/Contract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="~/Contract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="~/Contract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>                           
-       
+                            <li><a href="#"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
                         </ul>
                     </li>
                     <li>
@@ -136,7 +137,7 @@
                         <a href="#lxcontractmenu" class="nav-header collapsed" data-toggle="collapse">
                             <i class="glyphicon glyphicon-globe"></i>
                             零星合同管理
-                          @*  <span class="label label-warning pull-right">5</span>*@
+                            <span class="label label-warning pull-right">5</span>
                         </a>
                         <ul id="lxcontractmenu" class="nav nav-list collapse secondmenu" style="height:0px;">
                             <li><a href="~/lxContract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
@@ -152,14 +153,12 @@
                         </a>
                     </li>*@
                     <li>
-                        <a href="#systemmanager">
+                        <a href="#">
                             <i class="glyphicon glyphicon-fire"></i>
-                            系统管理
+                            关于系统
                         </a>
-                        <ul id="systemmanager" class="nav nav-list collapse secondmenu" style="height:0px;">
-                            <li><a href="~/User/UserList">用户管理</a></li>
-                        </ul>
                     </li>
+
                 </ul>
             </div>
             <div class="col-md-10">                
@@ -169,7 +168,7 @@
     </div>
 
     <footer>
-        <div class="footer_float-right">
+        <div class=" navbar-fixed-bottom footer_float-right">
             <p> RFID 合同管理系统 &copy;-@DateTime.Now.Year 北京科美乾坤智能科技有限公司</>
         </div>
     </footer>

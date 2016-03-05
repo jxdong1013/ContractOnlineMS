@@ -1,0 +1,29 @@
+﻿body {
+}
+
+
+
+.footer_float-right {
+    color: #27b0f7;
+    margin-top: 10px;
+    margin-bottom:10px;
+    margin: 0 auto;
+    width: 90%;
+    text-align :center;
+}
+
+
+
+ .sort {
+    background:url('../Images/updown.png') no-repeat center right;
+    cursor:pointer;
+}
+
+  .sort_desc {
+          background:url('../Images/down.png') no-repeat center right;
+          cursor:pointer;
+    }
+  .sort_asc {
+          background:url('../Images/up.png') no-repeat center right;
+          cursor:pointer;
+    }

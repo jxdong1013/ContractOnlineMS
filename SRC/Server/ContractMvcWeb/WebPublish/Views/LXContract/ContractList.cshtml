@@ -1,0 +1,136 @@
+﻿@model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.ContractLX>
+
+@{
+    ViewBag.Title = "零星合同查询";
+}
+
+<div class="panel panel-default" >
+    <h4>零星合同查询</h4>
+    <input id="hdDeleteContract" type="hidden" value="/lxcontract/DeleteContracts" />
+
+    @using (@Html.BeginForm("contractlist", "lxcontract", FormMethod.Get))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <input type="hidden" id="pkey" name="pkey" value=@(Request["pkey"]==null|| Request["pkey"].ToString()==""?"seq":Request["pkey"]) />
+                    <input type="hidden" id="sortkey" name="sortkey" value="@(Request["sortkey"]==null||Request["sortkey"].ToString()==""?"":Request["sortkey"])" />
+                    <input type="hidden" id="sorttype" name="sorttype" value="@(Request["sorttype"]==null||Request["sorttype"].ToString()==""?"":Request["sorttype"])" />
+                </div>
+                <div class="input-group col-lg-8">
+                    <div class="input-group-btn">
+                        <button id="btnOneQuery" name="btnOneQuery" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="采购编号">
+                            @(Request["pkey"] == null || Request["pkey"].ToString() == "" ? "采购编号" :
+           Request["pkey"] == "seq" ? "采购编号" : Request["pkey"] == "department" ? "采购部门" : Request["pkey"] == "projectnum" ? "项目编号" :
+           Request["pkey"] == "type" ? "采购类型" : Request["pkey"] == "super" ? "供货单位" :
+Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprogress" ? "支付进度" : ""
+                            ) <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="selectonekey('采购编号', 'seq')">采购编号</a></li>
+                            <li><a href="#" onclick="selectonekey('采购部门', 'department')">采购部门</a></li>
+                            <li><a href="#" onclick="selectonekey('项目编号', 'projectnum')">项目编号</a></li>
+                            <li><a href="#" onclick="selectonekey('采购类型', 'type')">采购类型</a></li>
+                            <li><a href="#" onclick="selectonekey('供货单位', 'super')">供货单位</a></li>
+                            <li><a href="#" onclick="selectonekey('结算金额', 'settleamount')">结算金额</a></li>
+                            <li><a href="#" onclick="selectonekey('支付进度', 'payprogress')">支付进度</a></li>
+                        </ul>
+                    </div>
+                    <input type="text" id="pvalue" name="pvalue" class="form-control" placeholder="请输入搜索内容" value="@Request["pvalue"]" />
+                    <div class="input-group-btn">
+                        <button id="btnquery" type="submit" value="query" class="btn btn-default">搜索一下</button>
+                    </div>
+                    <div class="col-lg-2">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-7"></div>
+                <div class="col-xs-5">
+                    @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"],
+                   projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"],
+                   contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], money = @Request["money"],
+                   pkey = @Request["pkey"], pvalue = Request["pvalue"] })
+                    <a id="btnDelete" href="#">删除</a>
+                </div>
+            </div>
+      
+         
+        </div>
+
+
+    <table width="100%" style="margin-bottom:0px;" class="table table-bordered">
+        <tr class="info">
+            <td width="1%"><input id="ckbAll" type="checkbox" value="全选" /></td>
+            <td width="3%" onclick="sort('seq')"
+                class=@( Request["sortkey"] == null || Request["sortkey"] != "seq" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
+                采购编号
+            </td>
+            <td width="4%">采购部门</td>
+            <td width="4%">采购类型</td>
+            <td width="4%" onclick="sort('projectnum')"
+                class=@(  Request["sortkey"] == null || Request["sortkey"] != "projectnum" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
+                项目编号
+            </td>
+            <td width="4%" onclick="sort('contractnum')"
+                class=@( Request["sortkey"]==null || Request["sortkey"] !="contractnum"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
+                合同编号
+            </td>
+            <td width="3%" onclick="sort('linker')"
+                class=@( Request["sortkey"]==null || Request["sortkey"] !="linker"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
+                联系人
+            </td>
+            <td width="5%">供货单位</td>
+            <td width="3%">供货联系人</td>
+            <td width="5%" onclick="sort('supertel')"
+                class="@( Request["sortkey"] == null || Request["sortkey"] != "supertel" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
+                供货联系电话
+            </td>
+            <td width="5%" onclick="sort('settleamount')"
+                class="@( Request["sortkey"] == null || Request["sortkey"] != "settleamount" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
+                结算金额
+            </td>
+            <td width="5%">支付进度</td>
+
+        </tr>
+    </table>
+
+    }
+
+
+    <table width="100%" class="table table-bordered" >
+
+        @if (Model != null && Model.Data != null)
+        {
+           
+            decimal money_sum = 0;
+            int idx = 0;
+            foreach (ContractMvcWeb.Models.Beans.ContractLX p in Model.Data)
+            {
+                idx++;             
+
+                <tr class=@(idx % 2 == 1 ? "active" : "info")>
+                    <td width="1%"><input type="checkbox" value="" name="checkRow" /><input type="hidden" value="@p.contractid" name="hdcontractid" /></td>                                    
+                    <td width="3%">@p.seq</td>
+                    <td width="4%">@p.department</td>
+                    <td width="4%">@p.type</td>
+                    <td width="4%">@p.projectnum</td>
+                    <td width="4%">@Html.ActionLink(@p.contractnum, "EditContractLX", new { contractid = @p.contractid }) </td>
+                    <td width="3%">@p.linker</td>
+                    <td width="5%">@p.super</td>
+                    <td width="3%">@p.superlinker</td>
+                    <td width="5%">@p.supertel</td>
+                    <td width="5%">@p.settleamount</td>
+                    <td width="5%">@p.payprogress</td>
+
+                </tr>
+            }          
+        }
+    </table>
+
+
+
+</div>
