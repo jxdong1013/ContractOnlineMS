@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>@ViewBag.Title - RFID合同管理系统</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />   
     @Styles.Render("~/Content/bootstrapcss")
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
@@ -77,6 +77,7 @@
             display: inline-block;
             vertical-align: middle;
             padding-left: 50px;
+            font-size:22px;
             color: #fff;
         }
     </style>
@@ -86,35 +87,43 @@
 <body>
     <div class="navbar navbar-static-top" role="navigation">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#" id="logo">
-                    管理系统
-                </a>
+            <div class="row">
+                <div class="col-lg-8">
+                    <a class="navbar-brand" href="#" id="logo">管理系统</a>
+                   
+                </div>   
+                <div class="col-lg-4">
+                    <div class="text-right float-right">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>           
+                
             </div>
         </div>
     </div>
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2">
+            <div class= @( ViewBag.isLogin != null && ViewBag.isLogin ? "hidden-div" : "col-md-2") >
                 <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
                     <li class="active">
                         <a href="#">
                             <i class="glyphicon glyphicon-th-large"></i>
                             首页
                         </a>
+                       
                     </li>
                     <li>
-                        <a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse">
+                        <a href="#systemSetting" class="nav-header " aria-expanded="true" data-toggle="collapse">
                             <i class="glyphicon glyphicon-cog"></i>
                             中标合同管理
                             <span class="pull-right glyphicon glyphicon-chevron-down"></span>
                         </a>
-                        <ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                        <ul id="systemSetting" class="nav nav-list secondmenu  collapse in" aria-expanded="true" >
                             <li><a href="~/Contract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
                             <li><a href="~/Contract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="~/Contract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>                           
-       
+                            <li><a href="~/Contract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
+
                         </ul>
                     </li>
                     <li>
@@ -162,7 +171,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-10">                
+            <div class= @(ViewBag.isLogin!=null && ViewBag.isLogin==true?"col-md-12":"col-md-10")>                
                 @RenderBody()
             </div>
         </div>
