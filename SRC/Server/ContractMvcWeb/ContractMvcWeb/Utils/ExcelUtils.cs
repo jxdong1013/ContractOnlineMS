@@ -351,7 +351,83 @@ namespace ContractMvcWeb.Utils
                 }
             }
 
-        }    
-    
+        }
+
+
+        public static List<Models.Beans.ContractLX> ParseLXExcel(string filePath)
+        {
+            FileStream fs = null;
+            try
+            {
+                fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                NPOI.SS.UserModel.IWorkbook workbook = null;
+                workbook = NPOI.SS.UserModel.WorkbookFactory.Create(fs);
+
+                NPOI.SS.UserModel.ISheet sheet = workbook.GetSheetAt(0);
+                if (sheet == null) return null;
+                NPOI.SS.UserModel.IRow firstRow = sheet.GetRow(0);
+                int rowCount = sheet.LastRowNum;
+                int cellCount = firstRow.LastCellNum;
+
+                List<Models.Beans.ContractLX> list = new List<Models.Beans.ContractLX>();
+
+                for (int i = sheet.FirstRowNum + 1; i <= rowCount; i++)
+                {
+                    try
+                    {
+                        Models.Beans.ContractLX model = new Models.Beans.ContractLX();
+
+                        NPOI.SS.UserModel.IRow row = sheet.GetRow(i);
+                        if (row == null) continue;
+
+                        model.contractnum = row.GetCell(0) == null ? string.Empty : row.GetCell(0).ToString();
+                        model.seq = row.GetCell(1) == null ? string.Empty : row.GetCell(1).ToString();
+                        model.department = row.GetCell(2) == null ? string.Empty : row.GetCell(2).ToString();
+                        model.linker = row.GetCell(3) == null ? string.Empty : row.GetCell(3).ToString();
+                        model.tel = row.GetCell(4) == null ? string.Empty : row.GetCell(4).ToString();
+                        model.projectnum = row.GetCell(5) == null ? string.Empty : row.GetCell(5).ToString();
+                        model.fundsource = row.GetCell(6) == null ? string.Empty : row.GetCell(6).ToString();
+                        model.type = row.GetCell(7) == null ? string.Empty : row.GetCell(7).ToString();
+                        model.content = row.GetCell(8) == null ? string.Empty : row.GetCell(8).ToString();
+                        model.budgetamount = row.GetCell(9) == null ? string.Empty : row.GetCell(9).ToString();
+                        model.super = row.GetCell(10) == null ? string.Empty : row.GetCell(10).ToString();
+                        model.superlinker = row.GetCell(11) == null ? string.Empty : row.GetCell(11).ToString();
+                        model.supertel = row.GetCell(12) == null ? string.Empty : row.GetCell(12).ToString();
+                        model.settleamount = row.GetCell(13) == null ? string.Empty : row.GetCell(13).ToString();
+                        model.freecontent = row.GetCell(14) == null ? string.Empty : row.GetCell(14).ToString();
+                        model.freevalue = row.GetCell(15) == null ? string.Empty : row.GetCell(15).ToString();
+                        model.validate = row.GetCell(16) == null ? string.Empty : row.GetCell(16).ToString();
+                        model.place = row.GetCell(17) == null ? string.Empty : row.GetCell(17).ToString();
+                        model.payprogress = row.GetCell(18) == null ? string.Empty : row.GetCell(18).ToString();
+                        model.chargedepartment = row.GetCell(19) == null ? string.Empty : row.GetCell(19).ToString();
+                        model.remark = row.GetCell(20) == null ? string.Empty : row.GetCell(20).ToString();
+
+                        if (CheckEmptyLine(model)) continue;
+
+                        list.Add(model);
+                    }
+                    catch (Exception ex)
+                    {
+                        //string msg = ex.Message;
+                        throw ex;
+                    }
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                return null;
+            }
+            finally
+            {
+                if (fs != null)
+                {
+                    fs.Close();
+                    fs = null;
+                }
+            }
+
+        }
     }
 }

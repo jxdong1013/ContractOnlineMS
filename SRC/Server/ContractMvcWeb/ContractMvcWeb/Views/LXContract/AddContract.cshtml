@@ -1,15 +1,13 @@
 ﻿@{
-    ViewBag.Title = "AddCaiGouContract";
+    ViewBag.Title = "AddContract";
 }
-@model ContractMvcWeb.Models.Beans.ContractCG 
+@model ContractMvcWeb.Models.Beans.ContractLX
 
-@*<h2>AddCaiGouContract</h2>*@
-<h3>合同登记</h3>
+<h3>零星合同登记</h3>
 
 <div class="content">
 
-
-    @using (Html.BeginForm("AddCaiGouContract", "Contract", FormMethod.Post))
+    @using (Html.BeginForm("AddContract", "LXContract", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 

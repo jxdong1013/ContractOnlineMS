@@ -1,23 +1,11 @@
 ﻿@{
-    ViewBag.Title = "中标合同导入";
-    ViewBag.PageCode = "C004";
+    ViewBag.Title = "零星合同导入";
+    ViewBag.PageCode = "C1001";
 }
 
-
-<div class="content" style="height:500px">
-    <link style="text/css" rel="stylesheet" href="~/Content/jxd.css" />
-   @* <div class="bd_tit">
-        <h2>导入数据</h2>
-    </div>*@
-   @* <div>
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active" ><a href="#">导入中标合同数据</a></li>
-            <li role="presentation" ><a href="ImportXYContract">导入协议合同数据</a> </li>
-            <li role="presentation"><a href="#">导入零星合同数据</a></li>
-        </ul>
-    </div>*@
-
-  @*  <div>@Html.ValidationSummary()</div>*@
+<div class="content1 " style="height:500px">
+    <link style="text/css" rel="stylesheet" href="~/Content/style2.css" />
+<h4>零星合同导入</h4>
 
     <div class="import_contract_box ">
         <div class="temp_download">
@@ -28,7 +16,7 @@
                     <p class="temp_name">模板_批量导入数据.xls</p>
                 </li>
                 <li >
-                    <a class="blue_btn link_common" href="~/Contract/DownloadExcelTemplate">下载</a>
+                    <a class="blue_btn link_common" href="~/LXContract/DownloadExcelTemplate">下载</a>
                 </li>
             </ul>
         </div>
@@ -36,7 +24,7 @@
        <a class="right_arrow add mb10"></a>
    </div>
         <div class="temp_upload">
-            <form id="uploadForm" method="post" action="~/Contract/ImportContract" enctype="multipart/form-data" >
+            <form id="uploadForm" method="post" action="~/LXContract/ImportContract" enctype="multipart/form-data" >
                 <ul>
                     <li class="li_txt">上传批量数据</li>
                     <li class="temp_load">
@@ -59,7 +47,6 @@
 
    </div>
 
- 
 
-     
-    </div>
+
+</div>

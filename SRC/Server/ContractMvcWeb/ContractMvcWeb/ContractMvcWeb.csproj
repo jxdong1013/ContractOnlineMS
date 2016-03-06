@@ -224,6 +224,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jxd.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\style2.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -299,6 +300,7 @@
     <Content Include="Scripts\contract2.js" />
     <Content Include="Scripts\jquery-1.12.0.js" />
     <Content Include="Scripts\jquery-1.12.0.min.js" />
+    <Content Include="ExcelTemplate\LXTemplate.xls" />
     <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -362,6 +364,10 @@
     <Content Include="Views\Contract\CGContractList.cshtml" />
     <Content Include="Views\LXContract\ContractList.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\LXContract\ImportContract.cshtml" />
+    <Content Include="Views\LXContract\PageBarPartial.cshtml" />
+    <Content Include="Views\LXContract\AddContract.cshtml" />
+    <Content Include="Views\LXContract\EditContract.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>@ViewBag.Title - RFID合同管理系统</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />   
-    @Styles.Render("~/Content/bootstrapcss")
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />     
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+     @Styles.Render("~/Content/bootstrapcss")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
@@ -114,30 +114,27 @@
                        
                     </li>
                     <li>
-                        <a href="#systemSetting" class="nav-header " aria-expanded="true" data-toggle="collapse">
+                        <a href="#zbmenu" class="nav-header " aria-expanded="true" data-toggle="collapse">
                             <i class="glyphicon glyphicon-cog"></i>
                             中标合同管理
                             <span class="pull-right glyphicon glyphicon-chevron-down"></span>
                         </a>
-                        <ul id="systemSetting" class="nav nav-list secondmenu  collapse in" aria-expanded="true" >
+                        <ul id="zbmenu" class="nav nav-list secondmenu  collapse in" aria-expanded="true" >
                             <li><a href="~/Contract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
                             <li><a href="~/Contract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
                             <li><a href="~/Contract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
-
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#cgmenu" class="" data-toggle="collapse">
                             <i class="glyphicon glyphicon-credit-card"></i>
                             采购合同管理
                             <span class="pull-right glyphicon glyphicon-chevron-down"></span>
                         </a>
-                        <ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                        <ul id="cgmenu" class="nav nav-list collapse secondmenu" style="height: 0px;">
                             <li><a href="~/cgContract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-th-list"></i>菜单管理</a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>角色管理</a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
+                            <li><a href="~/cgContract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
+                            <li><a href="~/cgContract/AddCaiGouContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>        
                         </ul>
                     </li>
 
@@ -149,8 +146,8 @@
                         </a>
                         <ul id="lxcontractmenu" class="nav nav-list collapse secondmenu" style="height:0px;">
                             <li><a href="~/lxContract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
+                            <li><a href="~/lxContract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
+                            <li><a href="~/lxContract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
                         </ul>
                     </li>
 
@@ -161,7 +158,7 @@
                         </a>
                     </li>*@
                     <li>
-                        <a href="#systemmanager">
+                        <a href="#systemmanager" data-toggle="collapse">
                             <i class="glyphicon glyphicon-fire"></i>
                             系统管理
                         </a>

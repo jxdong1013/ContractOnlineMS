@@ -1,0 +1,240 @@
+﻿.table{
+    font-size:12px;
+}
+
+    .import_contract_box {
+width: 700px;
+margin: 0 auto;
+margin-top: 20px;
+}
+
+
+    .temp_download {
+border: #d1d1d1 1px solid;
+width: 190px;
+float: left;
+}
+
+     .temp_download ul
+    {
+        width: 138px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 16px 0;
+        list-style:none;
+    }
+         .temp_download li
+    {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+
+         .temp_download ul li.li_txt {
+margin-bottom: 18px;
+}
+
+         .temp_download ul li.li_pic {
+background: #f2f4f3;
+border: #d9d9d9 1px solid;
+width: 90px;
+padding: 10px;
+margin: 0 auto;
+margin-bottom: 15px;
+}
+         .temp_download ul li.li_pic .type_icon {
+background: url("../Images/excel.png") no-repeat;
+width: 77px;
+height: 84px;
+margin: 0 auto;
+}
+
+         .temp_download ul li.li_pic .temp_name {
+line-height: 20px;
+font-size: 12px;
+}
+
+         .import_con_middle {
+float: left;
+margin-top: 105px;
+margin-left: 25px;
+}
+
+         .import_con_middle {
+float: left;
+margin-top: 105px;
+margin-left: 25px;
+}
+
+         .right_arrow {
+display: block;
+background: url("../Images/admin-arrow.png") no-repeat;
+width: 16px;
+height: 33px;
+background-position: 0 -60px;
+}
+
+         .text_input {
+border: #aeaeae 1px solid;
+border-radius: 2px;
+height: 25px;
+line-height: 25px;
+padding: 0 4px;
+font-size: 12px;
+margin-right: 10px;
+width: 250px;
+}
+
+         .blue_btn {
+background: #7fc5ef;
+border: #389ad5 1px solid;
+border-radius: 4px;
+text-align: center;
+color: #fff;
+display: inline-block;
+text-decoration:none;
+}
+
+         .button_common {
+height: 26px;
+width: 70px;
+}
+
+         .fileupload {
+border: 0 none;
+position: relative;
+cursor: pointer;
+opacity: 0;
+z-index: 999;
+left: 274px;
+top: -28px;
+width: 70px;
+height: 26px;
+}
+
+         .error_box {
+-background: #fff2f2;
+-border: #ff8080 1px solid;
+height: 26px;
+line-height: 26px;
+-text-indent: 15px;
+}
+
+         .temp_upload {
+margin-left: 25px;
+border: #d1d1d1 1px solid;
+float: left;
+width: 428px;
+height: 275px;
+}
+
+          .temp_upload li
+    {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+
+.temp_upload ul li.li_txt {
+margin-bottom: 40px;
+}
+
+.temp_upload ul li.temp_load {
+margin-bottom: 70px;
+}
+
+li
+{
+    list-style: none;
+    display:inline;
+    text-decoration:none;
+}
+
+.content1 {
+border: #e4e4e4 1px solid;
+border-radius: 2px;
+-webkit-box-shadow: 1px -1px 4px #f3f3f3;
+-moz-box-shadow: 1px -1px 4px #f3f3f3;
+box-shadow: 1px -1px 4px #f3f3f3;
+background: #f9f9f9;
+padding: 10px 10px;
+margin-bottom: 25px;
+}
+
+.validation-summary-errors {
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.validation-summary-errors ul {
+        margin: 0;
+        padding: 0;
+    }
+
+.validation-summary-errors li {
+        display:block;
+        list-style:none;
+        margin: 0;
+    }
+
+
+
+
+#scott2 a {
+border: #d4d1d1 1px solid;
+border-radius: 2px;
+/*-moz-border-radius: 2px;
+-webkit-border-radius: 2px;*/
+padding: 4px 8px;
+color: #666666;
+margin: 0 3px;
+/*height: 24px;*/
+cursor: pointer;
+background: #ededed;
+text-decoration:none;
+}
+
+#scott2 label.current {
+border: #2eadde 1px solid;
+/*-webkit-border-radius: 2px;
+-moz-border-radius: 2px;*/
+border-radius: 2px;
+padding: 4px 8px;
+color: #fff;
+margin: 0 3px;
+background-color: #4abde9;
+}
+
+#scott2 label.disabled {
+font-size: 12px;
+border: #ddd 1px solid;
+/*-webkit-border-radius: 2px;
+-moz-border-radius: 2px;*/
+border-radius: 2px;
+padding: 4px 8px;
+color: #ccc;
+margin-right: 8px;
+}
+
+.pageInput {
+width: 35px;
+/*height: 18px;*/
+text-align: center;
+margin-right: 2px;
+margin-left:2px;
+/*line-height: 18px;*/
+border: 1px solid #ccc;
+ime-mode: disabled;
+}
+
+.go {
+color: #ffffff;
+background: #aaaaaa;
+border: #888888 1px solid;
+/*width: 30px;*/
+font-size: 12px;
+cursor: pointer;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+padding: 4px 8px;
+margin-left:4px;
+}

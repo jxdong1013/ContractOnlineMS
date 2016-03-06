@@ -186,7 +186,7 @@ namespace ContractMvcWeb.Models
             //strSql.Append("password=@password,");
             strSql.Append("link=@link,");
             strSql.Append("enable=@enable,");
-            strSql.Append("createtime=@createtime,");
+            //strSql.Append("createtime=@createtime,");
             strSql.Append("modifytime=@modifytime,");
             strSql.Append("sex=@sex,");
             strSql.Append("address=@address,");
@@ -198,7 +198,7 @@ namespace ContractMvcWeb.Models
 					//new MySqlParameter("@password", MySqlDbType.VarChar,45),
 					new MySqlParameter("@link", MySqlDbType.VarChar,45),
 					new MySqlParameter("@enable", MySqlDbType.Int32,11),
-					new MySqlParameter("@createtime", MySqlDbType.Timestamp),
+					//new MySqlParameter("@createtime", MySqlDbType.Timestamp),
 					new MySqlParameter("@modifytime", MySqlDbType.Timestamp),
 					new MySqlParameter("@sex", MySqlDbType.VarChar,10),
 					new MySqlParameter("@address", MySqlDbType.VarChar,256),
@@ -209,11 +209,11 @@ namespace ContractMvcWeb.Models
             //parameters[2].Value = model.password;
             parameters[2].Value = model.link;
             parameters[3].Value = model.enable;
-            parameters[4].Value = model.createtime;
-            parameters[5].Value = model.modifytime;
-            parameters[6].Value = model.sex;
-            parameters[7].Value = model.address;
-            parameters[8].Value = model.usertype;
+            //parameters[4].Value = model.createtime;
+            parameters[4].Value = DateTime.Now; //model.modifytime;
+            parameters[5].Value = model.sex;
+            parameters[6].Value = model.address;
+            parameters[7].Value = model.usertype;
 
             int rows = MySqlHelper.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
