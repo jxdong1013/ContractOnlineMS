@@ -3,25 +3,35 @@
     ViewBag.PageCode = "U001";
 }
 @model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.User>
+ <link style="text/css" rel="stylesheet" href="~/Content/style2.css" />
+<div  class="panel panel-default" >
+<h4>用户管理</h4>
 
-<div class="content">
-<h3>用户管理</h3>
+    <div class="col-md-offset-2" style="margin-bottom:10px;">
+   @using (@Html.BeginForm("userlist", "user", FormMethod.Get, new { @class = "form-inline" }))
+   {
+       var enableItems = (List<SelectListItem>)ViewData["enableItems"];
+      
+       <div class="form-group ">
+            <label> 用户名:</label>@Html.TextBox("username", null, new { @class = "form-control" })
+       </div>
+        <div class="form-group">
+             <label>状态:</label>@Html.DropDownList("state", enableItems, new { @class="form-control"})
+            </div>
+       <div class="form-group">
+             <button type="submit" value="query" class="btn btn-primary">查询</button>
+           </div>
+       <div class="form-group">
+             <a href="adduser" class="blue_btn link_90" >新增</a>       
+        </div>
+    @Html.Hidden("pageidx", 1)
+  
+   }
+        </div>
 
-   @using( @Html.BeginForm("userlist","user", FormMethod.Get)){
-       var enableItems =( List<SelectListItem>) ViewData["enableItems"];
-<table>
-         <tr><td>用户名:</td><td>@Html.TextBox("username")</td><td>状态:</td><td>@Html.DropDownList("state",  enableItems )</td>
-             <td><button type="submit" value="query" class="blue_btn button_90">查询</button></td>
-             <td><a href="adduser" class="blue_btn link_90" >新增</a></td>
-         </tr>
-    <tr><td>@Html.Hidden("pageidx",1)</td></tr>
-    <tr></tr>
-    </table>
-    }
-
-
-<table width="100%">
-    <tr class="tr_header">
+    <div>
+<table width="100%"  style="margin-bottom:5px;" class="table table-bordered">
+    <tr class="info">
 @*        <td width="10%">ID</td>*@
         <td width="15%">用户名</td>
         <td width="5%">性别</td>
@@ -34,40 +44,25 @@
 
  @if (Model != null && Model.Data != null)
  {
-     
+     int idx = 0;
   foreach (ContractMvcWeb.Models.Beans.User p in Model.Data)
-        {
-      <tr class="old_row">
+  {
+      idx++;     
+      <tr class=@(idx % 2 == 1 ? "active" : "info")>
             @*<td width="15%">@p.userid</td>*@
             <td width="15%">@Html.ActionLink(@p.username, "EditUser", new { userid=@p.userid })</td>
           <td width="5%">@p.sex</td>
             <td width="5%">@(p.enable == 0? "停用":"启用" )</td>
           <td width="15%">@p.link </td>
           <td width="30%">@p.address</td>
-            <td width="15%">@p.modifytime</td>
-            <td width="15%">@p.createtime</td>          
+            <td width="15%">@p.createtime</td>
+            <td width="15%">@p.modifytime</td>          
           </tr>
         }
  }
 </table>
 
-
-@*<table >
-    @using (@Html.BeginForm())
-    {
-
-        for (int i = 0; i < Model.TotalPages; i++)
-        {
-            if( i>= Model.PageIdx && i<= Model.PageIdx + 5 ){
-                @Html.ActionLink( (i+1).ToString(), "UserList",  new  { username= @Request["username"] , state=@Request["state"] ,  pageidx= i });
-            }
-            else if( i< Model.PageIdx )
-            {
-                @Html.ActionLink( (i+1).ToString(), "UserList", new{ username=@Request["username"], state=Request["state"] , pageidx=i }); 
-            }
-        }
-    }
-</table>*@
+        </div>
 
     @Html.Partial("PageBarPartial")
 

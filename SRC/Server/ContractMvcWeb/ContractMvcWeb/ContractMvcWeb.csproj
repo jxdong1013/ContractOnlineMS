@@ -191,6 +191,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\AuthorizeRestfulAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CGContractController.cs" />
     <Compile Include="Controllers\ContractRestfullController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -361,7 +362,7 @@
     <Content Include="Views\Contract\ContractQuery.cshtml" />
     <Content Include="Views\Contract\ImportXYContract.cshtml" />
     <Content Include="Views\Contract\AddCaiGouContract.cshtml" />
-    <Content Include="Views\Contract\CGContractList.cshtml" />
+    <Content Include="Views\CGContract\ContractList.cshtml" />
     <Content Include="Views\LXContract\ContractList.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\LXContract\ImportContract.cshtml" />

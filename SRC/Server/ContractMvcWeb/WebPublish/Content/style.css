@@ -1,10 +1,11 @@
 ﻿body {
+  /*background-color:#e5e5e5;*/
 }
 
 
 
 .footer_float-right {
-    color: #27b0f7;
+    color: #119d55;
     margin-top: 10px;
     margin-bottom:10px;
     margin: 0 auto;
@@ -27,3 +28,96 @@
           background:url('../Images/up.png') no-repeat center right;
           cursor:pointer;
     }
+
+  .page-login-form .login-description {
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+  .text-center {
+    text-align: center;
+}
+
+  .box {
+    background: #fff;
+    padding: 30px;
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(5, 5, 5, 0.06);
+    box-shadow: 2px 2px 2px 0px rgba(5, 5, 5, 0.06);
+    margin-bottom: 30px;
+}
+
+  .group-control input{
+      width:100%;
+  }
+
+  .login .btn-login {
+    margin-top: 30px;
+}
+
+  .btn.btn-lg, .sppb-btn.sppb-btn-lg {
+    padding: 15px 20px;
+    font-size: 14px;
+    line-height: 1.33;
+}
+
+  /*.btn, .sppb-btn {
+    border-radius: 0;
+    border: 0;
+    -webkit-transition: color 400ms,background-color 400ms,border-color 400ms;
+    -o-transition: color 400ms,background-color 400ms,border-color 400ms;
+    transition: color 400ms,background-color 400ms,border-color 400ms;
+}*/
+
+  .btn-success, .sppb-btn-success {
+    background-color: #119d55;
+}
+
+  .form-group {
+    margin-bottom: 20px;
+}
+
+  .login-margin{
+      padding-top:20px;
+  }
+
+  /*select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: rgba(229,229,229,0.051);
+    border-color: #e5e5e5;
+    border-radius: 1px;
+    min-height: 40px;
+}*/
+
+  .float-right {
+    color: #fff;
+    font-size:14px;
+    vertical-align:middle;
+    height:50px;
+    padding:15px  15px;
+}
+
+  .hidden-div{
+      display:none;
+      width:0px;
+  }
+
+.search-div {
+    width:60%;
+}

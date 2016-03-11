@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "AddContract";
+    ViewBag.PageCode = "C3002";
 }
 @model ContractMvcWeb.Models.Beans.ContractLX
 
@@ -11,7 +12,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <table class="new_info_table">
+        <table class="table">
             <tr>
                 <td><b class="red">*</b>合同编号:@Html.TextBoxFor(m => m.contractnum)</td>
                 <td><b class="red">*</b>采购编号:@Html.TextBoxFor(m => m.seq)</td>

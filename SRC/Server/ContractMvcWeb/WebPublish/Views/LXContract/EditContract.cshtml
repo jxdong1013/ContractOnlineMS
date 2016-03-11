@@ -1,19 +1,21 @@
 ﻿@{
-    ViewBag.Title = "AddCaiGouContract";
+    ViewBag.Title = "编辑零星合同信息";
+    ViewBag.PageCode = "C002";
 }
-@model ContractMvcWeb.Models.Beans.ContractCG 
 
-@*<h2>AddCaiGouContract</h2>*@
-<h3>合同登记</h3>
+@model ContractMvcWeb.Models.Beans.ContractLX 
 
 <div class="content">
+<h3>编辑零星合同</h3>
 
+@using( Html.BeginForm("EditContract" , "LXContract", FormMethod.Post ))
+{
+ @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm("AddCaiGouContract", "Contract", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <table class="new_info_table">
+    @Html.HiddenFor(m => m.contractid);
+    
+<table class="new_info_table">
+ 
             <tr>
                 <td><b class="red">*</b>合同编号:@Html.TextBoxFor(m => m.contractnum)</td>
                 <td><b class="red">*</b>采购编号:@Html.TextBoxFor(m => m.seq)</td>
@@ -53,13 +55,16 @@
             <tr>
                 <td colspan="3">@Html.ValidationSummary()</td>
             </tr>
-            <tr>
-                <td colspan="3" style="text-align:center">
-                    <button id="btnSave" class="blue_btn button_90 mr20" value="新增" type="submit">新增</button>
-                </td>
-            </tr>
-        </table>
+     
+    <tr>
+        <td colspan ="3">@Html.ValidationSummary()</td>
+        </tr>
+     <tr>
+            <td colspan ="3" style="text-align:center">
+                <button id="btnSave" value="保存" class="blue_btn button_90 mr20" type="submit">保存</button>
+             </td>
+    </tr>
 
-    }
-
-</div>
+</table>
+}
+    </div>

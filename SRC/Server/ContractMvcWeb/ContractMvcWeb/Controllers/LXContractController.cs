@@ -34,6 +34,7 @@ namespace ContractMvcWeb.Controllers
 
             Page<ContractLX> page = dbContext.QueryByPage(query, pageidx, pagesize);
 
+       
 
             return View(page);
 
