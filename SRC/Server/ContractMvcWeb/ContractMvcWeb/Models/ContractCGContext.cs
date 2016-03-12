@@ -539,5 +539,184 @@ namespace ContractMvcWeb.Models
             return model;
         }
 
+
+        public bool DeleteContracts(List<int> contractIds)
+        {
+            string ids = string.Empty;
+            foreach (int id in contractIds)
+            {
+                if (string.IsNullOrEmpty(ids) == false)
+                {
+                    ids += ",";
+                }
+                ids += id;
+            }
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from t_contract_cg where contractid in( " + ids + " )");
+            int count = MySqlHelper.ExecuteSql(strSql.ToString());
+            return count > 0 ? true : false;
+        }
+
+        public List<ContractCG> Query(ContractCG query)
+        {
+            string where = GetWhere(query);
+            string orderby = "order by modifytime desc";
+            string sql = string.Format(" select * from t_contract_cg where {0} {1}", where, orderby);
+            DataSet ds = MySqlHelper.Query(sql);
+            if (ds == null || ds.Tables.Count < 1 || ds.Tables[0].Rows.Count < 1) return null;
+            int count = ds.Tables[0].Rows.Count;
+            List<ContractCG> list = new List<ContractCG>();
+            for (int i = 0; i < count; i++)
+            {
+                DataRow row = ds.Tables[0].Rows[i];
+                ContractCG model = DataRowToContractCG(row);
+                list.Add(model);
+            }
+            return list;
+        }
+
+
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public ContractCG GetModel(int contractid)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select contractid,seq,type,content,price,count,subtotal,total,contractnum,department,linker,tel,projectnum,budgetamount,fundsource,super,superlinker,supertel,settleamount,freecontent,freevalue,validate,remark,payprogress,chargedepartment,place,operatorId,operatorName,createtime,modifytime from t_contract_cg ");
+            strSql.Append(" where contractid=@contractid");
+            MySqlParameter[] parameters = {
+					new MySqlParameter("@contractid", MySqlDbType.Int32)
+			};
+            parameters[0].Value = contractid;
+
+            ContractCG model = new ContractCG();
+            DataSet ds = MySqlHelper.Query(strSql.ToString(), parameters);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return DataRowToContractCG(ds.Tables[0].Rows[0]);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        public bool ExistContractByContractNumAndSeqAndprojectNum(string contractnum, string seq, string projectnum, int contractid)
+        {
+            string sql = string.Format(" select count(1) from t_contract_cg where contractid !={0} and projectnum='{1}' and seq='{2}' and contractnum='{3}'", contractid, projectnum, seq, contractnum);
+            object obj = MySqlHelper.GetSingle(sql);
+            if (obj == null) return false;
+            int count = 0;
+            int.TryParse(obj.ToString(), out count);
+            return count > 0 ? true : false;
+        }
+
+        /// <summary>
+        /// 更新一条数据
+        /// </summary>
+        public bool Update(ContractCG model)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update t_contract_cg set ");
+            strSql.Append("seq=@seq,");
+            strSql.Append("type=@type,");
+            strSql.Append("content=@content,");
+            strSql.Append("price=@price,");
+            strSql.Append("count=@count,");
+            strSql.Append("subtotal=@subtotal,");
+            strSql.Append("total=@total,");
+            strSql.Append("contractnum=@contractnum,");
+            strSql.Append("department=@department,");
+            strSql.Append("linker=@linker,");
+            strSql.Append("tel=@tel,");
+            strSql.Append("projectnum=@projectnum,");
+            strSql.Append("budgetamount=@budgetamount,");
+            strSql.Append("fundsource=@fundsource,");
+            strSql.Append("super=@super,");
+            strSql.Append("superlinker=@superlinker,");
+            strSql.Append("supertel=@supertel,");
+            strSql.Append("settleamount=@settleamount,");
+            strSql.Append("freecontent=@freecontent,");
+            strSql.Append("freevalue=@freevalue,");
+            strSql.Append("validate=@validate,");
+            strSql.Append("remark=@remark,");
+            strSql.Append("payprogress=@payprogress,");
+            strSql.Append("chargedepartment=@chargedepartment,");
+            strSql.Append("place=@place,");
+            strSql.Append("operatorId=@operatorId,");
+            strSql.Append("operatorName=@operatorName");
+            strSql.Append(" where contractid=@contractid");
+            MySqlParameter[] parameters = {
+					new MySqlParameter("@seq", MySqlDbType.VarChar,50),
+					new MySqlParameter("@type", MySqlDbType.VarChar,100),
+					new MySqlParameter("@content", MySqlDbType.VarChar,255),
+					new MySqlParameter("@price", MySqlDbType.Decimal,10),
+					new MySqlParameter("@count", MySqlDbType.Int32,11),
+					new MySqlParameter("@subtotal", MySqlDbType.Decimal,12),
+					new MySqlParameter("@total", MySqlDbType.Decimal,12),
+					new MySqlParameter("@contractnum", MySqlDbType.VarChar,255),
+					new MySqlParameter("@department", MySqlDbType.VarChar,255),
+					new MySqlParameter("@linker", MySqlDbType.VarChar,255),
+					new MySqlParameter("@tel", MySqlDbType.VarChar,255),
+					new MySqlParameter("@projectnum", MySqlDbType.VarChar,50),
+					new MySqlParameter("@budgetamount", MySqlDbType.VarChar,50),
+					new MySqlParameter("@fundsource", MySqlDbType.VarChar,255),
+					new MySqlParameter("@super", MySqlDbType.VarChar,255),
+					new MySqlParameter("@superlinker", MySqlDbType.VarChar,255),
+					new MySqlParameter("@supertel", MySqlDbType.VarChar,255),
+					new MySqlParameter("@settleamount", MySqlDbType.VarChar,255),
+					new MySqlParameter("@freecontent", MySqlDbType.VarChar,255),
+					new MySqlParameter("@freevalue", MySqlDbType.VarChar,255),
+					new MySqlParameter("@validate", MySqlDbType.VarChar,255),
+					new MySqlParameter("@remark", MySqlDbType.VarChar,255),
+					new MySqlParameter("@payprogress", MySqlDbType.VarChar,255),
+					new MySqlParameter("@chargedepartment", MySqlDbType.VarChar,255),
+					new MySqlParameter("@place", MySqlDbType.VarChar,255),
+					new MySqlParameter("@operatorId", MySqlDbType.VarChar,255),
+					new MySqlParameter("@operatorName", MySqlDbType.VarChar,255),
+					new MySqlParameter("@contractid", MySqlDbType.Int32,11)};
+            parameters[0].Value = model.seq;
+            parameters[1].Value = model.type;
+            parameters[2].Value = model.content;
+            parameters[3].Value = model.price;
+            parameters[4].Value = model.count;
+            parameters[5].Value = model.subtotal;
+            parameters[6].Value = model.total;
+            parameters[7].Value = model.contractnum;
+            parameters[8].Value = model.department;
+            parameters[9].Value = model.linker;
+            parameters[10].Value = model.tel;
+            parameters[11].Value = model.projectnum;
+            parameters[12].Value = model.budgetamount;
+            parameters[13].Value = model.fundsource;
+            parameters[14].Value = model.super;
+            parameters[15].Value = model.superlinker;
+            parameters[16].Value = model.supertel;
+            parameters[17].Value = model.settleamount;
+            parameters[18].Value = model.freecontent;
+            parameters[19].Value = model.freevalue;
+            parameters[20].Value = model.validate;
+            parameters[21].Value = model.remark;
+            parameters[22].Value = model.payprogress;
+            parameters[23].Value = model.chargedepartment;
+            parameters[24].Value = model.place;
+            parameters[25].Value = model.operatorId;
+            parameters[26].Value = model.operatorName;
+            parameters[27].Value = model.contractid;
+
+            int rows = MySqlHelper.ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

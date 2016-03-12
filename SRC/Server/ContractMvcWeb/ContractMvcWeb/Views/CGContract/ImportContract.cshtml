@@ -1,11 +1,11 @@
 ﻿@{
-    ViewBag.Title = "零星合同导入";
-    ViewBag.PageCode = "C3002";
+    ViewBag.Title = "采购合同导入";
+    ViewBag.PageCode = "C2002";
 }
 
 <div class="content1 " style="height:500px">
     <link style="text/css" rel="stylesheet" href="~/Content/style2.css" />
-<h4>零星合同导入</h4>
+<h4>采购合同导入</h4>
 
     <div class="import_contract_box ">
         <div class="temp_download">
@@ -16,7 +16,7 @@
                     <p class="temp_name">模板_批量导入数据.xls</p>
                 </li>
                 <li >
-                    <a class="blue_btn link_common" href="~/LXContract/DownloadExcelTemplate">下载</a>
+                    <a class="blue_btn link_common" href="~/CGContract/DownloadExcelTemplate">下载</a>
                 </li>
             </ul>
         </div>
@@ -24,7 +24,7 @@
        <a class="right_arrow add mb10"></a>
    </div>
         <div class="temp_upload">
-            <form id="uploadForm" method="post" action="~/LXContract/ImportContract" enctype="multipart/form-data" >
+            <form id="uploadForm" method="post" action="~/CGContract/ImportContract" enctype="multipart/form-data" >
                 <ul>
                     <li class="li_txt">上传批量数据</li>
                     <li class="temp_load">

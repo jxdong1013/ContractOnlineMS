@@ -34,7 +34,7 @@ namespace ContractMvcWeb.Controllers
 
             Page<ContractLX> page = dbContext.QueryByPage(query, pageidx, pagesize);
 
-       
+            
 
             return View(page);
 
@@ -253,7 +253,21 @@ namespace ContractMvcWeb.Controllers
             }
             return View();
         }
-      
 
+
+        [HttpPost]
+        public JsonResult DeleteContracts(List<int> contractids)
+        {
+            JsonResult json = new JsonResult();
+            if (contractids == null || contractids.Count < 1)
+            {
+                json.Data = new Models.Result((int)Models.ResultCodeEnum.Error, "请选择要删除的记录", null);
+                return json;
+            }
+            ContractMvcWeb.Models.ContractLXContext dbContext = new Models.ContractLXContext();
+            bool isok = dbContext.DeleteContracts(contractids);
+            json.Data = new Models.Result((int)Models.ResultCodeEnum.Success, "", "");
+            return json;
+        }
     }
 }

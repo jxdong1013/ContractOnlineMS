@@ -7,7 +7,7 @@
     <title>@ViewBag.Title - RFID合同管理系统</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />     
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
-     @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/bootstrapcss")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
@@ -82,12 +82,13 @@
             font-size:22px;
             color: #fff;
         }
+
     </style>
 
 
 </head>
 <body>
-    <div class="navbar navbar-static-top" role="navigation">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8">
@@ -116,27 +117,27 @@
                        
                     </li>
                     <li>
-                        <a href="#zbmenu" class="nav-header " aria-expanded="true" data-toggle="collapse">
+                        <a href="#zbmenu" class="nav-header @(ViewBag.PageCode.ToString().StartsWith("C100") ? "" : "collapsed")" aria-expanded=@(ViewBag.PageCode.ToString().StartsWith("C100") ? "true" : "false") data-toggle="collapse">
                             <i class="glyphicon glyphicon-cog"></i>
                             中标合同管理
                             <span class="pull-right glyphicon glyphicon-chevron-down"></span>
                         </a>
-                        <ul id="zbmenu" class="nav nav-list secondmenu  collapse in" aria-expanded="true" >
-                            <li><a href="~/Contract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="~/Contract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="~/Contract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
+                        <ul id="zbmenu" class="nav nav-list secondmenu  collapse @(ViewBag.PageCode.ToString().StartsWith("C100") ? "in" : "")" @(ViewBag.PageCode.ToString().StartsWith("C100") ? "aria-expanded=true" : "style = height:0px;")>
+                            <li><a href="~/Contract/ContractList"><i class="glyphicon glyphicon-user"></i> <label class=@(ViewBag.PageCode.ToString().Equals("C1001") ? "text-primary" : "")>合同查询</label></a></li>
+                            <li><a href="~/Contract/ImportContract"><i class="glyphicon glyphicon-th-list"></i><label class="@(ViewBag.PageCode.ToString().Equals("C1002") ? "text-primary" : "")">导入合同</label></a></li>
+                            <li><a href="~/Contract/AddContract"><label class="@(ViewBag.PageCode.ToString().Equals("C1003") ? "text-primary" : "")">合同登记</label></a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#cgmenu" class="" data-toggle="collapse">
+                        <a href="#cgmenu" class="nav-header @(ViewBag.PageCode.ToString().StartsWith("C200") ? "" : "collapsed")" aria-expanded=@(ViewBag.PageCode.ToString().StartsWith("C200") ? "true" : "false") data-toggle="collapse">
                             <i class="glyphicon glyphicon-credit-card"></i>
                             采购合同管理
                             <span class="pull-right glyphicon glyphicon-chevron-down"></span>
                         </a>
-                        <ul id="cgmenu" class="nav nav-list collapse secondmenu" style="height: 0px;">
-                            <li><a href="~/cgContract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="~/cgContract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="~/cgContract/AddCaiGouContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>        
+                        <ul id="cgmenu" class="nav nav-list secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("C200") ? "in" : "") " @(ViewBag.PageCode.ToString().StartsWith("C200") ? "aria-expanded=true" : "style = height:0px;")>
+                            <li><a href="~/cgContract/ContractList" ><i class="glyphicon glyphicon-user"></i><label class=@(ViewBag.PageCode.ToString().Equals("C2001") ? "text-primary" : "") >合同查询</label></a></li>
+                            <li><a href="~/cgContract/ImportContract"><i class="glyphicon glyphicon-th-list"></i><label class="@(ViewBag.PageCode.ToString().Equals("C2002") ? "text-primary" : "")">导入合同</label></a></li>
+                            <li><a href="~/cgContract/AddContract"><label class="@(ViewBag.PageCode.ToString().Equals("C2003") ? "text-primary" : "")">合同登记</label></a></li>
                         </ul>
                     </li>
 
@@ -147,9 +148,9 @@
                           @*  <span class="label label-warning pull-right">5</span>*@
                         </a>
                         <ul id="lxcontractmenu" class="nav nav-list  secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("C300") ? "in" : "") " @(ViewBag.PageCode.ToString().StartsWith("C300") ? "aria-expanded=true" : "style = height:0px;") >
-                            <li><a href="~/lxContract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="~/lxContract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="~/lxContract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
+                            <li><a href="~/lxContract/ContractList"><i class="glyphicon glyphicon-user"></i><label class=@(ViewBag.PageCode.ToString().Equals("C3001") ? "text-primary" : "")>合同查询</label></a></li>
+                            <li><a href="~/lxContract/ImportContract"><i class="glyphicon glyphicon-th-list"></i><label class=@(ViewBag.PageCode.ToString().Equals("C3002") ? "text-primary" : "")>导入合同</label></a></li>
+                            <li><a href="~/lxContract/AddContract"><label class=@(ViewBag.PageCode.ToString().Equals("C3003") ? "text-primary" : "")>合同登记</label></a></li>
                         </ul>
                     </li>
 
@@ -160,12 +161,12 @@
                         </a>
                     </li>*@
                     <li>
-                        <a href="#systemmanager" data-toggle="collapse">
+                        <a href="#systemmanager" class="nav-header @(ViewBag.PageCode.ToString().StartsWith("U100") ? "" : "collapsed")" aria-expanded=@(ViewBag.PageCode.ToString().StartsWith("U100") ? "true" : "false") data-toggle=" collapse">
                             <i class="glyphicon glyphicon-fire"></i>
                             系统管理
                         </a>
-                        <ul id="systemmanager" class="nav nav-list collapse secondmenu" style="height:0px;">
-                            <li><a href="~/User/UserList">用户管理</a></li>
+                        <ul id="systemmanager" class="nav nav-list  secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("U100") ? "in" : "")" @(ViewBag.PageCode.ToString().StartsWith("U100") ? "aria-expanded=true" : "style = height:0px;")>
+                            <li><a href="~/User/UserList"><label class="@(ViewBag.PageCode.ToString().Equals("U1001") ? "text-primary" : "")">用户管理</label></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -176,10 +177,12 @@
         </div>
     </div>
 
+    <div class="navbar navbar-default navbar-fixed-bottom">
     <footer>
-        <div class="footer_float-right">
+        <div class="footer_float-right ">
             <p> RFID 合同管理系统 &copy;-@DateTime.Now.Year 北京科美乾坤智能科技有限公司</>
         </div>
     </footer>
+        </div>
 </body>
 </html>

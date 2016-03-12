@@ -88,120 +88,120 @@ namespace ContractMvcWeb.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult ImportContract(string msg = "")
-        {
-            HttpPostedFileBase file = Request.Files["uploadFile"];
-            if (file == null)
-            {
-                return View("ImportContract");
-            }
-            string filename = file.FileName;
-            string prefix = System.IO.Path.GetExtension(filename).ToLower().Trim();
-            if (prefix.Equals(".xls") == false && prefix.Equals(".xlsx") == false)
-            {
-                ModelState.AddModelError("fileerror", "请上传Excel格式的文件。");
-                return View("ImportContract");
-            }
+        //[HttpPost]
+        //public ActionResult ImportContract(string msg = "")
+        //{
+        //    HttpPostedFileBase file = Request.Files["uploadFile"];
+        //    if (file == null)
+        //    {
+        //        return View("ImportContract");
+        //    }
+        //    string filename = file.FileName;
+        //    string prefix = System.IO.Path.GetExtension(filename).ToLower().Trim();
+        //    if (prefix.Equals(".xls") == false && prefix.Equals(".xlsx") == false)
+        //    {
+        //        ModelState.AddModelError("fileerror", "请上传Excel格式的文件。");
+        //        return View("ImportContract");
+        //    }
 
-            string folder = Request.MapPath("~/Uploadfiles/");
-            if (System.IO.Directory.Exists(folder) == false)
-            {
-                System.IO.Directory.CreateDirectory(folder);
-            }
-            if (folder.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()) == false)
-            {
-                folder += System.IO.Path.DirectorySeparatorChar;
-            }
+        //    string folder = Request.MapPath("~/Uploadfiles/");
+        //    if (System.IO.Directory.Exists(folder) == false)
+        //    {
+        //        System.IO.Directory.CreateDirectory(folder);
+        //    }
+        //    if (folder.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()) == false)
+        //    {
+        //        folder += System.IO.Path.DirectorySeparatorChar;
+        //    }
             
-            string filepath = folder + DateTime.Now.ToString("yyyyMMddHhmmss")+ prefix ;
-            file.SaveAs( filepath  );
+        //    string filepath = folder + DateTime.Now.ToString("yyyyMMddHhmmss")+ prefix ;
+        //    file.SaveAs( filepath  );
 
-            List<Models.Beans.Contract> list = Utils.ExcelUtils.ParseExcel(filepath);
-            ContractMvcWeb.Models.ContractContext dbContext = new Models.ContractContext();
-            //int result = dbContext.BatchAddContracts(list , User.Identity.Name);
-            Models.Beans.BatchImportResult result = dbContext.BatchAddContracts(list, User.Identity.Name);
+        //    List<Models.Beans.Contract> list = Utils.ExcelUtils.ParseExcel(filepath);
+        //    ContractMvcWeb.Models.ContractContext dbContext = new Models.ContractContext();
+        //    //int result = dbContext.BatchAddContracts(list , User.Identity.Name);
+        //    Models.Beans.BatchImportResult result = dbContext.BatchAddContracts(list, User.Identity.Name);
 
-            string message = string.Empty;
-            message += "共" + result.TotalCount + " 条,新增 " + result.AddCount + "条,更新 " + result.UpdateCount + "条";
-            if (result.FailureCount != 0)
-            {
-                message += ",失败 " + result.FailureCount + "条。";
-            }
-            ModelState.AddModelError("summary", message);
-            if (result.ErrorList != null && result.ErrorList .Count > 0 )
-            {
-                message = "";
-                foreach (Models.Beans.BatchImportResult.ExcelErrorLine item in result.ErrorList)
-                {
-                      string temp = string.Format("行号:{0},信息:{1}" ,item.Line , item.Error );
-                      message += temp;
+        //    string message = string.Empty;
+        //    message += "共" + result.TotalCount + " 条,新增 " + result.AddCount + "条,更新 " + result.UpdateCount + "条";
+        //    if (result.FailureCount != 0)
+        //    {
+        //        message += ",失败 " + result.FailureCount + "条。";
+        //    }
+        //    ModelState.AddModelError("summary", message);
+        //    if (result.ErrorList != null && result.ErrorList .Count > 0 )
+        //    {
+        //        message = "";
+        //        foreach (Models.Beans.BatchImportResult.ExcelErrorLine item in result.ErrorList)
+        //        {
+        //              string temp = string.Format("行号:{0},信息:{1}" ,item.Line , item.Error );
+        //              message += temp;
 
-                    ModelState.AddModelError( item.Line , temp );
-                }                          
+        //            ModelState.AddModelError( item.Line , temp );
+        //        }                          
                 
-            }
+        //    }
 
-            return View("ImportContract");
-        }
+        //    return View("ImportContract");
+        //}
 
 
-        [HttpPost]
-        public ActionResult ImportXYContract(string msg = "")
-        {
-            HttpPostedFileBase file = Request.Files["uploadFile"];
-            if (file == null)
-            {
-                return View("ImportXYContract");
-            }
-            string filename = file.FileName;
-            string prefix = System.IO.Path.GetExtension(filename).ToLower().Trim();
-            if (prefix.Equals(".xls") == false && prefix.Equals(".xlsx") == false)
-            {
-                ModelState.AddModelError("fileerror", "请上传Excel格式的文件。");
-                return View("ImportXYContract");
-            }
+        //[HttpPost]
+        //public ActionResult ImportXYContract(string msg = "")
+        //{
+        //    HttpPostedFileBase file = Request.Files["uploadFile"];
+        //    if (file == null)
+        //    {
+        //        return View("ImportXYContract");
+        //    }
+        //    string filename = file.FileName;
+        //    string prefix = System.IO.Path.GetExtension(filename).ToLower().Trim();
+        //    if (prefix.Equals(".xls") == false && prefix.Equals(".xlsx") == false)
+        //    {
+        //        ModelState.AddModelError("fileerror", "请上传Excel格式的文件。");
+        //        return View("ImportXYContract");
+        //    }
 
-            string folder = Request.MapPath("~/Uploadfiles/");
-            if (System.IO.Directory.Exists(folder) == false)
-            {
-                System.IO.Directory.CreateDirectory(folder);
-            }
-            if (folder.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()) == false)
-            {
-                folder += System.IO.Path.DirectorySeparatorChar;
-            }
+        //    string folder = Request.MapPath("~/Uploadfiles/");
+        //    if (System.IO.Directory.Exists(folder) == false)
+        //    {
+        //        System.IO.Directory.CreateDirectory(folder);
+        //    }
+        //    if (folder.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()) == false)
+        //    {
+        //        folder += System.IO.Path.DirectorySeparatorChar;
+        //    }
 
-            string filepath = folder + "caigou_"+ DateTime.Now.ToString("yyyyMMddHhmmss") + prefix;
-            file.SaveAs(filepath);
+        //    string filepath = folder + "caigou_"+ DateTime.Now.ToString("yyyyMMddHhmmss") + prefix;
+        //    file.SaveAs(filepath);
 
-            List<Models.Beans.ContractCG> list = Utils.ExcelUtils.ParseCGExcel(filepath);
-            ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
-            //int result = dbContext.BatchAddContracts(list , User.Identity.Name);
-            Models.Beans.BatchImportResult result = dbContext.BatchAddContracts(list, User.Identity.Name);
+        //    List<Models.Beans.ContractCG> list = Utils.ExcelUtils.ParseCGExcel(filepath);
+        //    ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
+        //    //int result = dbContext.BatchAddContracts(list , User.Identity.Name);
+        //    Models.Beans.BatchImportResult result = dbContext.BatchAddContracts(list, User.Identity.Name);
 
-            string message = string.Empty;
-            message += "共" + result.TotalCount + " 条,新增 " + result.AddCount + "条,更新 " + result.UpdateCount + "条";
-            if (result.FailureCount != 0)
-            {
-                message += ",失败 " + result.FailureCount + "条。";
-            }
-            ModelState.AddModelError("summary", message);
-            if (result.ErrorList != null && result.ErrorList.Count > 0)
-            {
-                message = "";
-                foreach (Models.Beans.BatchImportResult.ExcelErrorLine item in result.ErrorList)
-                {
-                    string temp = string.Format("行号:{0},信息:{1}", item.Line, item.Error);
-                    message += temp;
+        //    string message = string.Empty;
+        //    message += "共" + result.TotalCount + " 条,新增 " + result.AddCount + "条,更新 " + result.UpdateCount + "条";
+        //    if (result.FailureCount != 0)
+        //    {
+        //        message += ",失败 " + result.FailureCount + "条。";
+        //    }
+        //    ModelState.AddModelError("summary", message);
+        //    if (result.ErrorList != null && result.ErrorList.Count > 0)
+        //    {
+        //        message = "";
+        //        foreach (Models.Beans.BatchImportResult.ExcelErrorLine item in result.ErrorList)
+        //        {
+        //            string temp = string.Format("行号:{0},信息:{1}", item.Line, item.Error);
+        //            message += temp;
 
-                    ModelState.AddModelError(item.Line, temp);
-                }
+        //            ModelState.AddModelError(item.Line, temp);
+        //        }
 
-            }
+        //    }
 
-            return View("ImportXYContract");
-        }
+        //    return View("ImportXYContract");
+        //}
         
 
         public FileResult ExportExcel(string seq, string contractnum, string projectnum,

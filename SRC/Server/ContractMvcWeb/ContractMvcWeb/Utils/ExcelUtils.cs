@@ -429,5 +429,89 @@ namespace ContractMvcWeb.Utils
             }
 
         }
+
+
+
+        public static MemoryStream RenderToExcel(List<Models.Beans.ContractCG> list)
+        {
+            MemoryStream ms = new MemoryStream();
+
+            NPOI.SS.UserModel.IWorkbook workbook = new NPOI.HSSF.UserModel.HSSFWorkbook();
+            NPOI.SS.UserModel.ISheet sheet = workbook.CreateSheet("sheet1");
+
+            #region head row
+            NPOI.SS.UserModel.IRow row = sheet.CreateRow(0);
+            ICellStyle style = workbook.CreateCellStyle();
+            IFont font = workbook.CreateFont();
+            font.Boldweight = (short)FontBoldWeight.Bold;
+            style.SetFont(font);
+            style.Alignment = HorizontalAlignment.Center;
+            style.VerticalAlignment = VerticalAlignment.Center;
+            //row.RowStyle = style;
+            row.Height = 21 * 20;
+
+            CreateCell(row, 0, "采购合同", CellType.String, style);
+            CreateCell(row, 1, "采购编号", CellType.String, style);
+            CreateCell(row, 2, "采购部门", CellType.String, style);
+            CreateCell(row, 3, "采购联系人", CellType.String, style);
+            CreateCell(row, 4, "联系电话", CellType.String, style);
+            CreateCell(row, 5, "项目编号", CellType.String, style);
+            CreateCell(row, 6, "经费来源", CellType.String, style);
+            CreateCell(row, 7, "采购类型", CellType.String, style);
+            CreateCell(row, 8, "采购内容", CellType.String, style);
+            CreateCell(row, 9, "预算金额", CellType.String, style);
+            CreateCell(row, 10, "供货单位", CellType.String, style);
+            CreateCell(row, 11, "供货联系人", CellType.String, style);
+            CreateCell(row, 12, "联系电话", CellType.String, style);
+            CreateCell(row, 13, "结算金额", CellType.String, style);
+            CreateCell(row, 14, "赠送内容", CellType.String, style);
+            CreateCell(row, 15, "赠送价值", CellType.String, style);
+            CreateCell(row, 16, "验收情况", CellType.String, style);
+            CreateCell(row, 17, "记录位置", CellType.String, style);
+            CreateCell(row, 18, "支付进度", CellType.String, style);
+            CreateCell(row, 19, "分管部门", CellType.String, style);
+            CreateCell(row, 20, "备注", CellType.String, style);           
+            #endregion
+
+            if (list != null && list.Count > 0)
+            {
+                int rowidx = 0;
+                foreach (Models.Beans.ContractCG model in list)
+                {
+                    #region row
+                    rowidx++;
+                    row = sheet.CreateRow(rowidx);
+                    CreateCell(row, 0, model.contractnum);
+                    CreateCell(row, 1, model.seq);
+                    CreateCell(row, 2, model.department);
+                    CreateCell(row, 3, model.linker);
+                    CreateCell(row, 4, model.tel);
+                    CreateCell(row, 5, model.projectnum);
+                    CreateCell(row, 6, model.fundsource);
+                    CreateCell(row, 7, model.type);
+                    CreateCell(row, 8, model.content);
+                    CreateCell(row, 9, model.budgetamount);
+                    CreateCell(row, 10, model.super);
+                    CreateCell(row, 11, model.superlinker);
+                    CreateCell(row, 12, model.supertel);
+                    CreateCell(row, 13, model.settleamount);
+                    CreateCell(row, 14, model.freecontent);
+                    CreateCell(row, 15, model.freevalue);
+                    CreateCell(row, 16, model.validate);
+                    CreateCell(row, 17, model.place);
+                    CreateCell(row, 18, model.payprogress);
+                    CreateCell(row, 19, model.chargedepartment);
+                    CreateCell(row, 20, model.remark);                  
+                    #endregion
+                }
+            }
+            workbook.Write(ms);
+            ms.Flush();
+            ms.Position = 0;
+
+            return ms;
+        }
+
+    
     }
 }

@@ -810,5 +810,24 @@ namespace ContractMvcWeb.Models
             }
         }
 
+
+        public bool DeleteContracts(List<int> contractIds)
+        {
+            string ids = string.Empty;
+            foreach (int id in contractIds)
+            {
+                if (string.IsNullOrEmpty(ids) == false)
+                {
+                    ids += ",";
+                }
+                ids += id;
+            }
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from t_contract_lx where contractid in( " + ids + " )");
+            int count = MySqlHelper.ExecuteSql(strSql.ToString());
+            return count > 0 ? true : false;
+        }
+
     }
 }

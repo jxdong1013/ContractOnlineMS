@@ -55,14 +55,17 @@ $('body').on('click', '#selectFile', function () {
     $('#displayName').html($(this).val().split('\\').pop());
 }).on('click', '#ckbAll', function () {
     var $that = $(this);
+    alert('ddd');
     if ($that.is(':checked')) {
-        $that.parents('.content').find('table:gt(0) :checkbox').each(function () {
+        $("#tablelist").find('table:gt(0) :checkbox').each(function(){ 
+        //$that.parents('.content').find('table:gt(0) :checkbox').each(function () {
             if (!$(this).is(':disabled')) {
                 $(this).get(0).checked = true;
             }
         });
     } else {
-        $that.parents('.content').find('table:gt(0) :checkbox').removeAttr('checked');
+        $("#tablelist").find('table:gt(0) :checkbox').removeAttr('checked');
+        //$that.parents('.content').find('table:gt(0) :checkbox').removeAttr('checked');
     }
 }).on('click', '.content :checkbox[name="checkRow"]', function (e) {
     var rowCount = $('.content :checkbox[name="checkRow"]:not(:disabled)').length,

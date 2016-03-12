@@ -1,19 +1,13 @@
 ﻿@{
-    ViewBag.Title = "合同登记";
-    ViewBag.PageCode = "C002";
+    ViewBag.Title = "中标合同登记";
+    ViewBag.PageCode = "C1003";
 }
 
 @model ContractMvcWeb.Models.Beans.Contract 
     
    <div class="content">
     <h3>合同登记</h3>
-       <div>
-           <ul class="nav nav-tabs">
-               <li role="presentation" class="active"><a href="#">中标合同登记</a></li>
-               <li role="presentation"><a href="~/Contract/AddCaiGouContract">采购合同登记</a></li>
-               <li role="presentation"><a href="#">零星合同登记</a></li>
-           </ul>
-       </div>
+     
 
 
 @using( Html.BeginForm("AddContract" , "Contract", FormMethod.Post ))

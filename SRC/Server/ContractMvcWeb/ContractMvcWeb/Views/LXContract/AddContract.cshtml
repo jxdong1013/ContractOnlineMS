@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "AddContract";
-    ViewBag.PageCode = "C3002";
+    ViewBag.PageCode = "C3003";
 }
 @model ContractMvcWeb.Models.Beans.ContractLX
 
@@ -22,12 +22,12 @@
                 <td>采购联系人:@Html.TextBoxFor(m => m.linker)</td>
                 <td>采购类型:@Html.TextBoxFor(m => m.type)</td>
                 <td><b class="red">*</b>采购内容:@Html.TextBoxFor(m => m.content)</td>
-                
+
             </tr>
             <tr>
                 <td>联系电话:@Html.TextBoxFor(m => m.tel)</td>
                 <td>项目编号:@Html.TextBoxFor(m => m.projectnum)</td>
-                <td>经费来源:@Html.TextBoxFor(m => m.fundsource)</td>                             
+                <td>经费来源:@Html.TextBoxFor(m => m.fundsource)</td>
             </tr>
             <tr>
                 <td>预算金额:@Html.TextBoxFor(m => m.budgetamount)</td>
@@ -45,7 +45,7 @@
                 <td>记录位置:@Html.TextBoxFor(m => m.place)</td>
             </tr>
             <tr>
-                <td>支付进度:@Html.TextBoxFor(m => m.payprogress)</td>
+                <td>支付进度:@Html.TextBoxFor(m => m.payprogress)</td> @Html.DropDownListFor()
                 <td>分管部门:@Html.TextBoxFor(m => m.chargedepartment)</td>
                 <td>备注:@Html.TextBoxFor(m => m.remark)</td>
             </tr>
