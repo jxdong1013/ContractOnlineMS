@@ -5,17 +5,17 @@
 
 @model ContractMvcWeb.Models.Beans.ContractLX 
 
-<div class="content">
-<h3>编辑零星合同</h3>
+<div class="content panel panel-default">
+    <div class="panel-heading"><h3>编辑零星合同</h3></div>
 
-@using( Html.BeginForm("EditContract" , "LXContract", FormMethod.Post ))
-{
- @Html.AntiForgeryToken()
-
-    @Html.HiddenFor(m => m.contractid);
+    <div class="panel-body">
+        @using (Html.BeginForm("EditContract", "LXContract", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+        {
+             @Html.AntiForgeryToken()
+             @Html.HiddenFor(m => m.contractid);
+                                               var items = (List<SelectListItem>)ViewData["payprogressItems"];
     
-<table class="new_info_table">
- 
+            <table class="table"> 
             <tr>
                 <td><b class="red">*</b>合同编号:@Html.TextBoxFor(m => m.contractnum)</td>
                 <td><b class="red">*</b>采购编号:@Html.TextBoxFor(m => m.seq)</td>
@@ -48,7 +48,7 @@
                 <td>记录位置:@Html.TextBoxFor(m => m.place)</td>
             </tr>
             <tr>
-                <td>支付进度:@Html.TextBoxFor(m => m.payprogress)</td>
+                <td>支付进度:@Html.DropDownListFor(m => m.payprogress, items)</td>
                 <td>分管部门:@Html.TextBoxFor(m => m.chargedepartment)</td>
                 <td>备注:@Html.TextBoxFor(m => m.remark)</td>
             </tr>
@@ -61,10 +61,14 @@
         </tr>
      <tr>
             <td colspan ="3" style="text-align:center">
-                <button id="btnSave" value="保存" class="blue_btn button_90 mr20" type="submit">保存</button>
+                <button id="btnSave" value="保存" class="btn btn-default" type="submit">保存</button>
              </td>
     </tr>
 
 </table>
-}
+            
+     
+        
+        }
+        </div>
     </div>

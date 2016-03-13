@@ -137,6 +137,7 @@ namespace ContractMvcWeb.Controllers
 
         public ActionResult AddContract()
         {
+            SetDropDownlist("未签合同");
             return View();
         }
 
@@ -145,6 +146,8 @@ namespace ContractMvcWeb.Controllers
         {
             try
             {
+                SetDropDownlist(model.payprogress);
+
                 if (ModelState.IsValid == false) return View();
 
                 bool isok = CheckContractData(model);
@@ -264,12 +267,18 @@ namespace ContractMvcWeb.Controllers
         {
             ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
             ContractCG model = dbContext.GetModel(contractid);
+
+            SetDropDownlist(model.payprogress);
+
             return View(model);
         }
 
         [HttpPost]
         public ActionResult EditContract(ContractCG contract)
         {
+            SetDropDownlist("未签合同");
+
+
             if (ModelState.IsValid)
             {
                 bool isok = CheckContractData(contract);
@@ -299,6 +308,54 @@ namespace ContractMvcWeb.Controllers
             return View();
         }
 
-    
+
+        protected void SetDropDownlist( string state)
+        {
+            state = state.Trim();
+            List<SelectListItem> items = new List<SelectListItem>();
+            SelectListItem item = new SelectListItem();
+            item.Text = "完成";
+            item.Value = "完成";//((int)PayProgressEnum.FINISH).ToString();
+            item.Selected = state.Equals("完成"); //state == (int)PayProgressEnum.FINISH;
+            items.Add(item);
+
+            item = new SelectListItem();
+            item.Text = "部分支付";
+            item.Value = "部分支付";// ((int)PayProgressEnum.PARTPAY).ToString();
+            item.Selected = state.Equals("部分支付");// state == (int)PayProgressEnum.PARTPAY;
+            items.Add(item);
+
+            item = new SelectListItem();
+            item.Text = "领走发票";
+            item.Value = "领走发票";// ((int)PayProgressEnum.TICKET).ToString();
+            item.Selected = state.Equals("领走发票");//state == (int)PayProgressEnum.TICKET;
+            items.Add(item);
+
+            item = new SelectListItem();
+            item.Text = "发票已到";
+            item.Value = "发票已到";// ((int)PayProgressEnum.TICKETAT).ToString();
+            item.Selected = state.Equals("发票已到"); //state == (int)PayProgressEnum.TICKETAT;
+            items.Add(item);
+
+            item = new SelectListItem();
+            item.Text = "仅签合同";
+            item.Value = "仅签合同";//((int)PayProgressEnum.SIGN).ToString();
+            item.Selected = state.Equals("仅签合同");//state == (int)PayProgressEnum.SIGN;
+            items.Add(item);
+
+            item = new SelectListItem();
+            item.Text = "未签合同";
+            item.Value = "未签合同";// ((int)PayProgressEnum.UNSIGN).ToString();
+            item.Selected = state.Equals("未签合同"); //state == (int)PayProgressEnum.UNSIGN;
+            items.Add(item);
+
+            item = new SelectListItem();
+            item.Text = "流标";
+            item.Value = "流标"; //((int)PayProgressEnum.LOST).ToString();
+            item.Selected = state.Equals("流标");// state == (int)PayProgressEnum.LOST;
+            items.Add(item);
+
+            ViewData["payprogressItems"] = items;
+        }
     }
 }

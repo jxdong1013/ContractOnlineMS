@@ -5,13 +5,15 @@
 @model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.ContractCG> 
 
 
+ <link style="text/css" rel="stylesheet" href="~/Content/style2.css" />
+
 <script type="text/javascript">
     function afterSuccess() {
         alert("upload success!");
     }
 </script>
 
-<div id="tablelist" class="content">
+<div id="tablelist" class="panel panel-default">
     <h4>采购合同查询</h4>
     <input id="hdDeleteContract" type="hidden" value="/cgcontract/DeleteContracts" />
 
@@ -138,6 +140,6 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
         }
     </table>
 
-    @Html.Partial("PageBarPartial")
+    <div class="panel">    @Html.Partial("PageBarPartial")</div>
 
 </div>
