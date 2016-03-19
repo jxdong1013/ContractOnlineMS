@@ -5,6 +5,32 @@
     ViewBag.PageCode = "C000";
 }
 
+<script  type="text/javascript">
+    $(document).ready(function () {
+
+        $('#loginForm').bootstrapValidator({
+            fields: {
+                UserName: {
+                    message: "请输入用户名",
+                    validators: {
+                        notEmpty: "请输入用户名"
+                    }
+                },
+                Password: {
+                    message: "请输入密码",
+                    validators: {
+                        notEmpty:"请输入密码"
+                    }
+                }
+            }
+        });
+        //$('#loginBtn').click(function () {
+            //alert("aaa");
+            //$('#defaultForm').bootstrapValidator('validate');
+        //});
+    });
+</script>
+
 
 <div class="container">
     
@@ -17,31 +43,19 @@
                     欢迎回来
                 </div>
 
-                @using (@Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+                @using (@Html.BeginForm("Login", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "loginForm" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary()
+                    @Html.ValidationSummary();
 
                     <div class="form-group">
                         <div class="group-control">
-                            <input type="text" id="userName" name="userName" placeholder="用户名" />
-
-                            @*<label class="input_info">用户名:</label>*@
-                            @*<p class="login_form_input">
-
-                                @Html.TextBoxFor(m => m.UserName, new {  id="userName", name="username" , @class="login_form_input_ipt"})
-                                <i class="ico_uid"></i>
-                            </p>*@
+                            <input type="text" id="UserName" class="form-control" name="UserName" placeholder="用户名" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="group-control">
-                            @*<label class="input_info">登录密码:</label>
-                            <p class="login_form_input">
-                                @Html.PasswordFor(m => m.Password, new { id = "password", name = "password", @class = "login_form_input_ipt" })
-                                <i class="ico_pwd"></i>
-                            </p>*@
-                            <input type="password" id="password" name="password" placeholder="密码" />
+                            <input type="password" id="Password" class="form-control" name="Password" placeholder="密码" />
                         </div>
                     </div>
 
@@ -53,10 +67,5 @@
             </div>
         </div>
     </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
 
 </div>

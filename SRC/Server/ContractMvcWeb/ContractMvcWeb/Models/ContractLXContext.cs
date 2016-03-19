@@ -295,7 +295,7 @@ namespace ContractMvcWeb.Models
 
         public Beans.BatchImportResult BatchAddContracts(List<Beans.ContractLX> list, string operatorName)
         {
-            Beans.BatchImportResult result = null;
+            Beans.BatchImportResult result = new BatchImportResult();
 
             if (list == null || list.Count < 1) return result;
 

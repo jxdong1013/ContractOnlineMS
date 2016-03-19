@@ -3,50 +3,51 @@
     ViewBag.PageCode = "C3002";
 }
 
-<div class="content1 " style="height:500px">
+<div class="panel panel-default">
     <link style="text/css" rel="stylesheet" href="~/Content/style2.css" />
-<h4>零星合同导入</h4>
+    <div class="panel-heading"><label>零星合同导入</label></div>
 
-    <div class="import_contract_box ">
-        <div class="temp_download">
-            <ul>
-                <li class="li_txt">下载批量导入数据模板</li>
-                <li class="li_pic">
-                    <p class ="type_icon"></p>
-                    <p class="temp_name">模板_批量导入数据.xls</p>
+    <div class="panel-body">
+        <div class="panel panel-default col-lg-4 col-md-4 col-sm-4" style="padding-left:0px;padding-right:0px;">
+            <ul class="list-group">
+                <li class="list-group-item"><label class="text-center" >下载批量导入数据模板</label></li>
+                <li class="list-group-item">
+                    <p></p> 
+                    <img src="~/Images/excel.png" class="img-responsive center-block"   />  
+                     <p></p>
+                    <p class="text-center"><label>模板_批量导入数据.xls</label></p>
                 </li>
-                <li >
-                    <a class="blue_btn link_common" href="~/LXContract/DownloadExcelTemplate">下载</a>
+                <li class="list-group-item">
+                    <a class="btn btn-info col-md-offset-3 col-lg-offset-3" href="~/LXContract/DownloadExcelTemplate">下载</a>
                 </li>
             </ul>
         </div>
-        <div class="import_con_middle">
-       <a class="right_arrow add mb10"></a>
-   </div>
-        <div class="temp_upload">
+        <div class="col-lg-1 col-md-1 col-sm-1">
+         <img src="~/Images/arrow-right.png" class="center-block" style="margin-top:100px;"/>
+        </div>
+        <div class="panel col-lg-7 col-md-7 col-sm-7" style="padding-left:0px;padding-right:0px;">
             <form id="uploadForm" method="post" action="~/LXContract/ImportContract" enctype="multipart/form-data" >
-                <ul>
-                    <li class="li_txt">上传批量数据</li>
-                    <li class="temp_load">
-                        <p>
-                            <input type="text" id="fileName" class="text_input w250 mr10" readonly="readonly" name="fileName">
-                            <input type="button" id="selectFile" onclick="import_selectfile()" class="blue_btn button_common" value="浏览">
-                            <input type="file" id="uploadFile" onchange="import_changefile()" class="fileupload" name="uploadFile">
-                        </p>
-                        <p><label>文件名称：</label><span id="displayName"></span></p>
+                <ul class="list-group">
+                    <li class="list-group-item"><label class="text-center">上传批量数据</label></li>
+                    <li class="list-group-item">                  
+                        <div class="input-group" style="margin-top:30px;">      
+                            <input type="text" id="fileName" class="form-control w250 mr10"  readonly="readonly" name="fileName">
+                            <span class="input-group-btn" > <button  id="selectFile" class="btn btn-default" type="button" onclick="import_selectfile()">浏览</button></span>
+                            </div>
+                            <input type="file" id="uploadFile" onchange="import_changefile()" class="fileupload" name="uploadFile">                        
+                            <label  style="margin-bottom:30px;">文件名称：</label><span id="displayName"></span>
                     </li>
-                    <li>
-                        <input type="submit" id="uploadBtn" class="blue_btn button_common mr20" value="上传" />
-                        @*<input type="button" id="returnBtn" value="返回" class="gray_btn button_common">*@
+                    <li class="list-group-item">
+                        <input type="submit" id="uploadBtn" class="btn btn-info col-md-offset-3" value="上传" />
                     </li>
                 </ul>
             </form>
         </div>
 
-<div class="error_box">@Html.ValidationSummary()</div>
+
 
    </div>
 
-
+    <div class="panel-footer">@Html.ValidationSummary()</div>
 
 </div>

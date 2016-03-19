@@ -9,14 +9,14 @@ namespace ContractMvcWeb
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js","~/Scripts/bootstrap-{version}.js","~/Scripts/contract.js","~/Scripts/contract2.js"));
+                        "~/Scripts/jquery-{version}.js", "~/Scripts/bootstrap-{version}.js", "~/Scripts/bootstrapValidator-min.js", "~/Scripts/contract.js", "~/Scripts/contract2.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate*"));
+            //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            //            "~/Scripts/jquery.unobtrusive*",
+            //            "~/Scripts/jquery.validate*"));
 
             // 使用 Modernizr 的开发版本进行开发和了解信息。然后，当你做好
             // 生产准备时，请使用 http://modernizr.com 上的生成工具来仅选择所需的测试。
@@ -28,6 +28,8 @@ namespace ContractMvcWeb
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/jxd.css"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrapcss").Include("~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrapValidatorCss").Include("~/Content/bootstrapValidator-min.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
