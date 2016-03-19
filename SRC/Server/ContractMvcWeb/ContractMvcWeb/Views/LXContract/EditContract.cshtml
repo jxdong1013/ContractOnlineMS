@@ -13,9 +13,165 @@
         {
              @Html.AntiForgeryToken()
              @Html.HiddenFor(m => m.contractid);
-                                               var items = (List<SelectListItem>)ViewData["payprogressItems"];
+              var items = (List<SelectListItem>)ViewData["payprogressItems"];
     
-            <table class="table"> 
+              
+               
+      <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>合同编号</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.contractnum, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>采购编号</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.seq, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">采购部门</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.department, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+     <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">采购联系人</label>
+                            <div class="col-sm-2  col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.linker, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">采购类型</label>
+                            <div class="col-sm-2  col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.type, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>采购内容</label>
+                            <div class="col-sm-2  col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.content, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+     <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2  col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">联系电话</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.tel, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">项目编号</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.projectnum, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2  col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">经费来源</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.fundsource, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+     <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">预算金额</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.budgetamount, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">供货单位</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.super, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">供货联系人</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.superlinker, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+    <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">联系电话</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.supertel, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">结算金额</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.settleamount, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">赠送内容</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.freecontent, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+    
+     <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">赠送价值</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.freevalue, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">验收情况</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.validate, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">记录位置</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.place, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">支付进度</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.DropDownListFor(m => m.payprogress, items, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">分管部门</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.chargedepartment, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">备注</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.remark, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    <div class="form-group">
+        <div class="col-sm-12 col-md-12 text-center">
+            <button id="btnSave" value="保存" class="btn btn-info" type="submit">保存</button>
+            </div>
+    </div>
+    
+              
+              
+            /* <table class="table"> 
             <tr>
                 <td><b class="red">*</b>合同编号:@Html.TextBoxFor(m => m.contractnum)</td>
                 <td><b class="red">*</b>采购编号:@Html.TextBoxFor(m => m.seq)</td>
@@ -65,10 +221,12 @@
              </td>
     </tr>
 
-</table>
+</table>*/
             
      
         
         }
         </div>
+
+    <div class="panel-footer">@Html.ValidationSummary()</div>
     </div>

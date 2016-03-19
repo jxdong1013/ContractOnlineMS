@@ -275,16 +275,18 @@ namespace ContractMvcWeb.Controllers
             return View(model);
         }
 
+        [HttpGet]
         [HttpPost]
         public ActionResult EditContract(ContractCG contract)
         {
-            SetDropDownlist("未签合同");
+            SetDropDownlist("未签合同");            
 
+            //String path = "EditContract?contractid="+contract.contractid;
 
             if (ModelState.IsValid)
             {
                 bool isok = CheckContractData(contract);
-                if (isok == false) return View();
+                if (isok == false) return View( contract );
 
                 ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
                 contract.modifytime = DateTime.Now;
@@ -293,7 +295,7 @@ namespace ContractMvcWeb.Controllers
                 if (isExist)
                 {
                     ModelState.AddModelError("error", "合同编号，序号和项目编号已经存在。");
-                    return View();
+                    return View(  contract );
                 }
 
                 bool success = dbContext.Update(contract);
@@ -304,10 +306,10 @@ namespace ContractMvcWeb.Controllers
                 else
                 {
                     ModelState.AddModelError("e3", "保存失败!");
-                    return View();
+                    return View(  contract );
                 }
             }
-            return View();
+            return View(  contract );
         }
 
 
