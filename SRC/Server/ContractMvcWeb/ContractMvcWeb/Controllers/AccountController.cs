@@ -15,61 +15,6 @@ namespace ContractMvcWeb.Controllers
     //[MyAuthorize]
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/Login                                 
-        //[AllowAnonymous]
-        //public ActionResult Login(string returnUrl)
-        //{
-        //    ViewBag.ReturnUrl = returnUrl;
-        //    return View();
-        //}
-
-        //
-        // POST: /Account/Login     
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Login(LoginModel model, string returnUrl)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        AccountContext dbContext = new AccountContext();
-        //        User userObj = dbContext.Login(model.UserName, model.Password);
-        //        if ( userObj != null)
-        //        {
-        //            //List<userrole> roles = dbContext.GetRoles(personObj.userid);                    
-        //            //System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-        //            //string jsstr = js.Serialize(roles); 
-
-        //            int expiration = 0;
-        //            if (!int.TryParse(System.Configuration.ConfigurationManager.AppSettings["Expiration"].ToString(), out expiration))
-        //            {
-        //                expiration = 5;
-        //            }
-
-        //            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now,
-        //                DateTime.Now.AddMinutes( expiration ), false , string.Empty );
-                  
-                    
-        //            string ticketEncrypt = FormsAuthentication.Encrypt( ticket );
-        //            System.Web.HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketEncrypt);
-        //            System.Web.HttpContext.Current.Response.Cookies.Add(cookie);                    
-
-        //            return RedirectToLocal(returnUrl);
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "提供的用户名或密码不正确。");
-        //            return View(model);
-        //        }
-        //    }
-
-        //    // 如果我们进行到这一步时某个地方出错，则重新显示表单
-        //    ModelState.AddModelError("", "提供的用户名或密码不正确。");
-        //    return View(model);
-        //}
-
-
         [HttpPost]
         [AllowAnonymous]
         public JsonResult LoginRestfull(string userName, string password)

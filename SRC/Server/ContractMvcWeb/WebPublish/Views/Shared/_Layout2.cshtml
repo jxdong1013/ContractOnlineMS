@@ -7,9 +7,9 @@
     <title>@ViewBag.Title - RFID合同管理系统</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />     
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
-     @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/bootstrapcss")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+ 
     @RenderSection("scripts", required: false)
     <style>
         #main-nav {
@@ -69,30 +69,35 @@
 
         .navbar-static-top {
             background-color: #212121;
+            padding-top:10px;
+            padding-bottom:10px;
             margin-bottom: 5px;
         }
 
-        .navbar-brand {
+        .navbar-title {
             background: url('') no-repeat 10px 8px;
             display: inline-block;
             vertical-align: middle;
             padding-left: 50px;
-            font-size:22px;
-            color: #fff;
+            font-size: 22px;
+            color: #119d55;
+            padding-bottom:15px;
+            padding-top:15px;
         }
+
     </style>
 
 
 </head>
 <body>
-    <div class="navbar navbar-static-top" role="navigation">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8">
-                    <a class="navbar-brand" href="#" id="logo">管理系统</a>
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <a class="navbar-title" href="#" id="logo">合同管理系统</a>
                    
                 </div>   
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="text-right float-right">
                         @Html.Partial("_LoginPartial")
                     </div>
@@ -104,80 +109,74 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class= @( ViewBag.isLogin != null && ViewBag.isLogin ? "hidden-div" : "col-md-2") >
+            <div class= "@( ViewBag.PageCode != null && ViewBag.PageCode =="C000" ? "hidden-div" : "col-lg-2 col-md-2 col-sm-2")" >
                 <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
                     <li class="active">
-                        <a href="#">
-                            <i class="glyphicon glyphicon-th-large"></i>
+                        <a href="#">                            
                             首页
                         </a>
                        
                     </li>
                     <li>
-                        <a href="#zbmenu" class="nav-header " aria-expanded="true" data-toggle="collapse">
-                            <i class="glyphicon glyphicon-cog"></i>
+                        <a href="#zbmenu" class="nav-header @(ViewBag.PageCode.ToString().StartsWith("C100") ? "" : "collapsed")" aria-expanded=@(ViewBag.PageCode.ToString().StartsWith("C100") ? "true" : "false") data-toggle="collapse">
+                            @*<i class="glyphicon glyphicon-cog"></i>*@
                             中标合同管理
-                            <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                           @* <span class="pull-right glyphicon glyphicon-chevron-down"></span>*@
                         </a>
-                        <ul id="zbmenu" class="nav nav-list secondmenu  collapse in" aria-expanded="true" >
-                            <li><a href="~/Contract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="~/Contract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="~/Contract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
+                        <ul id="zbmenu" class="nav nav-list secondmenu  collapse @(ViewBag.PageCode.ToString().StartsWith("C100") ? "in" : "")" @(ViewBag.PageCode.ToString().StartsWith("C100") ? "aria-expanded=true" : "style = height:0px;")>
+                            <li><a href="~/Contract/ContractList"> <label class=@(ViewBag.PageCode.ToString().Equals("C1001") ? "text-primary" : "")>合同查询</label></a></li>
+                            <li><a href="~/Contract/ImportContract"><label class="@(ViewBag.PageCode.ToString().Equals("C1002") ? "text-primary" : "")">导入合同</label></a></li>
+                            <li><a href="~/Contract/AddContract"><label class="@(ViewBag.PageCode.ToString().Equals("C1003") ? "text-primary" : "")">合同登记</label></a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#cgmenu" class="" data-toggle="collapse">
-                            <i class="glyphicon glyphicon-credit-card"></i>
+                        <a href="#cgmenu" class="nav-header @(ViewBag.PageCode.ToString().StartsWith("C200") ? "" : "collapsed")" aria-expanded=@(ViewBag.PageCode.ToString().StartsWith("C200") ? "true" : "false") data-toggle="collapse">
+                            
                             采购合同管理
-                            <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                           @* <span class="pull-right glyphicon glyphicon-chevron-down"></span>*@
                         </a>
-                        <ul id="cgmenu" class="nav nav-list collapse secondmenu" style="height: 0px;">
-                            <li><a href="~/cgContract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="~/cgContract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="~/cgContract/AddCaiGouContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>        
+                        <ul id="cgmenu" class="nav nav-list secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("C200") ? "in" : "") " @(ViewBag.PageCode.ToString().StartsWith("C200") ? "aria-expanded=true" : "style = height:0px;")>
+                            <li><a href="~/cgContract/ContractList" ><label class=@(ViewBag.PageCode.ToString().Equals("C2001") ? "text-primary" : "") >合同查询</label></a></li>
+                            <li><a href="~/cgContract/ImportContract"><label class="@(ViewBag.PageCode.ToString().Equals("C2002") ? "text-primary" : "")">导入合同</label></a></li>
+                            <li><a href="~/cgContract/AddContract"><label class="@(ViewBag.PageCode.ToString().Equals("C2003") ? "text-primary" : "")">合同登记</label></a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#lxcontractmenu" class="nav-header collapsed" data-toggle="collapse">
-                            <i class="glyphicon glyphicon-globe"></i>
+                        <a href="#lxcontractmenu" class="nav-header @(ViewBag.PageCode.ToString().StartsWith("C300") ? "" : "collapsed") " aria-expanded=@(ViewBag.PageCode.ToString().StartsWith("C300") ? "true" : "false") data-toggle="collapse">
+                          
                             零星合同管理
                           @*  <span class="label label-warning pull-right">5</span>*@
                         </a>
-                        <ul id="lxcontractmenu" class="nav nav-list collapse secondmenu" style="height:0px;">
-                            <li><a href="~/lxContract/ContractList"><i class="glyphicon glyphicon-user"></i>合同查询</a></li>
-                            <li><a href="~/lxContract/ImportContract"><i class="glyphicon glyphicon-th-list"></i>导入合同</a></li>
-                            <li><a href="~/lxContract/AddContract"><i class="glyphicon glyphicon-asterisk"></i>合同登记</a></li>
+                        <ul id="lxcontractmenu" class="nav nav-list  secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("C300") ? "in" : "") " @(ViewBag.PageCode.ToString().StartsWith("C300") ? "aria-expanded=true" : "style = height:0px;") >
+                            <li><a href="~/lxContract/ContractList"><label class=@(ViewBag.PageCode.ToString().Equals("C3001") ? "text-primary" : "")>合同查询</label></a></li>
+                            <li><a href="~/lxContract/ImportContract"><label class=@(ViewBag.PageCode.ToString().Equals("C3002") ? "text-primary" : "")>导入合同</label></a></li>
+                            <li><a href="~/lxContract/AddContract"><label class=@(ViewBag.PageCode.ToString().Equals("C3003") ? "text-primary" : "")>合同登记</label></a></li>
                         </ul>
                     </li>
-
-                    @*<li>
-                        <a href="./charts.html">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                            图表统计
-                        </a>
-                    </li>*@
                     <li>
-                        <a href="#systemmanager" data-toggle="collapse">
-                            <i class="glyphicon glyphicon-fire"></i>
+                        <a href="#systemmanager" class="nav-header @(ViewBag.PageCode.ToString().StartsWith("U100") ? "" : "collapsed")" aria-expanded=@(ViewBag.PageCode.ToString().StartsWith("U100") ? "true" : "false") data-toggle="collapse">
+                          
                             系统管理
                         </a>
-                        <ul id="systemmanager" class="nav nav-list collapse secondmenu" style="height:0px;">
-                            <li><a href="~/User/UserList">用户管理</a></li>
+                        <ul id="systemmanager" class="nav nav-list  secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("U100") ? "in" : "")" @(ViewBag.PageCode.ToString().StartsWith("U100") ? "aria-expanded=true" : "style = height:0px;")>
+                            <li><a href="~/User/UserList"><label class="@(ViewBag.PageCode.ToString().Equals("U1001") ? "text-primary" : "")">用户管理</label></a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <div class= @(ViewBag.isLogin!=null && ViewBag.isLogin==true?"col-md-12":"col-md-10")>                
+            <div class= "@(ViewBag.isLogin!=null && ViewBag.isLogin==true?"col-lg-12 col-md-12 col-sm-12":"col-lg-10 col-md-10 col-sm-10")">                
                 @RenderBody()
             </div>
         </div>
     </div>
 
+    <div class="navbar navbar-default navbar-fixed-bottom">
     <footer>
-        <div class="footer_float-right">
-            <p> RFID 合同管理系统 &copy;-@DateTime.Now.Year 北京科美乾坤智能科技有限公司</>
+        <div class="footer_float-right ">
+            <p>合同管理系统 &copy;-@DateTime.Now.Year 北京科美乾坤智能科技有限公司</>
         </div>
     </footer>
+        </div>
 </body>
 </html>

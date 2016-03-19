@@ -1,5 +1,6 @@
 ﻿ 
 $('body').on('click', '#selectFile', function () {
+    alert("aa");
     $('#uploadFile').click();
 })
     .on('submit', '#uploadForm', function () {
@@ -51,6 +52,10 @@ $('body').on('click', '#selectFile', function () {
     return false;
 })
 .on('change', '#uploadFile', function (e) {
+
+    alert("aa");
+
+
     $('#fileName').val($(this).val());
     $('#displayName').html($(this).val().split('\\').pop());
 }).on('click', '#ckbAll', function () {

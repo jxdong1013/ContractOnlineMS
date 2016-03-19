@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace ContractMvcWeb.Controllers
 {
-    [MyAuthorize(Roles ="admin")]
+    [MyAuthorize]
     public class UserController : Controller
     {
         [AllowAnonymous]
@@ -47,8 +47,8 @@ namespace ContractMvcWeb.Controllers
                     }
 
                     String userData = "";
-                    if( userObj.usertype == ((int)UserTypeEnum.ADMIN).ToString()) { userData = "admin"; }
-                    else if( userObj.usertype ==( (int)UserTypeEnum.QUERY).ToString()) { userData = "query"; }
+                    if (userObj.usertype == ((int)UserTypeEnum.ADMIN).ToString()) { userData = Constant.ROLE_ADMIN; }
+                    else if (userObj.usertype == ((int)UserTypeEnum.QUERY).ToString()) { userData = Constant.ROLE_QUERY; }
 
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now,
                         DateTime.Now.AddMinutes(expiration), false, userData);       
@@ -100,7 +100,7 @@ namespace ContractMvcWeb.Controllers
             return View();
         }
 
-        //[MyAuthorize(Roles="2")]
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         public ActionResult UserList( string username , string usertype = "2" , int state=2 ,  int pageidx = 1)
         {
             Models.AccountContext dbContext = new Models.AccountContext();
@@ -137,9 +137,7 @@ namespace ContractMvcWeb.Controllers
 
             ViewData["enableItems"] = items;
         }
-
-        
-
+               
          protected void SetUserTypeDropDownlist( string statestr )
         {
             int state = 0;
@@ -161,6 +159,7 @@ namespace ContractMvcWeb.Controllers
             ViewData["userTypeItems"] = items;
         }
 
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         public ActionResult AddUser()
         {
             SetDropDownlist((int)EnableEnum.ENABLE);
@@ -170,8 +169,8 @@ namespace ContractMvcWeb.Controllers
             return View();
         }
 
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         [HttpPost]
-        //[MyAuthorize (Roles="2")]
         public ActionResult AddUser( ContractMvcWeb.Models.Beans.User  user)
         {
             SetDropDownlist(user.enable);
@@ -217,9 +216,9 @@ namespace ContractMvcWeb.Controllers
 
         }
 
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         public ActionResult EditUser( int userid)
         {
-
             ContractMvcWeb.Models.AccountContext dbContext = new Models.AccountContext();
             User model = dbContext.GetModel(userid);
 
@@ -229,10 +228,10 @@ namespace ContractMvcWeb.Controllers
             return View( model );
         }
 
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         [HttpPost]
         public ActionResult EditUser(User model)
         {
-
             SetDropDownlist((int)EnableEnum.ENABLE);
 
             SetUserTypeDropDownlist(((int)UserTypeEnum.QUERY).ToString());
@@ -264,12 +263,13 @@ namespace ContractMvcWeb.Controllers
         //    return new RedirectResult("~/user/userList");
         //}
 
-
+        [MyAuthorize(Roles = Constant.ROLE_QUERY + "," + Constant.ROLE_ADMIN)]
         public ActionResult ChangePassword()  
         {
             return View();
         }
 
+        [MyAuthorize(Roles=Constant.ROLE_QUERY+","+Constant.ROLE_ADMIN)]
         [HttpPost]
         public ActionResult ChangePassword(Models.Beans.LocalPasswordModel model)
         {

@@ -1,20 +1,26 @@
-﻿@model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.ContractLX>
-
-@{
-    ViewBag.Title = "零星合同查询";
-    ViewBag.PageCode = "C3001";
+﻿@{
+    ViewBag.Title = "采购合同查询";
+    ViewBag.PageCode = "C2001";
 }
+@model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.ContractCG> 
+
+
  <link style="text/css" rel="stylesheet" href="~/Content/style2.css" />
 
+<script type="text/javascript">
+    function afterSuccess() {
+        alert("upload success!");
+    }
+</script>
 
 <div id="tablelist" class="panel panel-default">
-    <h4>零星合同查询</h4>
-    <input id="hdDeleteContract" type="hidden" value="/lxcontract/DeleteContracts" />
+    <h4>采购合同查询</h4>
+    <input id="hdDeleteContract" type="hidden" value="/cgcontract/DeleteContracts" />
 
-    @using (@Html.BeginForm("contractlist", "lxcontract", FormMethod.Get))
+    @using (@Html.BeginForm("contractlist", "cgcontract", FormMethod.Get))
     {
-        <div class="">
-            <div>
+         <div class="">
+            <div >
                 <div class="col-lg-2">
                     <input type="hidden" id="pkey" name="pkey" value=@(Request["pkey"]==null|| Request["pkey"].ToString()==""?"seq":Request["pkey"]) />
                     <input type="hidden" id="sortkey" name="sortkey" value="@(Request["sortkey"]==null||Request["sortkey"].ToString()==""?"":Request["sortkey"])" />
@@ -39,75 +45,67 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
                             <li><a href="#" onclick="selectonekey('支付进度', 'payprogress')">支付进度</a></li>
                         </ul>
                     </div>
-                    <input type="text" id="pvalue" name="pvalue" class="form-control" placeholder="请输入搜索内容" value="@Request["pvalue"]" />
+                    <input type="text" id="pvalue" name="pvalue" class="form-control"  placeholder="请输入搜索内容" value="@Request["pvalue"]" />
                     <span class="input-group-btn">
                         <button id="btnquery" type="submit" value="query" class="btn btn-default">搜索一下</button>
                     </span>
-                    <div class="col-lg-2"></div>
+              <div class="col-lg-2"></div>
                 </div>
-
-
+                
+                 
             </div>
 
-            <div>
+            <div >
                 <div class="col-lg-7"></div>
                 <div class="col-lg-3">
-                    @Html.ActionLink("导出Excel", "exportexcel", new
-               {
-                   req = @Request["seq"],
-                   contractnum = @Request["contractnum"],
-                   projectnum = @Request["projectnum"],
-                   projectname = @Request["projectname"],
-                   rfid = @Request["rfid"],
-                   contractplace = @Request["contractplace"],
-                   bcompany = @Request["bcompany"],
-                   money = @Request["money"],
-                   pkey = @Request["pkey"],
-                   pvalue = Request["pvalue"]
-               })
+                    @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"],
+                   projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"],
+                   contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], money = @Request["money"],
+                   pkey = @Request["pkey"], pvalue = Request["pvalue"] })
                     <a id="btnDelete" href="#" onclick="deleterecord()">删除</a>
                 </div>
             </div>
-
-
+      
+         
         </div>
 
 
-        <table width="100%" style="margin-bottom:0px;" class="table table-bordered">
-            <tr class="info">
-                <td width="4%"><input id="ckbAll" type="checkbox" value="全选" onclick="selectall()" /></td>
-                <td width="8%" onclick="sort('seq')"
-                    class=@( Request["sortkey"] == null || Request["sortkey"] != "seq" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
-                    采购编号
-                </td>
-                <td width="10%">采购部门</td>
-                <td width="8%">采购类型</td>
-                <td width="8%" onclick="sort('projectnum')"
-                    class=@(  Request["sortkey"] == null || Request["sortkey"] != "projectnum" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
-                    项目编号
-                </td>
-                <td width="8%" onclick="sort('contractnum')"
-                    class=@( Request["sortkey"]==null || Request["sortkey"] !="contractnum"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
-                    合同编号
-                </td>
-                <td width="8%" onclick="sort('linker')"
-                    class=@( Request["sortkey"]==null || Request["sortkey"] !="linker"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
-                    联系人
-                </td>
-                <td width="10%">供货单位</td>
-                <td width="12%">供货联系人</td>
-                <td width="8%" onclick="sort('supertel')"
-                    class="@( Request["sortkey"] == null || Request["sortkey"] != "supertel" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
-                    供货联系电话
-                </td>
-                <td width="8%" onclick="sort('settleamount')"
-                    class="@( Request["sortkey"] == null || Request["sortkey"] != "settleamount" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
-                    结算金额
-                </td>
-                <td width="8%">支付进度</td>
 
-            </tr>
-        </table>
+       <table width="100%" style="margin-bottom:0px;" class="table table-bordered">
+        <tr class="info">
+            <td width="4%"><input id="ckbAll" type="checkbox" value="全选" onclick="selectall()" /></td>
+            <td width="8%" onclick="sort('seq')"
+                class=@( Request["sortkey"] == null || Request["sortkey"] != "seq" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
+                采购编号
+            </td>
+            <td width="10%">采购部门</td>
+            <td width="8%">采购类型</td>
+            <td width="8%" onclick="sort('projectnum')"
+                class=@(  Request["sortkey"] == null || Request["sortkey"] != "projectnum" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
+                项目编号
+            </td>
+            <td width="8%" onclick="sort('contractnum')"
+                class=@( Request["sortkey"]==null || Request["sortkey"] !="contractnum"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
+                合同编号
+            </td>
+            <td width="8%" onclick="sort('linker')"
+                class=@( Request["sortkey"]==null || Request["sortkey"] !="linker"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
+                联系人
+            </td>
+            <td width="10%">供货单位</td>
+            <td width="12%">供货联系人</td>
+            <td width="8%" onclick="sort('supertel')"
+                class="@( Request["sortkey"] == null || Request["sortkey"] != "supertel" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
+                供货联系电话
+            </td>
+            <td width="8%" onclick="sort('settleamount')"
+                class="@( Request["sortkey"] == null || Request["sortkey"] != "settleamount" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
+                结算金额
+            </td>
+            <td width="8%">支付进度</td>
+
+        </tr>
+    </table>
 
     }
 
@@ -119,7 +117,7 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
 
             decimal money_sum = 0;
             int idx = 0;
-            foreach (ContractMvcWeb.Models.Beans.ContractLX p in Model.Data)
+            foreach (ContractMvcWeb.Models.Beans.ContractCG p in Model.Data)
             {
                 idx++;
 
@@ -142,7 +140,6 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
         }
     </table>
 
-    <div class="panel">    @Html.Partial("PageBarPartial") </div>
-
+    <div class="panel">    @Html.Partial("PageBarPartial")</div>
 
 </div>

@@ -212,6 +212,7 @@
     <Compile Include="Models\Beans\Page.cs" />
     <Compile Include="Models\Beans\PayProgressEnum.cs" />
     <Compile Include="Models\Beans\User.cs" />
+    <Compile Include="Models\Constant.cs" />
     <Compile Include="Models\ContractCGContext.cs" />
     <Compile Include="Models\ContractContext.cs" />
     <Compile Include="Models\ContractLXContext.cs" />
@@ -293,6 +294,7 @@
     <Content Include="Images\login_btn.png" />
     <Content Include="Images\login_icon.png" />
     <Content Include="Images\nav-ico.png" />
+    <Content Include="Images\novisit.jpg" />
     <Content Include="Images\right.png" />
     <Content Include="Images\up.png" />
     <Content Include="Images\updown.png" />

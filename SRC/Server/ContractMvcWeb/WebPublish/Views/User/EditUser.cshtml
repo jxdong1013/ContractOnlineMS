@@ -1,14 +1,16 @@
 ﻿@{
     ViewBag.Title = "编辑用户";
-    ViewBag.PageCode = "U002";
+    ViewBag.PageCode = "U1003";
 }
 @model ContractMvcWeb.Models.Beans.User  
 
+<div class="panel panel-default ">
+    <div class="panel-heading"><h3>编辑用户</h3></div>
+    <div class="panel-body col-md-offset-2">
 
-
-<h3>编辑用户</h3>
-
-@using(Html.BeginForm("EditUser","User")){
+        <div >
+@using (Html.BeginForm("EditUser", "User", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()    
     var items = (List<SelectListItem>)ViewData["enableItems"];
@@ -16,51 +18,67 @@
 
     @Html.HiddenFor(m => m.userid)
 
-    <table class="user_info_table">
+    <div class="form-group ">
+         @Html.LabelFor(m => m.username, new { @class="col-lg-2 col-md-2 control-label"})
+        <div class="col-md-4">
+         @Html.TextBoxFor(m => m.username, new { @class = "form-control " })
+            </div>
+    </div>
+     <div class="form-group">
+         @Html.LabelFor(m => m.sex,new { @class="col-md-2 control-label"})
+         <div class="col-md-4">
+         @Html.TextBoxFor(m => m.sex, new { @class = "form-control" })
+             </div>
+    </div>
+         <div class="form-group">
+         @Html.LabelFor(m => m.enable, new { @class="col-md-2 control-label"})
+                 <div class="col-md-4">         @Html.TextBoxFor(m => m.enable, new { @class = "form-control" })</div>
+    </div>
+             <div class="form-group">
+         @Html.LabelFor(m => m.link, new { @class="col-md-2 control-label"})
+                     <div class="col-md-4">         @Html.TextBoxFor(m => m.link, new { @class = "form-control" })</div>
+    </div>
+                 <div class="form-group">
+         @Html.LabelFor(m => m.address, new { @class="col-md-2 control-label"})
+                         <div class="col-md-4">         @Html.TextBoxFor(m => m.address, new { @class = "form-control" })</div>
+    </div>
+         <div class="form-group">
+         @Html.LabelFor(m => m.usertype, new { @class="col-md-2 control-label"})         
+                 <div class="col-md-4">                @Html.DropDownListFor(m => m.usertype, userTypeItems, new { @class = "form-control" })</div>
+    </div>
+    
+       <input type="submit" value="保存" class="btn btn-default col-md-offset-2" />
+
+    @*<table class="user_info_table">
         <tr>
                 <td class="label_r">
-                @Html.LabelFor(m=>m.username)
+                @Html.LabelFor(m => m.username)
                 </td>
                 <td >
-                 @Html.TextBoxFor(m => m.username, new {@class= "text_input w190" })
+                 @Html.TextBoxFor(m => m.username, new { @class = "text_input w190" })
                 </td>
             </tr>
                 <tr>
-                    <td class="label_r">@Html.LabelFor(m=>m.sex)</td>
+                    <td class="label_r">@Html.LabelFor(m => m.sex)</td>
                     <td>
-                        @Html.TextBoxFor(m => m.sex, new {@class="text_input" })
+                        @Html.TextBoxFor(m => m.sex, new { @class = "text_input" })
                     </td>
                 </tr>
-       @* <tr>
-                <td class="label_r">
-                @Html.LabelFor(m=>m.password)
-                   </td>
-                <td> 
-                @Html.PasswordFor(m=>m.password , new {@class= "text_input w190" })
-                </td>
-            </tr>*@
-        @*<tr>
-            <td class="label_r">
-                @Html.LabelFor(m=>m.comfirmPassword)
-                </td>
-            <td>
-            @Html.PasswordFor(m => m.comfirmPassword, new {@class= "text_input w190" })
-             </td>
-          </tr>  *@
+ 
       <tr>
           <td class="label_r">
-                @Html.LabelFor(m=>m.enable)
+                @Html.LabelFor(m => m.enable)
               </td>
           <td>
-              @Html.DropDownListFor( m=>m.enable , items  , new {@class= "text_input w190" })
+              @Html.DropDownListFor(m => m.enable, items, new { @class = "text_input w190" })
           </td>
        </tr>
         <tr>
             <td class="label_r">
-                @Html.LabelFor(m=>m.link ) 
+                @Html.LabelFor(m => m.link) 
                 </td>
     <td>
-            @Html.TextBoxFor(m=>m.link, new {@class= "text_input" })
+            @Html.TextBoxFor(m => m.link, new { @class = "text_input" })
             </td>
             </tr>
         <tr>
@@ -68,7 +86,7 @@
                 @Html.LabelFor(m => m.address)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.address, new { @class="text_input"})
+                @Html.TextBoxFor(m => m.address, new { @class = "text_input" })
             </td>
         </tr>
         <tr>
@@ -82,8 +100,12 @@
         <tr>
             <td class="label_r"></td>
             <td   style="padding:15px;">
-                <input type="submit" value="保存" class="blue_btn button_90 mr20" />
+                <input type="submit" value="保存" class="btn btn-default" />
              </td>
          </tr>
-       </table>
+       </table> *@
+    
 }
+            </div>
+        </div>
+    </div>

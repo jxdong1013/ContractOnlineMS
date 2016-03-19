@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ContractMvcWeb.Attributes;
 using ContractMvcWeb.Models.Beans;
+using ContractMvcWeb.Models;
 
 namespace ContractMvcWeb.Controllers
 {
+
+    [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
     public class CGContractController : Controller
     {
-        //
-        // GET: /CGContract/
 
         public ActionResult Index()
         {

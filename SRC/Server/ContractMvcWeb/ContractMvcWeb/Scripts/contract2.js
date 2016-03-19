@@ -105,3 +105,12 @@ function deleterecord(){
         //alert("false");
     }
 }
+
+function import_selectfile() {    
+    $('#uploadFile').click();
+}
+
+function import_changefile() {    
+    $('#fileName').val($('#uploadFile').val());
+    $('#displayName').html($('#uploadFile').val().split('\\').pop());
+}

@@ -1,17 +1,24 @@
 ﻿@{
     ViewBag.Title = "AddContract";
+    ViewBag.PageCode = "C3003";
 }
 @model ContractMvcWeb.Models.Beans.ContractLX
 
-<h3>零星合同登记</h3>
 
-<div class="content">
+
+<div class="content  panel panel-default">
+    <div class="panel-heading">
+        <h3>零星合同登记</h3>
+    </div>
+
+        <div class="panel-body">
 
     @using (Html.BeginForm("AddContract", "LXContract", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
+        var items = (List<SelectListItem>)ViewData["payprogressItems"];
 
-        <table class="new_info_table">
+        <table class="table">
             <tr>
                 <td><b class="red">*</b>合同编号:@Html.TextBoxFor(m => m.contractnum)</td>
                 <td><b class="red">*</b>采购编号:@Html.TextBoxFor(m => m.seq)</td>
@@ -21,12 +28,12 @@
                 <td>采购联系人:@Html.TextBoxFor(m => m.linker)</td>
                 <td>采购类型:@Html.TextBoxFor(m => m.type)</td>
                 <td><b class="red">*</b>采购内容:@Html.TextBoxFor(m => m.content)</td>
-                
+
             </tr>
             <tr>
                 <td>联系电话:@Html.TextBoxFor(m => m.tel)</td>
                 <td>项目编号:@Html.TextBoxFor(m => m.projectnum)</td>
-                <td>经费来源:@Html.TextBoxFor(m => m.fundsource)</td>                             
+                <td>经费来源:@Html.TextBoxFor(m => m.fundsource)</td>
             </tr>
             <tr>
                 <td>预算金额:@Html.TextBoxFor(m => m.budgetamount)</td>
@@ -44,7 +51,7 @@
                 <td>记录位置:@Html.TextBoxFor(m => m.place)</td>
             </tr>
             <tr>
-                <td>支付进度:@Html.TextBoxFor(m => m.payprogress)</td>
+                <td>支付进度: @Html.DropDownListFor(m => m.payprogress, items)</td>
                 <td>分管部门:@Html.TextBoxFor(m => m.chargedepartment)</td>
                 <td>备注:@Html.TextBoxFor(m => m.remark)</td>
             </tr>
@@ -53,11 +60,13 @@
             </tr>
             <tr>
                 <td colspan="3" style="text-align:center">
-                    <button id="btnSave" class="blue_btn button_90 mr20" value="新增" type="submit">新增</button>
+                    <button id="btnSave" class="btn btn-default" value="新增" type="submit">新增</button>
                 </td>
             </tr>
         </table>
 
     }
+
+            </div>
 
 </div>

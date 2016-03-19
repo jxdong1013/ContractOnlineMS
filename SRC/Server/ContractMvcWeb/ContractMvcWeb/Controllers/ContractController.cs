@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 using ContractMvcWeb.Attributes;
+using ContractMvcWeb.Models;
 using ContractMvcWeb.Models.Beans;
 
 namespace ContractMvcWeb.Controllers
@@ -77,16 +78,16 @@ namespace ContractMvcWeb.Controllers
             ViewData["enableItems"] = items;
         }
 
-
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         public ActionResult ImportContract()
         {                             
             return View();
         }
 
-        public ActionResult ImportXYContract()
-        {
-            return View();
-        }
+        //public ActionResult ImportXYContract()
+        //{
+        //    return View();
+        //}
 
         //[HttpPost]
         //public ActionResult ImportContract(string msg = "")
@@ -250,20 +251,21 @@ namespace ContractMvcWeb.Controllers
             }  
         }
 
-        public ActionResult DownloadExcelXieYiTemplate()
-        {
-            string fileName = Server.MapPath("~/ExcelTemplate/XYTemplate.xls");
-            if (System.IO.File.Exists(fileName))
-            {
-                return File(fileName, "application/vnd.ms-excel", "采购合同导入模板.xls");
-            }
-            else
-            {
-                ModelState.AddModelError("", "模板文件不存在.");
-                return View("ImportXYContract");
-            }  
-        }
+        //public ActionResult DownloadExcelXieYiTemplate()
+        //{
+        //    string fileName = Server.MapPath("~/ExcelTemplate/XYTemplate.xls");
+        //    if (System.IO.File.Exists(fileName))
+        //    {
+        //        return File(fileName, "application/vnd.ms-excel", "采购合同导入模板.xls");
+        //    }
+        //    else
+        //    {
+        //        ModelState.AddModelError("", "模板文件不存在.");
+        //        return View("ImportXYContract");
+        //    }  
+        //}
          
+      
         public ActionResult EditContract(int contractid)
         {
             ContractMvcWeb.Models.ContractContext dbContext = new Models.ContractContext();
@@ -271,6 +273,7 @@ namespace ContractMvcWeb.Controllers
             return View( model );
         }
 
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         [HttpPost]
         public ActionResult EditContract(Contract contract)
         {
@@ -303,15 +306,16 @@ namespace ContractMvcWeb.Controllers
             return View ();
         }
       
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         public ActionResult AddContract()
         {
             return View();
         }
 
-        public ActionResult AddCaiGouContract()
-        {
-            return View();
-        }
+        //public ActionResult AddCaiGouContract()
+        //{
+        //    return View();
+        //}
 
         protected bool CheckContractData(Contract model)
         {
@@ -366,6 +370,7 @@ namespace ContractMvcWeb.Controllers
             return isok;
         }
 
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         [HttpPost]
         public ActionResult AddContract(Contract model)
         {
@@ -459,44 +464,45 @@ namespace ContractMvcWeb.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult AddCaiGouContract(ContractCG model)
-        {
-            try
-            {
-                if (ModelState.IsValid == false) return View();
-                bool isok = CheckContractCGData(model);
+        //[HttpPost]
+        //public ActionResult AddCaiGouContract(ContractCG model)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid == false) return View();
+        //        bool isok = CheckContractCGData(model);
 
-                if (isok == false) return View();
+        //        if (isok == false) return View();
 
-                ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
-                bool isExist = dbContext.ExistContractByContractNumAndSeqAndprojectNum( model.contractnum , model.seq, model.projectnum);
-                if (isExist)
-                {
-                    ModelState.AddModelError("e1", "合同编号，序号和项目编号已经存在，操作失败。");
-                    return View();
-                }
-                model.createtime = DateTime.Now;
-                model.modifytime = model.createtime;
-                model.operatorName = Request.RequestContext.HttpContext.User.Identity.Name;
-                //model.operatorId = 
+        //        ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
+        //        bool isExist = dbContext.ExistContractByContractNumAndSeqAndprojectNum( model.contractnum , model.seq, model.projectnum);
+        //        if (isExist)
+        //        {
+        //            ModelState.AddModelError("e1", "合同编号，序号和项目编号已经存在，操作失败。");
+        //            return View();
+        //        }
+        //        model.createtime = DateTime.Now;
+        //        model.modifytime = model.createtime;
+        //        model.operatorName = Request.RequestContext.HttpContext.User.Identity.Name;
+        //        //model.operatorId = 
 
-                bool result = dbContext.AddContract(model);
-                if (result == false)
-                {
-                    ModelState.AddModelError("e2", "新增失败。");
-                    return View();
-                }
+        //        bool result = dbContext.AddContract(model);
+        //        if (result == false)
+        //        {
+        //            ModelState.AddModelError("e2", "新增失败。");
+        //            return View();
+        //        }
 
-                return new RedirectResult("~/contract/contractcglist");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("e3", ex.Message);
-                return View();
-            }
-        }
+        //        return new RedirectResult("~/contract/contractcglist");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ModelState.AddModelError("e3", ex.Message);
+        //        return View();
+        //    }
+        //}
 
+        [MyAuthorize(Roles=Constant.ROLE_ADMIN)]
         [HttpPost]
         public JsonResult DeleteContracts(List<int> contractids)
         {
@@ -511,12 +517,6 @@ namespace ContractMvcWeb.Controllers
             json.Data = new Models.Result((int)Models.ResultCodeEnum.Success, "", "");
             return json;
         }
-
-
-       
-
-       
-      
     
     }
 }

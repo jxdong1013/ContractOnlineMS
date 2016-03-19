@@ -4,12 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ContractMvcWeb.Models.Beans;
+using ContractMvcWeb.Attributes;
+using ContractMvcWeb.Models;
 
 namespace ContractMvcWeb.Controllers
 {
     /// <summary>
     /// 零星合同控制器
     /// </summary>
+    [MyAuthorize(Roles = Constant.ROLE_ADMIN)]
     public class LXContractController : Controller
     {
         //

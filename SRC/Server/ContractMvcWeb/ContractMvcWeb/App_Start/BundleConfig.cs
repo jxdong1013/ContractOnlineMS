@@ -9,7 +9,7 @@ namespace ContractMvcWeb
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js","~/Scripts/contract.js","~/Scripts/contract2.js"));
+                        "~/Scripts/jquery-{version}.js","~/Scripts/bootstrap-{version}.js","~/Scripts/contract.js","~/Scripts/contract2.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
@@ -23,7 +23,7 @@ namespace ContractMvcWeb
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap-{version}.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap-{version}.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/jxd.css"));
 

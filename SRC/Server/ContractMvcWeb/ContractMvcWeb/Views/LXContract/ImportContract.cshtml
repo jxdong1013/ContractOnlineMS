@@ -30,8 +30,8 @@
                     <li class="temp_load">
                         <p>
                             <input type="text" id="fileName" class="text_input w250 mr10" readonly="readonly" name="fileName">
-                            <input type="button" id="selectFile" class="blue_btn button_common" value="浏览">
-                            <input type="file" id="uploadFile" class="fileupload" name="uploadFile">
+                            <input type="button" id="selectFile" onclick="import_selectfile()" class="blue_btn button_common" value="浏览">
+                            <input type="file" id="uploadFile" onchange="import_changefile()" class="fileupload" name="uploadFile">
                         </p>
                         <p><label>文件名称：</label><span id="displayName"></span></p>
                     </li>
