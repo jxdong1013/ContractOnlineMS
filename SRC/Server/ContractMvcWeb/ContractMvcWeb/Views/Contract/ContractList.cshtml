@@ -14,7 +14,8 @@
 </script>
 
 <div id="tablelist" class="panel panel-default">
-    <h4>中标合同查询</h4>
+    <div class="panel-heading"><label>中标合同查询</label></div>
+    <div class="panel-body">
     <input id="hdDeleteContract" type="hidden" value="/contract/DeleteContracts" />
 
     @using (@Html.BeginForm("contractlist", "contract", FormMethod.Get))
@@ -62,15 +63,16 @@
             </div>
 
             <div class="panel">
-                <div class="col-lg-7"></div>
-                <div class="col-xs-3">
-
+                <div class="col-lg-8 col-md-8"></div>
+                <div class="col-xs-3 col-md-3">
+                    <p></p>
+                    <p>
                     @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"],
                    projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"],
                    contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], money = @Request["money"],
                    pkey = @Request["pkey"], pvalue = Request["pvalue"] })
-                    <a id="btnDelete" href="#" onclick="deleterecord()">删除</a>
-
+                    <a id="btnDelete" href="#" onclick="deleterecord()" style="padding-left:15px;" >删除</a>
+                        </p>
                 </div>
 
             </div>
@@ -212,5 +214,7 @@
  
 
     <div class="panel">       @Html.Partial("PageBarPartial") </div>
+
+        </div>
 
 </div>

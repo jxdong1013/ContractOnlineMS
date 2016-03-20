@@ -9,7 +9,7 @@
     <div class="panel-heading"><label>编辑零星合同</label></div>
 
     <div class="panel-body">
-        @using (Html.BeginForm("EditContract", "LXContract", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
+        @using (Html.BeginForm("EditContract", "LXContract", new { contractid = Request["contractid"] }, FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
         {
              @Html.AntiForgeryToken()
              @Html.HiddenFor(m => m.contractid);

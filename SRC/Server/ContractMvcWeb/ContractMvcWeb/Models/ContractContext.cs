@@ -96,12 +96,12 @@ namespace ContractMvcWeb.Models
             model.operatorName = row["operatorName"].ToString();
             model.createtime = DateTime.Parse(row["createtime"].ToString());
             model.modifytime = DateTime.Parse(row["modifytime"].ToString());
-            int type = 0;
-            if( row["type"].ToString() != "")
-            {
-                int.TryParse(row["type"].ToString(), out type);
-                model.type = type;
-            }
+            //int type = 0;
+            //if( row["type"].ToString() != "")
+            //{
+            //    int.TryParse(row["type"].ToString(), out type);
+            //    model.type = type;
+            //}
 
             return model;
         }
@@ -190,9 +190,9 @@ namespace ContractMvcWeb.Models
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append("insert into t_contract(");
-                strSql.Append("seq,contractnum,contractname,contractstate,unshelve,projectnum,projectname,projectmanager,tel,depart,linker,paymethod,money,contractplace,contractrfid,bcompany,signingdate,packageName,packageBudget,tendarNum,tendarCompany,tendarStartTime,phone,deliveryTime,inspection,progress,isPayAll,isArmoured,isRefund,remark,operatorId,operatorName,createtime,modifytime,type)");
+                strSql.Append("seq,contractnum,contractname,contractstate,unshelve,projectnum,projectname,projectmanager,tel,depart,linker,paymethod,money,contractplace,contractrfid,bcompany,signingdate,packageName,packageBudget,tendarNum,tendarCompany,tendarStartTime,phone,deliveryTime,inspection,progress,isPayAll,isArmoured,isRefund,remark,operatorId,operatorName,createtime,modifytime)");
                 strSql.Append(" values (");
-                strSql.Append("@seq,@contractnum,@contractname,@contractstate,@unshelve,@projectnum,@projectname,@projectmanager,@tel,@depart,@linker,@paymethod,@money,@contractplace,@contractrfid,@bcompany,@signingdate,@packageName,@packageBudget,@tendarNum,@tendarCompany,@tendarStartTime,@phone,@deliveryTime,@inspection,@progress,@isPayAll,@isArmoured,@isRefund,@remark,@operatorId,@operatorName,@createtime,@modifytime,@type)");
+                strSql.Append("@seq,@contractnum,@contractname,@contractstate,@unshelve,@projectnum,@projectname,@projectmanager,@tel,@depart,@linker,@paymethod,@money,@contractplace,@contractrfid,@bcompany,@signingdate,@packageName,@packageBudget,@tendarNum,@tendarCompany,@tendarStartTime,@phone,@deliveryTime,@inspection,@progress,@isPayAll,@isArmoured,@isRefund,@remark,@operatorId,@operatorName,@createtime,@modifytime)");
                 MySqlParameter[] parameters = {
 					new MySqlParameter("@seq", MySqlDbType.VarChar,45),
 					new MySqlParameter("@contractnum", MySqlDbType.VarChar,45),
@@ -227,8 +227,8 @@ namespace ContractMvcWeb.Models
 					new MySqlParameter("@operatorId", MySqlDbType.VarChar,45),
 					new MySqlParameter("@operatorName", MySqlDbType.VarChar,45),
 					new MySqlParameter("@createtime", MySqlDbType.Timestamp),
-					new MySqlParameter("@modifytime", MySqlDbType.Timestamp),
-                    new MySqlParameter("@type",MySqlDbType.Int16,2)
+					new MySqlParameter("@modifytime", MySqlDbType.Timestamp)
+                    //new MySqlParameter("@type",MySqlDbType.Int16,2)
                 };
                 parameters[0].Value = model.seq;
                 parameters[1].Value = model.contractnum;
@@ -264,7 +264,7 @@ namespace ContractMvcWeb.Models
                 parameters[31].Value = model.operatorName;
                 parameters[32].Value = model.createtime;
                 parameters[33].Value = model.modifytime;
-                parameters[34].Value = model.type;
+                //parameters[34].Value = model.type;
 
                 int result = MySqlHelper.ExecuteSql(strSql.ToString(), parameters);
                 return result > 0 ? true : false;
@@ -314,8 +314,8 @@ namespace ContractMvcWeb.Models
                 strSql.Append("operatorId=@operatorId,");
                 strSql.Append("operatorName=@operatorName,");
                 //strSql.Append("createtime=@createtime,");
-                strSql.Append("modifytime=@modifytime,");
-                strSql.Append("type=@type");
+                strSql.Append("modifytime=@modifytime");
+                //strSql.Append("type=@type");
                 strSql.Append(" where projectnum=@projectnum2 and ");
                 strSql.Append(" seq=@seq2");
                 MySqlParameter[] parameters = {
@@ -354,7 +354,7 @@ namespace ContractMvcWeb.Models
 					new MySqlParameter("@operatorName", MySqlDbType.VarChar,45),
 					//new MySqlParameter("@createtime", MySqlDbType.Timestamp),
 					new MySqlParameter("@modifytime", MySqlDbType.Timestamp),
-                    new MySqlParameter("@type",MySqlDbType.Int32),
+                    //new MySqlParameter("@type",MySqlDbType.Int32),
                     new MySqlParameter("@projectnum2", MySqlDbType.VarChar,45),
 					new MySqlParameter("@seq2", MySqlDbType.VarChar,100)
                                           };
@@ -393,9 +393,9 @@ namespace ContractMvcWeb.Models
                 parameters[31].Value = model.operatorName;
                 //parameters[33].Value = model.createtime;
                 parameters[32].Value = model.modifytime;
-                parameters[33].Value = model.type;
-                parameters[34].Value = model.projectnum;
-                parameters[35].Value = model.seq;
+                //parameters[33].Value = model.type;
+                parameters[33].Value = model.projectnum;
+                parameters[34].Value = model.seq;
 
 
                 int rows = MySqlHelper.ExecuteSql(strSql.ToString(), parameters);
@@ -454,8 +454,8 @@ namespace ContractMvcWeb.Models
                 strSql.Append("operatorId=@operatorId,");
                 strSql.Append("operatorName=@operatorName,");
                 //strSql.Append("createtime=@createtime,");
-                strSql.Append("modifytime=@modifytime,");
-                strSql.Append("type=@type");
+                strSql.Append("modifytime=@modifytime");
+                //strSql.Append("type=@type");
                 strSql.Append(" where projectnum=@projectnum2 and ");
                 strSql.Append(" projectname=@projectname2");
                 MySqlParameter[] parameters = {
@@ -494,7 +494,7 @@ namespace ContractMvcWeb.Models
 					new MySqlParameter("@operatorName", MySqlDbType.VarChar,45),
 					//new MySqlParameter("@createtime", MySqlDbType.Timestamp),
 					new MySqlParameter("@modifytime", MySqlDbType.Timestamp),
-                    new MySqlParameter("@type",MySqlDbType.Int32),
+                    //new MySqlParameter("@type",MySqlDbType.Int32),
                     new MySqlParameter("@projectnum2", MySqlDbType.VarChar,45),
 					new MySqlParameter("@projectname2", MySqlDbType.VarChar,100)
                                           };
@@ -533,9 +533,9 @@ namespace ContractMvcWeb.Models
                 parameters[31].Value = model.operatorName;
                 //parameters[33].Value = model.createtime;
                 parameters[32].Value = model.modifytime;
-                parameters[33].Value = model.type;
-                parameters[34].Value = model.projectnum;
-                parameters[35].Value = model.projectname;
+                //parameters[33].Value = model.type;
+                parameters[33].Value = model.projectnum;
+                parameters[34].Value = model.projectname;
 
                 int rows = MySqlHelper.ExecuteSql(strSql.ToString(), parameters);
                 if (rows > 0)
@@ -590,8 +590,8 @@ namespace ContractMvcWeb.Models
             strSql.Append("operatorId=@operatorId,");
             strSql.Append("operatorName=@operatorName,");
             //strSql.Append("createtime=@createtime,");
-            strSql.Append("modifytime=@modifytime,");
-            strSql.Append("type=@type");
+            strSql.Append("modifytime=@modifytime");
+            //strSql.Append("type=@type");
             strSql.Append(" where contractid=@contractid");
             MySqlParameter[] parameters = {
 					new MySqlParameter("@contractid", MySqlDbType.Int32,11),
@@ -628,8 +628,8 @@ namespace ContractMvcWeb.Models
 					new MySqlParameter("@operatorId", MySqlDbType.VarChar,45),
 					new MySqlParameter("@operatorName", MySqlDbType.VarChar,45),
 					//new MySqlParameter("@createtime", MySqlDbType.Timestamp),
-					new MySqlParameter("@modifytime", MySqlDbType.Timestamp),
-                    new MySqlParameter("@type",MySqlDbType.Int32)
+					new MySqlParameter("@modifytime", MySqlDbType.Timestamp)
+                    //new MySqlParameter("@type",MySqlDbType.Int32)
             };
             parameters[0].Value = model.contractid;
             parameters[1].Value = model.seq;
@@ -666,7 +666,7 @@ namespace ContractMvcWeb.Models
             parameters[32].Value = model.operatorName;
             //parameters[33].Value = model.createtime;
             parameters[33].Value = model.modifytime;
-            parameters[34].Value = model.type;
+            //parameters[34].Value = model.type;
 
             int rows = MySqlHelper.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)

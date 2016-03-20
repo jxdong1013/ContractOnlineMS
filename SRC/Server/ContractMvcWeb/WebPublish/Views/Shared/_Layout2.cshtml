@@ -8,6 +8,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />     
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/bootstrapValidatorCss")
     @Scripts.Render("~/bundles/jquery")
  
     @RenderSection("scripts", required: false)
@@ -107,10 +108,10 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-bottom:50px;">
         <div class="row">
             <div class= "@( ViewBag.PageCode != null && ViewBag.PageCode =="C000" ? "hidden-div" : "col-lg-2 col-md-2 col-sm-2")" >
-                <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
+                <ul id="main-nav" class="nav nav-tabs nav-stacked" style="border-bottom:0px;">
                     <li class="active">
                         <a href="#">                            
                             首页

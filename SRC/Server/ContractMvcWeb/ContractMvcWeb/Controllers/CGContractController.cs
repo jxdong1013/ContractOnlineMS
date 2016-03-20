@@ -265,19 +265,25 @@ namespace ContractMvcWeb.Controllers
             return list;
         }
 
-        public ActionResult EditContract(int contractid)
+        public ActionResult EditContract(int? contractid)
         {
-            ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
-            ContractCG model = dbContext.GetModel(contractid);
+            if (contractid.HasValue)
+            {
+                ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
+                ContractCG model = dbContext.GetModel(contractid.Value );
 
-            SetDropDownlist(model.payprogress);
+                SetDropDownlist(model.payprogress);
 
-            return View(model);
+                return View(model);
+            }
+            else
+            {
+                return new RedirectResult("~/CGContract/ContractList");
+            }
         }
-
-        [HttpGet]
+                
         [HttpPost]
-        public ActionResult EditContract(ContractCG contract)
+        public ActionResult EditContract( int contractid, ContractCG contract)
         {
             SetDropDownlist("未签合同");            
 
@@ -286,7 +292,7 @@ namespace ContractMvcWeb.Controllers
             if (ModelState.IsValid)
             {
                 bool isok = CheckContractData(contract);
-                if (isok == false) return View( contract );
+                if (isok == false) return View(  contract );
 
                 ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
                 contract.modifytime = DateTime.Now;

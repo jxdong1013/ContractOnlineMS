@@ -266,11 +266,18 @@ namespace ContractMvcWeb.Controllers
         //}
          
       
-        public ActionResult EditContract(int contractid)
+        public ActionResult EditContract( int? contractid)
         {
-            ContractMvcWeb.Models.ContractContext dbContext = new Models.ContractContext();
-            Contract model = dbContext.GetModel(contractid);
-            return View( model );
+            if (contractid.HasValue)
+            {
+                ContractMvcWeb.Models.ContractContext dbContext = new Models.ContractContext();
+                Contract model = dbContext.GetModel(contractid.Value);
+                return View(model);
+            }
+            else
+            {
+                return new RedirectResult("~/Contract/ContractList");
+            }
         }
 
         [MyAuthorize(Roles=Constant.ROLE_ADMIN)]

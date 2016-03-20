@@ -100,7 +100,7 @@ namespace ContractMvcWeb.Models
              sql = string.Format("select * from t_user where {0} {1} {2}", where , orderby , pageString );
 
             DataSet result = MySqlHelper.Query(sql);
-            if (result == null || result.Tables.Count < 1 || result.Tables[0].Rows.Count < 1) return null;
+            if (result == null || result.Tables.Count < 1 || result.Tables[0].Rows.Count < 1) return page;
             List<User> list = new List<User>();
             for (int i = 0; i < result.Tables[0].Rows.Count; i++)
             {

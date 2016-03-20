@@ -220,12 +220,19 @@ namespace ContractMvcWeb.Controllers
             return isok;
         }
 
-        public ActionResult EditContract(int contractid)
+        public ActionResult EditContract(int? contractid)
         {
-            ContractMvcWeb.Models.ContractLXContext dbContext = new Models.ContractLXContext();
-            ContractLX model = dbContext.GetModel(contractid);
-            SetDropDownlist(model.payprogress);
-            return View(model);
+            if (contractid.HasValue)
+            {
+                ContractMvcWeb.Models.ContractLXContext dbContext = new Models.ContractLXContext();
+                ContractLX model = dbContext.GetModel(contractid.Value);
+                SetDropDownlist(model.payprogress);
+                return View(model);
+            }
+            else
+            {
+                return new RedirectResult("~/LXContract/ContractList");
+            }
         }
 
         [HttpPost]

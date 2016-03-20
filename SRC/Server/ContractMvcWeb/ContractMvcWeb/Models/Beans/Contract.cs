@@ -52,7 +52,7 @@ namespace ContractMvcWeb.Models.Beans
         /// <summary>
         /// 合同类型1：中标合同，2：协议合同3：零星合同
         /// </summary>
-        private int _type = 1;
+        //private int _type = 1;
         
         //新增的查询条件
         private string _pkey;
@@ -82,14 +82,14 @@ namespace ContractMvcWeb.Models.Beans
             set { _pvalue = value; }
         }
 
-        public int type
-        {
-            get
-            {
-                return _type;
-            }
-            set { _type = value; }
-        }
+        //public int type
+        //{
+        //    get
+        //    {
+        //        return _type;
+        //    }
+        //    set { _type = value; }
+        //}
 
         /// <summary>
         /// auto_increment

@@ -32,7 +32,7 @@
     </div>
          <div class="form-group">
          @Html.LabelFor(m => m.enable, new { @class="col-md-2 control-label"})
-                 <div class="col-md-4">         @Html.TextBoxFor(m => m.enable, new { @class = "form-control" })</div>
+                 <div class="col-md-4">         @Html.DropDownListFor(m => m.enable, items, new { @class = "form-control" })</div>
     </div>
              <div class="form-group">
          @Html.LabelFor(m => m.link, new { @class="col-md-2 control-label"})

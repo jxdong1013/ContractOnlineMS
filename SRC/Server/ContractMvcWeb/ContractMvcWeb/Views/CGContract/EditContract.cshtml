@@ -8,24 +8,24 @@
 <div class="content panel panel-default">
     <div class="panel-heading"><label>编辑采购合同</label></div>
     <div class="panel-body">
-@using (Html.BeginForm("EditContract", "CGContract", FormMethod.Post, new { @class="form-horizontal"}))
+@using (Html.BeginForm("EditContract", "CGContract", new { contractid = Request["contractid"] }, FormMethod.Post, new { @class = "form-horizontal" }))
 {
  @Html.AntiForgeryToken()
 
     @Html.HiddenFor(m => m.contractid);
 
-                                      var items = (List<SelectListItem>)ViewData["payprogressItems"];
+     var items = (List<SelectListItem>)ViewData["payprogressItems"];
      
      
       <div class="form-group">
                         <div class="group">
-                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">合同编号</label>
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>合同编号</label>
                             <div class="col-sm-2 col-md-3" style="padding-left:5px;">
                                 @Html.TextBoxFor(m => m.contractnum, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="group">
-                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">采购编号</label>
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>采购编号</label>
                             <div class="col-sm-2 col-md-3" style="padding-left:5px;">
                                @Html.TextBoxFor(m => m.seq, new { @class = "form-control" })
                             </div>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                        <div class="group">
-                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">采购内容</label>
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>采购内容</label>
                             <div class="col-sm-2  col-md-3" style="padding-left:5px;">
                                @Html.TextBoxFor(m => m.content, new { @class = "form-control" })
                             </div>

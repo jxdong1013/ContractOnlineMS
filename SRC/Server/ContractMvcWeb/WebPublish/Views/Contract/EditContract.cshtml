@@ -6,25 +6,211 @@
 @model ContractMvcWeb.Models.Beans.Contract 
 
 <div class="content panel panel-default">
-    <div class="panel-heading"><h3>编辑中标合同</h3></div>
+    <div class="panel-heading"><label>编辑中标合同</label></div>
     <div class="panel-body">
-@using (Html.BeginForm("EditContract", "Contract", FormMethod.Post, new { role="form" , @class="form-inline"}))
+@using (Html.BeginForm("EditContract", "Contract", new { contractid = Request["contractid"] }, FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
 {
  @Html.AntiForgeryToken()
 
     @Html.HiddenFor(m => m.contractid);
     
-    <div class="form-group col-md-4">
-        <label class="control-label">合同编号:</label>
-        @Html.TextBoxFor(m => m.contractnum, new { @class = "form-control" })
-        <label class="">序号:</label>
-        @Html.TextBoxFor(m => m.seq, new { @class = "form-control" })
-    </div>
-    <div class="form-group ">
-      
+     <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>合同编号</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.contractnum, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>序号</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.seq, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>项目编号</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.projectnum, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+     <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;"><span style="color:red">*</span>项目名称</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.projectname, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">项目负责人</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.projectmanager, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">联系方式</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.tel, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+    <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">分管部门</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.depart, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">分包名称</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.packageName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">分包预算(万元)</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.packageBudget, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+       <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">招标编号</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.tendarNum, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">招标公司</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.tendarCompany, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">开标时间</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.tendarStartTime, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+        <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">付款方式</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.paymethod, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">中标公司</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.bcompany, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">联系人</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.linker, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+       <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">手机号码</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">中标金额(万元)</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.money, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">签合同日期</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.signingdate, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+         <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">交货时间</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.deliveryTime, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">验收情况</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.inspection, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">进度</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.progress, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+
+    <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">支付全款</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.isPayAll, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">押款</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.isArmoured, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">退款</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.isRefund, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+    
+    
+    <div class="form-group">
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">存放位置</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.contractplace, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">备注</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.remark, new { @class = "form-control" })
+                            </div>
+                        </div>
+                     @*  <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">退款</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.isRefund, new { @class = "form-control" })
+                            </div>
+                        </div>*@
+      </div>
+
+     <div class="form-group">
+        <div class="col-sm-12 col-md-12 text-center">
+            <button id="btnSave" value="保存" class="btn btn-info" type="submit">保存</button>
+            </div>
     </div>
     
-<table class="new_info_table">
+/*<table class="new_info_table">
     <tr>
         <td><b class="red">*</b>合同编号:@Html.TextBoxFor(m => m.contractnum)</td>
         <td><b class="red">*</b>序号:@Html.TextBoxFor(m => m.seq)</td>
@@ -80,9 +266,12 @@
              </td>
     </tr>
 
-</table>
+</table>*/
 
     
 }
         </div>
+
+      <div class="panel-footer">@Html.ValidationSummary()</div>
+
     </div>

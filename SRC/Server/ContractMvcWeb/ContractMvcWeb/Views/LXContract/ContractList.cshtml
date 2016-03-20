@@ -8,7 +8,8 @@
 
 
 <div id="tablelist" class="panel panel-default">
-    <h4>零星合同查询</h4>
+    <div class="panel-heading"> <label>零星合同查询</label></div>
+    <div class="panel-body">
     <input id="hdDeleteContract" type="hidden" value="/lxcontract/DeleteContracts" />
 
     @using (@Html.BeginForm("contractlist", "lxcontract", FormMethod.Get))
@@ -20,7 +21,7 @@
                     <input type="hidden" id="sortkey" name="sortkey" value="@(Request["sortkey"]==null||Request["sortkey"].ToString()==""?"":Request["sortkey"])" />
                     <input type="hidden" id="sorttype" name="sorttype" value="@(Request["sorttype"]==null||Request["sorttype"].ToString()==""?"":Request["sorttype"])" />
                 </div>
-                <div class="input-group ">
+                <div class="input-group col-lg-8">
                     <div class="input-group-btn">
                         <button id="btnOneQuery" name="btnOneQuery" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="采购编号">
                             @(Request["pkey"] == null || Request["pkey"].ToString() == "" ? "采购编号" :
@@ -40,18 +41,20 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
                         </ul>
                     </div>
                     <input type="text" id="pvalue" name="pvalue" class="form-control" placeholder="请输入搜索内容" value="@Request["pvalue"]" />
-                    <span class="input-group-btn">
+                    <div class="input-group-btn">
                         <button id="btnquery" type="submit" value="query" class="btn btn-default">搜索一下</button>
-                    </span>
-                    <div class="col-lg-2"></div>
+                    </div>
+                    
                 </div>
-
+                <div class="col-lg-2"></div>
 
             </div>
 
-            <div>
-                <div class="col-lg-7"></div>
-                <div class="col-lg-3">
+            <div class="panel">
+                <div class="col-lg-8 col-md-8"></div>
+                <div class="col-lg-3 col-md-3">
+                    <p></p>
+                    <p>
                     @Html.ActionLink("导出Excel", "exportexcel", new
                {
                    req = @Request["seq"],
@@ -65,7 +68,8 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
                    pkey = @Request["pkey"],
                    pvalue = Request["pvalue"]
                })
-                    <a id="btnDelete" href="#" onclick="deleterecord()">删除</a>
+                    <a id="btnDelete" href="#" onclick="deleterecord()" style="padding-left:15px;" >删除</a>
+                        </p>
                 </div>
             </div>
 
@@ -73,7 +77,7 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
         </div>
 
 
-        <table width="100%" style="margin-bottom:0px;" class="table table-bordered">
+        <table width="100%" style="margin-bottom:0px;" class="table">
             <tr class="info">
                 <td width="4%"><input id="ckbAll" type="checkbox" value="全选" onclick="selectall()" /></td>
                 <td width="8%" onclick="sort('seq')"
@@ -116,8 +120,6 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
 
         @if (Model != null && Model.Data != null)
         {
-
-            decimal money_sum = 0;
             int idx = 0;
             foreach (ContractMvcWeb.Models.Beans.ContractLX p in Model.Data)
             {
@@ -144,5 +146,5 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
 
     <div class="panel">    @Html.Partial("PageBarPartial") </div>
 
-
+        </div>
 </div>
