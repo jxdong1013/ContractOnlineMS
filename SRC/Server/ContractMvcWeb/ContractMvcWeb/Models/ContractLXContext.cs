@@ -829,5 +829,25 @@ namespace ContractMvcWeb.Models
             return count > 0 ? true : false;
         }
 
+
+        public List<ContractLX> Query(ContractLX query)
+        {
+            string where = GetWhere(query);
+            string orderby = "order by modifytime desc";
+            string sql = string.Format(" select * from t_contract_lx where {0} {1}", where, orderby);
+            DataSet ds = MySqlHelper.Query(sql);
+            if (ds == null || ds.Tables.Count < 1 || ds.Tables[0].Rows.Count < 1) return null;
+            int count = ds.Tables[0].Rows.Count;
+            List<ContractLX> list = new List<ContractLX>();
+            for (int i = 0; i < count; i++)
+            {
+                DataRow row = ds.Tables[0].Rows[i];
+                ContractLX model = DataRowToModel(row);
+                list.Add(model);
+            }
+            return list;
+        }
+
+    
     }
 }

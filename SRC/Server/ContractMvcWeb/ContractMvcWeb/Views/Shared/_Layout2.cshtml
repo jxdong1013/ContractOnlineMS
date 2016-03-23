@@ -125,9 +125,9 @@
                            @* <span class="pull-right glyphicon glyphicon-chevron-down"></span>*@
                         </a>
                         <ul id="zbmenu" class="nav nav-list secondmenu  collapse @(ViewBag.PageCode.ToString().StartsWith("C100") ? "in" : "")" @(ViewBag.PageCode.ToString().StartsWith("C100") ? "aria-expanded=true" : "style = height:0px;")>
-                            <li><a href="~/Contract/ContractList"> <label class=@(ViewBag.PageCode.ToString().Equals("C1001") ? "text-primary" : "")>合同查询</label></a></li>
-                            <li><a href="~/Contract/ImportContract"><label class="@(ViewBag.PageCode.ToString().Equals("C1002") ? "text-primary" : "")">导入合同</label></a></li>
-                            <li><a href="~/Contract/AddContract"><label class="@(ViewBag.PageCode.ToString().Equals("C1003") ? "text-primary" : "")">合同登记</label></a></li>
+                            <li class="@(ViewBag.PageCode.ToString().Equals("C1001") ? "bg-success" : "")"><a href="~/Contract/ContractList"> <label class=@(ViewBag.PageCode.ToString().Equals("C1001") ? "text-primary" : "")>合同查询</label></a></li>
+                            <li class="@(ViewBag.PageCode.ToString().Equals("C1002") ? "bg-success" : "")"><a href="~/Contract/ImportContract"><label class="@(ViewBag.PageCode.ToString().Equals("C1002") ? "text-primary" : "")">导入合同</label></a></li>
+                            <li class="@(ViewBag.PageCode.ToString().Equals("C1003") ? "bg-success" : "")"><a href="~/Contract/AddContract"><label class="@(ViewBag.PageCode.ToString().Equals("C1003") ? "text-primary" : "")">合同登记</label></a></li>
                         </ul>
                     </li>
                     <li>
@@ -137,9 +137,9 @@
                            @* <span class="pull-right glyphicon glyphicon-chevron-down"></span>*@
                         </a>
                         <ul id="cgmenu" class="nav nav-list secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("C200") ? "in" : "") " @(ViewBag.PageCode.ToString().StartsWith("C200") ? "aria-expanded=true" : "style = height:0px;")>
-                            <li><a href="~/cgContract/ContractList" ><label class=@(ViewBag.PageCode.ToString().Equals("C2001") ? "text-primary" : "") >合同查询</label></a></li>
-                            <li><a href="~/cgContract/ImportContract"><label class="@(ViewBag.PageCode.ToString().Equals("C2002") ? "text-primary" : "")">导入合同</label></a></li>
-                            <li><a href="~/cgContract/AddContract"><label class="@(ViewBag.PageCode.ToString().Equals("C2003") ? "text-primary" : "")">合同登记</label></a></li>
+                            <li class="@(ViewBag.PageCode.ToString().Equals("C2001") ? "bg-success" : "")"><a href="~/cgContract/ContractList"><label class=@(ViewBag.PageCode.ToString().Equals("C2001") ? "text-primary" : "")>合同查询</label></a></li>
+                            <li class="@(ViewBag.PageCode.ToString().Equals("C2002") ? "bg-success" : "")"><a href="~/cgContract/ImportContract"><label class="@(ViewBag.PageCode.ToString().Equals("C2002") ? "text-primary" : "")">导入合同</label></a></li>
+                            <li class="@(ViewBag.PageCode.ToString().Equals("C2003") ? "bg-success" : "")"><a href="~/cgContract/AddContract"><label class="@(ViewBag.PageCode.ToString().Equals("C2003") ? "text-primary" : "")">合同登记</label></a></li>
                         </ul>
                     </li>
 
@@ -150,9 +150,9 @@
                           @*  <span class="label label-warning pull-right">5</span>*@
                         </a>
                         <ul id="lxcontractmenu" class="nav nav-list  secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("C300") ? "in" : "") " @(ViewBag.PageCode.ToString().StartsWith("C300") ? "aria-expanded=true" : "style = height:0px;") >
-                            <li><a href="~/lxContract/ContractList"><label class=@(ViewBag.PageCode.ToString().Equals("C3001") ? "text-primary" : "")>合同查询</label></a></li>
-                            <li><a href="~/lxContract/ImportContract"><label class=@(ViewBag.PageCode.ToString().Equals("C3002") ? "text-primary" : "")>导入合同</label></a></li>
-                            <li><a href="~/lxContract/AddContract"><label class=@(ViewBag.PageCode.ToString().Equals("C3003") ? "text-primary" : "")>合同登记</label></a></li>
+                            <li class=@(ViewBag.PageCode.ToString().Equals("C3001") ? "bg-success" : "")><a href="~/lxContract/ContractList"><label class=@(ViewBag.PageCode.ToString().Equals("C3001") ? "text-primary" : "")>合同查询</label></a></li>
+                            <li class=@(ViewBag.PageCode.ToString().Equals("C3002") ? "bg-success" : "")><a href="~/lxContract/ImportContract"><label class=@(ViewBag.PageCode.ToString().Equals("C3002") ? "text-primary" : "")>导入合同</label></a></li>
+                            <li class=@(ViewBag.PageCode.ToString().Equals("C3003") ? "bg-success" : "")><a href="~/lxContract/AddContract"><label class=@(ViewBag.PageCode.ToString().Equals("C3003") ? "text-primary" : "")>合同登记</label></a></li>
                         </ul>
                     </li>
                     <li>
@@ -161,7 +161,7 @@
                             系统管理
                         </a>
                         <ul id="systemmanager" class="nav nav-list  secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("U100") ? "in" : "")" @(ViewBag.PageCode.ToString().StartsWith("U100") ? "aria-expanded=true" : "style = height:0px;")>
-                            <li><a href="~/User/UserList"><label class="@(ViewBag.PageCode.ToString().Equals("U1001") ? "text-primary" : "")">用户管理</label></a></li>
+                            <li class="@(ViewBag.PageCode.ToString().Equals("U1001") ? "bg-success" : "")"><a href="~/User/UserList"><label class="@(ViewBag.PageCode.ToString().Equals("U1001") ? "text-primary" : "")">用户管理</label></a></li>
                         </ul>
                     </li>
                 </ul>

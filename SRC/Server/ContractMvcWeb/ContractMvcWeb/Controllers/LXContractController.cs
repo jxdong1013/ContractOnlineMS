@@ -332,5 +332,34 @@ namespace ContractMvcWeb.Controllers
 
             ViewData["payprogressItems"] = items;
         }
+
+
+        public FileResult ExportExcel(string pvalue, string pkey = "seq", string sortkey = "", string sorttype = "")
+        {
+            ContractLX query = new ContractLX();
+
+            query.pkey = pkey;
+            query.pvalue = pvalue;
+            query.sortkey = sortkey;
+            query.sorttype = sorttype;
+
+            List<ContractLX> list = GetData(query);
+
+            string fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls";
+
+            //第二种:使用FileStreamResult
+            System.IO.MemoryStream fileStream = Utils.ExcelUtils.RenderToExcel(list); // new MemoryStream(fileContents);
+            return File(fileStream, "application/ms-excel", fileName);
+
+            // Utils.ExcelUtils.RenderToBrowser(list, this.HttpContext , fileName ); 
+        }
+
+        public List<ContractLX> GetData(ContractLX query)
+        {
+            Models.ContractLXContext dbContext = new Models.ContractLXContext();
+            List<ContractLX> list = dbContext.Query(query);
+            return list;
+        }
+
     }
 }

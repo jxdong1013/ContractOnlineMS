@@ -299,6 +299,7 @@
     <Content Include="Images\nav-ico.png" />
     <Content Include="Images\novisit.jpg" />
     <Content Include="Images\right.png" />
+    <Content Include="Images\set.png" />
     <Content Include="Images\up.png" />
     <Content Include="Images\updown.png" />
     <Content Include="Scripts\bootstrap-3.3.5-min.js" />
