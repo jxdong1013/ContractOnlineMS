@@ -249,8 +249,7 @@ namespace ContractMvcWeb.Utils
         
         }
 
-
-        protected static bool CheckEmptyLine(Models.Beans.ContractCG model)
+        protected static bool CheckEmptyLine(Models.Beans.ContractCG model , ICell cell1, ICell cell2,ICell cell3, ICell cell4 )
         {
             return string.IsNullOrEmpty(model.contractnum) &&
                 string.IsNullOrEmpty(model.seq) &&
@@ -272,8 +271,39 @@ namespace ContractMvcWeb.Utils
                 string.IsNullOrEmpty(model.place) &&
                 string.IsNullOrEmpty(model.payprogress) &&
                 string.IsNullOrEmpty(model.chargedepartment) &&
-                string.IsNullOrEmpty(model.remark);
+                string.IsNullOrEmpty(model.remark) &&
+                (cell1 == null || string.IsNullOrEmpty(cell1.ToString())) &&
+                (cell2 == null || string.IsNullOrEmpty(cell2.ToString())) &&
+                (cell3 == null || string.IsNullOrEmpty(cell3.ToString())) &&
+                (cell4 == null || string.IsNullOrEmpty(cell4.ToString()));
+        }
 
+        protected static bool CheckEmptyLine(Models.Beans.ContractCG model, ICell cell1, ICell cell2, ICell cell3)
+        {
+            return string.IsNullOrEmpty(model.contractnum) &&
+                string.IsNullOrEmpty(model.seq) &&
+                string.IsNullOrEmpty(model.department) &&
+                string.IsNullOrEmpty(model.linker) &&
+                string.IsNullOrEmpty(model.tel) &&
+                string.IsNullOrEmpty(model.projectnum) &&
+                string.IsNullOrEmpty(model.fundsource) &&
+                string.IsNullOrEmpty(model.type) &&
+                string.IsNullOrEmpty(model.content) &&
+                string.IsNullOrEmpty(model.budgetamount) &&
+                string.IsNullOrEmpty(model.super) &&
+                string.IsNullOrEmpty(model.superlinker) &&
+                string.IsNullOrEmpty(model.supertel) &&
+                string.IsNullOrEmpty(model.settleamount) &&
+                string.IsNullOrEmpty(model.freecontent) &&
+                string.IsNullOrEmpty(model.freevalue) &&
+                string.IsNullOrEmpty(model.validate) &&
+                string.IsNullOrEmpty(model.place) &&
+                string.IsNullOrEmpty(model.payprogress) &&
+                string.IsNullOrEmpty(model.chargedepartment) &&
+                string.IsNullOrEmpty(model.remark) &&
+                (cell1 == null || string.IsNullOrEmpty(cell1.ToString())) &&
+                (cell2 == null || string.IsNullOrEmpty(cell2.ToString())) &&
+                (cell3 == null || string.IsNullOrEmpty(cell3.ToString()));
         }
   
        
@@ -303,29 +333,55 @@ namespace ContractMvcWeb.Utils
                         NPOI.SS.UserModel.IRow row = sheet.GetRow(i);
                         if (row == null) continue;
 
-                        model.contractnum = row.GetCell(0) == null ? string.Empty : row.GetCell(0).ToString();
+                        model.buytime = row.GetCell(0) == null ? string.Empty : row.GetCell(0).ToString();
                         model.seq = row.GetCell(1) == null ? string.Empty : row.GetCell(1).ToString();
-                        model.department = row.GetCell(2) == null ? string.Empty : row.GetCell(2).ToString();
-                        model.linker = row.GetCell(3) == null ? string.Empty : row.GetCell(3).ToString();
-                        model.tel = row.GetCell(4) == null ? string.Empty : row.GetCell(4).ToString();
-                        model.projectnum = row.GetCell(5) == null ? string.Empty : row.GetCell(5).ToString();
-                        model.fundsource = row.GetCell(6) == null ? string.Empty : row.GetCell(6).ToString();
-                        model.type = row.GetCell(7) == null ? string.Empty : row.GetCell(7).ToString();
-                        model.content = row.GetCell(8) == null ? string.Empty : row.GetCell(8).ToString();
-                        model.budgetamount = row.GetCell(9) == null ? string.Empty : row.GetCell(9).ToString();
-                        model.super = row.GetCell(10) == null ? string.Empty : row.GetCell(10).ToString();
-                        model.superlinker = row.GetCell(11) == null ? string.Empty : row.GetCell(11).ToString();
-                        model.supertel = row.GetCell(12) == null ? string.Empty : row.GetCell(12).ToString();
-                        model.settleamount = row.GetCell(13) == null ? string.Empty : row.GetCell(13).ToString();
-                        model.freecontent = row.GetCell(14) == null ? string.Empty : row.GetCell(14).ToString();
-                        model.freevalue = row.GetCell(15) == null ? string.Empty : row.GetCell(15).ToString();
-                        model.validate = row.GetCell(16) == null ? string.Empty : row.GetCell(16).ToString();
-                        model.place = row.GetCell(17) == null ? string.Empty : row.GetCell(17).ToString();
-                        model.payprogress = row.GetCell(18) == null ? string.Empty : row.GetCell(18).ToString();
-                        model.chargedepartment = row.GetCell(19) == null ? string.Empty : row.GetCell(19).ToString();
-                        model.remark = row.GetCell(20) == null ? string.Empty : row.GetCell(20).ToString();
-                       
-                        if (CheckEmptyLine(model)) continue;
+                        model.projectnum = row.GetCell(2) == null ? string.Empty : row.GetCell(2).ToString();
+                        model.department = row.GetCell(3) == null ? string.Empty : row.GetCell(3).ToString();
+                        model.linker = row.GetCell(4) == null ? string.Empty : row.GetCell(4).ToString();
+                        model.tel = row.GetCell(5) == null ? string.Empty : row.GetCell(5).ToString();
+                        model.type = row.GetCell(6) == null ? string.Empty : row.GetCell(6).ToString();
+                        model.content = row.GetCell(7) == null ? string.Empty : row.GetCell(7).ToString();
+                        int count = 0;
+                        if( row.GetCell(8) != null ){
+                            int.TryParse(row.GetCell(8).ToString(),out count);
+                        }
+                        model.count = count;
+
+                        decimal price = 0;
+                        if (row.GetCell(9) != null)
+                        {
+                            decimal.TryParse(row.GetCell(9).ToString(), out price);
+                        }
+
+                        model.price = price; 
+
+                        decimal subtotal = 0;
+                        if (row.GetCell(10) != null)
+                        {
+                            decimal.TryParse(row.GetCell(10).ToString(), out subtotal);
+                        }
+                        model.subtotal = subtotal;
+
+                        decimal total = 0;
+                        if (row.GetCell(11) != null)
+                        {
+                            decimal.TryParse(row.GetCell(11).ToString(), out total);
+                        }
+                        model.total = total;
+
+                        model.validate = row.GetCell(12) == null ? string.Empty : row.GetCell(12).ToString();
+                        model.place = row.GetCell(13) == null ? string.Empty : row.GetCell(13).ToString();
+                        model.contractnum = row.GetCell(14) == null ? string.Empty : row.GetCell(14).ToString();
+                        model.super = row.GetCell(15) == null ? string.Empty : row.GetCell(15).ToString();
+                        model.superlinker = row.GetCell(16) == null ? string.Empty : row.GetCell(16).ToString();
+                        model.supertel = row.GetCell(17) == null ? string.Empty : row.GetCell(17).ToString();
+                        model.freecontent = row.GetCell(18) == null ? string.Empty : row.GetCell(18).ToString();
+                        model.freevalue = row.GetCell(19) == null ? string.Empty : row.GetCell(19).ToString();
+                        model.chargedepartment = row.GetCell(20) == null ? string.Empty : row.GetCell(20).ToString();
+                        model.remark = row.GetCell(21) == null ? string.Empty : row.GetCell(21).ToString();                       
+                        model.payprogress = row.GetCell(22) == null ? string.Empty : row.GetCell(22).ToString();
+                     
+                        if (CheckEmptyLine(model , row.GetCell(8), row.GetCell(9) , row.GetCell(10) , row.GetCell(11))) continue;
 
                         list.Add(model);
                     }
@@ -402,7 +458,7 @@ namespace ContractMvcWeb.Utils
                         model.chargedepartment = row.GetCell(19) == null ? string.Empty : row.GetCell(19).ToString();
                         model.remark = row.GetCell(20) == null ? string.Empty : row.GetCell(20).ToString();
 
-                        if (CheckEmptyLine(model)) continue;
+                        if (CheckEmptyLine(model, row.GetCell(8), row.GetCell(9), row.GetCell(10))) continue;
 
                         list.Add(model);
                     }
