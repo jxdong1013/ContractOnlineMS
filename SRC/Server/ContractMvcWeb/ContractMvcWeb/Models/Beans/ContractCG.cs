@@ -41,6 +41,16 @@ namespace ContractMvcWeb.Models.Beans
 		private string _operatorname;
 		private DateTime _createtime= DateTime.Now;
 		private DateTime _modifytime= DateTime.Now;
+        private string _buytime;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string buytime
+        {
+            get { return _buytime; }
+            set { _buytime = value; }
+        }
 		/// <summary>
 		/// auto_increment
 		/// </summary>
@@ -278,6 +288,8 @@ namespace ContractMvcWeb.Models.Beans
 			set{ _modifytime=value;}
 			get{return _modifytime;}
 		}
+
+
 		#endregion Model
 
         //新增的查询条件
@@ -307,6 +319,7 @@ namespace ContractMvcWeb.Models.Beans
             get { return _pvalue; }
             set { _pvalue = value; }
         }
+
 
     }
 }
