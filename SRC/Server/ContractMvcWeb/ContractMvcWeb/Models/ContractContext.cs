@@ -201,6 +201,8 @@ namespace ContractMvcWeb.Models
                 if (name.Equals("sorttype")) continue;
                 if(name.Equals("pkey")) continue;
                 if(name.Equals("pvalue")) continue;
+                if (name.Equals("operatorid")) continue;
+                if (name.Equals("operatorname")) continue;
 
                 if (string.IsNullOrEmpty(where) == false)
                 {
