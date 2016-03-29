@@ -20,7 +20,7 @@ namespace ContractMvcWeb.Controllers
 
         public ActionResult ContractList( string seq, string contractnum, string projectnum,
             string projectname, string rfid, string contractplace,
-            string bcompany, string money, string pvalue, string pkey = "seq", string sortkey= "" , string sorttype="",  int pageidx = 1, int pagesize = 20)
+            string bcompany, string money, string pvalue, string pkey = "all", string sortkey= "" , string sorttype="",  int pageidx = 1, int pagesize = 20)
         {
 
             Contract query = new Contract();

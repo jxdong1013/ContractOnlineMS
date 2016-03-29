@@ -10,5 +10,13 @@ namespace ContractMvcWeb.Models.Beans
     /// </summary>
     public class ContractLX : ContractCG
     {
+        private string _summaryofbuy;
+
+        public string summaryofbuy
+        {
+            get { return _summaryofbuy; }
+            set { _summaryofbuy = value; }
+        }
+
     }
 }

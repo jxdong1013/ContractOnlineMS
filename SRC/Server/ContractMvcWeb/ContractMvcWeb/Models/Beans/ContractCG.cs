@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace ContractMvcWeb.Models.Beans
 {
@@ -86,6 +87,7 @@ namespace ContractMvcWeb.Models.Beans
 		/// <summary>
 		/// 
 		/// </summary>
+        [Display(Name="单价")]
 		public decimal price
 		{
 			set{ _price=value;}
@@ -94,6 +96,7 @@ namespace ContractMvcWeb.Models.Beans
 		/// <summary>
 		/// 
 		/// </summary>
+        [Display(Name="数量")]
 		public int count
 		{
 			set{ _count=value;}
@@ -102,6 +105,8 @@ namespace ContractMvcWeb.Models.Beans
 		/// <summary>
 		/// 
 		/// </summary>
+        /// 
+        [Display(Name = "小计")]
 		public decimal subtotal
 		{
 			set{ _subtotal=value;}
@@ -110,6 +115,7 @@ namespace ContractMvcWeb.Models.Beans
 		/// <summary>
 		/// 
 		/// </summary>
+        [Display(Name = "总价")]
 		public decimal total
 		{
 			set{ _total=value;}

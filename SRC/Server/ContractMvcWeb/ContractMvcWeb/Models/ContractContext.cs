@@ -172,10 +172,40 @@ namespace ContractMvcWeb.Models
             }
             if( string.IsNullOrEmpty ( query.pkey) == false && string.IsNullOrEmpty( query.pvalue) ==false )
             {
-                where += string.Format(" and {0} like '%{1}%'", query.pkey, query.pvalue);
+                if (query.pkey.ToLower().Trim().Equals("all"))
+                {
+                    where += FullSearch(query.pvalue);
+                }
+                else
+                {
+                    where += string.Format(" and {0} like '%{1}%'", query.pkey, query.pvalue);
+                }
+            }
+            
+        
+            return where;  
+        }
+
+        protected string FullSearch(string key)
+        {
+            string where = "";
+
+            Type type = typeof(Contract);
+            System.Reflection.PropertyInfo[] properties = type.GetProperties();
+            if (properties == null || properties.Length < 1) return where;
+            for (int i = 0; i < properties.Length; i++)
+            {
+                String name = properties[i].Name;
+                if (properties[i].PropertyType != typeof(string)) continue;
+                if (string.IsNullOrEmpty(where) == false)
+                {
+                    where += " or ";
+                }
+
+                where += string.Format(" ( {0} like '%{1}%' ) ", name, key);
             }
 
-            return where;  
+            return where;
         }
 
         protected string FilterSpecial(string txt)
