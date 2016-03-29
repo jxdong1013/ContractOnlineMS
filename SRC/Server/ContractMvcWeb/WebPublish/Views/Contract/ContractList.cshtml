@@ -23,21 +23,23 @@
         <div class="">
             <div class="">
                 <div class="col-lg-2">
-                    <input type="hidden" id="pkey" name="pkey" value=@(Request["pkey"]==null|| Request["pkey"].ToString()==""?"seq":Request["pkey"]) />
+                    <input type="hidden" id="pkey" name="pkey" value=@(Request["pkey"]==null|| Request["pkey"].ToString()==""?"all":Request["pkey"]) />
                     <input type="hidden" id="sortkey" name="sortkey" value="@(Request["sortkey"]==null||Request["sortkey"].ToString()==""?"":Request["sortkey"])" />
                     <input type="hidden" id="sorttype" name="sorttype" value="@(Request["sorttype"]==null||Request["sorttype"].ToString()==""?"":Request["sorttype"])" />
 
                 </div>
                 <div class="input-group col-lg-8">
                     <div class="input-group-btn">
-                        <button id="btnOneQuery" name="btnOneQuery" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="序号">
-                            @(Request["pkey"] == null || Request["pkey"].ToString() == "" ? "序号" :
+                        <button id="btnOneQuery" name="btnOneQuery" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="全文检索">
+                            @(Request["pkey"] == null || Request["pkey"].ToString() == "" ? "全文检索" :
+                            Request["pkey"] == "all" ?"全文检索"   :              
            Request["pkey"] == "seq" ? "序号" : Request["pkey"] == "contractnum" ? "合同编号" : Request["pkey"] == "projectnum" ? "项目编号" :
            Request["pkey"] == "projectname" ? "项目名称" : Request["pkey"] == "contractplace" ? "存放位置(精确匹配)" :
            Request["pkey"] == "bcompany" ? "中标公司" : Request["pkey"] == "money" ? "中标金额(万元)" : ""
                             ) <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
+                            <li><a href="#" onclick="selectonekey('全文检索','all')">全文检索</a></li>
                             <li><a href="#" onclick="selectonekey('序号','seq')">序号</a></li>
                             <li><a href="#" onclick="selectonekey('合同编号', 'contractnum')">合同编号</a></li>
                             <li><a href="#" onclick="selectonekey('项目编号', 'projectnum')">项目编号</a></li>
@@ -54,12 +56,7 @@
                     </div><!-- /btn-group -->
                 </div><!-- /input-group -->
 
-                <div class="col-lg-2">
-                    @*@Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"], projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"], contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], money = @Request["money"], pkey = @Request["pkey"], pvalue = Request["pvalue"] })
-
-
-                        <a id="btnDelete" href="#">删除</a>*@
-                </div>
+                <div class="col-lg-2"></div>
             </div>
 
             <div class="panel">
@@ -82,50 +79,83 @@
         <table width="100%" style="margin-bottom:0px;" class="table">
             <tr class="info">
                 <td width="1%"><input id="ckbAll" type="checkbox" value="全选" onclick="selectall()" /></td>
-                <td width="4%" onclick="sort('isPayAll')"
-                    class=@(  Request["sortkey"]==null || Request["sortkey"] !="isPayAll" ? "sort": @Request["sorttype"]=="asc" ?"sort_asc" : "sort_desc")>
-                    支付全款
-                </td>
-                <td width="2%">押款</td>
-                <td width="2%">退款</td>
-                <td width="5%" onclick="sort('tel')"
-                    class=@(  Request["sortkey"]==null || Request["sortkey"] !="tel" ? "sort": @Request["sorttype"]=="asc" ?"sort_asc" : "sort_desc")>
-                    联系方式
-                </td>
-                <td width="5%" onclick="sort('contractnum')"
+                <td width="6%" onclick="sort('contractnum')"
                     class=@( Request["sortkey"]==null || Request["sortkey"] !="contractnum"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
                     合同号
                 </td>
-                <td width="4%" onclick="sort('linker')"
-                    class=@( Request["sortkey"]==null || Request["sortkey"] !="linker"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
-                    中标联系人
-                </td>
-                <td width="3%">招标编号</td>
-                <td width="3%">付款方式</td>
-                <td width="5%" onclick="sort('signingdate')"
+                <td width="6%" onclick="sort('projectnum')" class=@( Request["sortkey"] == null || Request["sortkey"] != "projectnum" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>项目编号</td>
+
+                <td width="10%" onclick="sort('projectname')" class=@( Request["sortkey"] == null || Request["sortkey"] != "projectname" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>项目名称</td>
+
+                <td width="7%" onclick="sort('projectmanager')" class=@( Request["sortkey"] == null || Request["sortkey"] != "projectmanager" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>项目负责人</td>
+
+                <td width="7%" onclick="sort('depart')" class=@( Request["sortkey"] == null || Request["sortkey"] != "depart" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>分管部门</td>
+
+                <td width="10%" onclick="sort('packageName')" class=@( Request["sortkey"] == null || Request["sortkey"] != "packageName" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>分包名称</td>
+
+                <td width="7%" onclick="sort('packageBudget')" class=@( Request["sortkey"] == null || Request["sortkey"] != "packageBudget" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>分包预算</td>                                           
+                
+                <td width="8%" onclick="sort('tendarCompany')" class=@( Request["sortkey"] == null || Request["sortkey"] != "tendarCompany" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>招标公司</td>
+
+                <td width="8%" onclick="sort('tendarStartTime')" class=@( Request["sortkey"] == null || Request["sortkey"] != "tendarStartTime" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>开标时间</td>
+                
+                <td width="8%" onclick="sort('bcompany')" class=@( Request["sortkey"] == null || Request["sortkey"] != "bcompany" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>中标公司</td>
+
+                <td width="6%" onclick="sort('money')" class=@( Request["sortkey"] == null || Request["sortkey"] != "money" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>中标金额</td>
+
+                <td width="8%" onclick="sort('signingdate')"
                     class="@( Request["sortkey"]==null || Request["sortkey"] !="signingdate"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")">
                     签合同日期
                 </td>
-                <td width="5%" onclick="sort('deliveryTime')"
+                <td width="6%" onclick="sort('deliveryTime')"
                     class="@( Request["sortkey"]==null || Request["sortkey"] !="deliveryTime"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")">
                     交货时间
                 </td>
-                <td width="5%">进度</td>
-                @*<td width="2%">序号</td>
-                    <td width="4%">项目编号</td>
-                    <td width="8%">项目名称</td>
-                    <td width="3%">项目负责人</td>
 
-                    <td width="5%">分管部门</td>
-                    <td width="5%">分包名称</td>
-                    <td width="5%">分包预算(万元)</td>
+                 @*<td width="4%" onclick="sort('isPayAll')"
+        class=@(  Request["sortkey"]==null || Request["sortkey"] !="isPayAll" ? "sort": @Request["sorttype"]=="asc" ?"sort_asc" : "sort_desc")>
+        支付全款
+    </td>
+    <td width="2%">押款</td>
+    <td width="2%">退款</td>
+    <td width="5%" onclick="sort('tel')"
+        class=@(  Request["sortkey"]==null || Request["sortkey"] !="tel" ? "sort": @Request["sorttype"]=="asc" ?"sort_asc" : "sort_desc")>
+        联系方式
+    </td>
+    <td width="5%" onclick="sort('contractnum')"
+        class=@( Request["sortkey"]==null || Request["sortkey"] !="contractnum"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
+        合同号
+    </td>
+    <td width="4%" onclick="sort('linker')"
+        class=@( Request["sortkey"]==null || Request["sortkey"] !="linker"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
+        中标联系人
+    </td>
+    <td width="3%">招标编号</td>
+    <td width="3%">付款方式</td>
+    <td width="5%" onclick="sort('signingdate')"
+        class="@( Request["sortkey"]==null || Request["sortkey"] !="signingdate"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")">
+        签合同日期
+    </td>
+    <td width="5%" onclick="sort('deliveryTime')"
+        class="@( Request["sortkey"]==null || Request["sortkey"] !="deliveryTime"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")">
+        交货时间
+    </td>
+    <td width="5%">进度</td>
+    @*<td width="2%">序号</td>
+        <td width="4%">项目编号</td>
+        <td width="8%">项目名称</td>
+        <td width="3%">项目负责人</td>
 
-                    <td width="8%">招标公司</td>
-                    <td width="5%">开标时间</td>
+        <td width="5%">分管部门</td>
+        <td width="5%">分包名称</td>
+        <td width="5%">分包预算(万元)</td>
 
-                    <td width="8%">中标公司名称</td>
+        <td width="8%">招标公司</td>
+        <td width="5%">开标时间</td>
 
-                    <td width="5%">中标金额(万元)</td>*@
+        <td width="8%">中标公司名称</td>
+
+        <td width="5%">中标金额(万元)</td>*@
 
 
 
@@ -153,17 +183,19 @@
 
                 <tr class=@(idx % 2==1 ? "active" : "info")>
                     <td width="1%"><input type="checkbox" value="" name="checkRow" /><input type="hidden" value="@p.contractid" name="hdcontractid" /></td>
-                    <td width="4%">@p.isPayAll</td>
-                    <td width="2%">@p.isArmoured</td>
-                    <td width="2%">@p.isRefund</td>
-                    <td width="5%">@p.tel</td>
-                    <td width="5%">@Html.ActionLink(@p.contractnum, "EditContract", new { contractid = @p.contractid }) </td>
-                    <td width="3%">@p.linker</td>
-                    <td width="3%">@p.tendarNum</td>
-                    <td width="3%">@p.paymethod</td>
-                    <td width="5%">@p.signingdate</td>
-                    <td width="5%">@p.deliveryTime</td>
-                    <td width="5%">@p.progress</td>
+                    <td width="6%">@Html.ActionLink(@p.contractnum, "EditContract", new { contractid = @p.contractid })</td>
+                    <td width="6%">@p.projectnum</td>
+                    <td width="10%">@p.projectname</td>
+                    <td width="7%">@p.projectmanager</td>
+                    <td width="7%">@p.depart  </td>
+                    <td width="10%">@p.packageName</td>
+                    <td width="7%">@p.packageBudget</td>
+                    <td width="8%">@p.tendarCompany</td>
+                    <td width="8%">@p.tendarStartTime</td>
+                    <td width="8%">@p.bcompany</td>
+                    <td width="6%">@p.money</td>
+                    <td width="8%">@p.signingdate</td>
+                    <td width="6%">@p.deliveryTime</td>
 
                     @*<td width="2%">@p.seq</td>
                         <td width="4%">@p.projectnum</td>

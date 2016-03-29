@@ -174,7 +174,7 @@ namespace ContractMvcWeb.Models
             {
                 if (query.pkey.ToLower().Trim().Equals("all"))
                 {
-                    where += FullSearch(query.pvalue);
+                    where += " and " + FullSearch(query.pvalue);
                 }
                 else
                 {
@@ -197,6 +197,11 @@ namespace ContractMvcWeb.Models
             {
                 String name = properties[i].Name;
                 if (properties[i].PropertyType != typeof(string)) continue;
+                if (name.Equals("sortkey")) continue;
+                if (name.Equals("sorttype")) continue;
+                if(name.Equals("pkey")) continue;
+                if(name.Equals("pvalue")) continue;
+
                 if (string.IsNullOrEmpty(where) == false)
                 {
                     where += " or ";

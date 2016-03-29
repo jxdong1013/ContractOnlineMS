@@ -23,7 +23,7 @@ namespace ContractMvcWeb.Controllers
             return View();
         }
 
-        public ActionResult ContractList(string pvalue, string pkey = "seq", string sortkey = "", string sorttype = "", int pageidx = 1, int pagesize = 20)
+        public ActionResult ContractList(string pvalue, string pkey = "all", string sortkey = "", string sorttype = "", int pageidx = 1, int pagesize = 20)
         {
             ContractLX query = new ContractLX();
             //
@@ -334,7 +334,7 @@ namespace ContractMvcWeb.Controllers
         }
 
 
-        public FileResult ExportExcel(string pvalue, string pkey = "seq", string sortkey = "", string sorttype = "")
+        public FileResult ExportExcel(string pvalue, string pkey = "all", string sortkey = "", string sorttype = "")
         {
             ContractLX query = new ContractLX();
 

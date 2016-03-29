@@ -82,6 +82,27 @@
     
      <div class="form-group">
                         <div class="group">
+                            <label class="col-sm-2  col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">数量</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                                @Html.TextBoxFor(m => m.count, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">单价</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor(m => m.price, new { @class = "form-control" })
+                            </div>
+                        </div>
+                       <div class="group">
+                            <label class="col-sm-2  col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">总价</label>
+                            <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                               @Html.TextBoxFor( m=>m.total, new { @class = "form-control" })
+                            </div>
+                        </div>
+      </div>
+            
+     <div class="form-group">
+                        <div class="group">
                             <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">预算金额</label>
                             <div class="col-sm-2 col-md-3" style="padding-left:5px;">
                                 @Html.TextBoxFor(m => m.budgetamount, new { @class = "form-control" })
@@ -163,6 +184,23 @@
                             </div>
                         </div>
       </div>
+            
+      <div class="form-group">
+          <div class="group">
+              <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">采购时间</label>
+              <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                  @Html.TextBoxFor(m => m.buytime, new { @class = "form-control" })
+              </div>
+          </div>
+
+                <div class="group">
+                    <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">采购纪要</label>
+                    <div class="col-sm-2 col-md-3" style="padding-left:5px;">
+                        @Html.TextBoxFor(m => m.summaryofbuy, new { @class = "form-control" })
+                    </div>
+                </div>
+       </div>
+            
     <div class="form-group">
         <div class="col-sm-12 col-md-12 text-center">
             <button id="btnSave" value="保存" class="btn btn-info col-md-offset-4 col-sm-1 col-md-1" type="submit">保存</button>

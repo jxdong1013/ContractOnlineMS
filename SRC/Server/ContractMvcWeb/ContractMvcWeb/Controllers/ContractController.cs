@@ -207,7 +207,7 @@ namespace ContractMvcWeb.Controllers
 
         public FileResult ExportExcel(string seq, string contractnum, string projectnum,
             string projectname, string rfid, string contractplace,
-            string bcompany, string money)
+            string bcompany, string money, string pvalue, string pkey = "all", string sortkey = "", string sorttype = "")
         {
             Contract query = new Contract();
             query.seq = seq;
@@ -218,6 +218,9 @@ namespace ContractMvcWeb.Controllers
             query.contractplace = contractplace;
             query.bcompany = bcompany;
             query.money = money;
+            query.pkey = pkey;
+            query.pvalue = pvalue;
+
 
             List<Contract> list = GetData(query);
 

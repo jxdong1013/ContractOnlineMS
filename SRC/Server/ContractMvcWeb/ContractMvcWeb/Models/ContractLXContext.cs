@@ -53,11 +53,47 @@ namespace ContractMvcWeb.Models
 
             if (string.IsNullOrEmpty(query.pkey) == false && string.IsNullOrEmpty(query.pvalue) == false)
             {
-                where += string.Format(" and {0} like '%{1}%'", query.pkey, query.pvalue);
+                if (query.pkey.ToLower().Trim().Equals("all"))
+                {
+                    where += " and " + FullSearch(query.pvalue);
+                }
+                else
+                {
+                    where += string.Format(" and {0} like '%{1}%'", query.pkey, query.pvalue);
+                }
             }
 
             return where;
         }
+
+        protected string FullSearch(string key)
+        {
+            string where = "";
+
+            Type type = typeof(ContractLX);
+            System.Reflection.PropertyInfo[] properties = type.GetProperties();
+            if (properties == null || properties.Length < 1) return where;
+            for (int i = 0; i < properties.Length; i++)
+            {
+                String name = properties[i].Name;
+                if (properties[i].PropertyType != typeof(string)) continue;
+                if (name.Equals("sortkey")) continue;
+                if (name.Equals("sorttype")) continue;
+                if (name.Equals("pkey")) continue;
+                if (name.Equals("pvalue")) continue;
+
+                if (string.IsNullOrEmpty(where) == false)
+                {
+                    where += " or ";
+                }
+
+                where += string.Format(" ( {0} like '%{1}%' ) ", name, key);
+            }
+
+            return where;
+        }
+
+
         protected string GetSortString(string sortkey, string sorttype)
         {
             string sortString = "order by modifytime desc";

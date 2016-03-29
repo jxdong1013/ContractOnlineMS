@@ -59,6 +59,7 @@ namespace ContractMvcWeb.Models.Beans
         private string _pvalue;
         //排序字段
         private string _sortkey;
+        
         public string sortkey
         {
             get { return _sortkey; }
