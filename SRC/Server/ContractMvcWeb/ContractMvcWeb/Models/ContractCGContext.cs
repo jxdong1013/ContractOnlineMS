@@ -171,6 +171,15 @@ namespace ContractMvcWeb.Models
                     }
                     msg += "采购编号不能空";
                 }
+                if (string.IsNullOrEmpty(list[i].projectnum))
+                {
+                    isok = false;
+                    if (msg != "")
+                    {
+                        msg += ",";
+                    }
+                    msg += "项目编号不能空";
+                }
                 if (string.IsNullOrEmpty(list[i].content))
                 {
                     isok = false;
