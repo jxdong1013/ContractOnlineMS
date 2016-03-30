@@ -82,8 +82,14 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
                 class=@( Request["sortkey"] == null || Request["sortkey"] != "seq" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
                 采购编号
             </td>
-            <td width="8%">采购部门</td>
-            <td width="8%">采购类型</td>
+            <td width="8%" onclick="sort('department')"
+                class=@(  Request["sortkey"] == null || Request["sortkey"] != "department" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc") >
+                采购部门
+            </td>
+            <td width="8%" onclick="sort('type')"
+                class=@(  Request["sortkey"] == null || Request["sortkey"] != "type" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
+                采购类型
+            </td>
             <td width="8%" onclick="sort('projectnum')"
                 class=@(  Request["sortkey"] == null || Request["sortkey"] != "projectnum" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
                 项目编号
@@ -132,7 +138,13 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
                     <td width="8%">@p.department</td>
                     <td width="8%">@p.type</td>
                     <td width="8%">@p.projectnum</td>
-                    <td width="8%">@Html.ActionLink(@p.contractnum, "EditContract", new { contractid = @p.contractid }) </td>
+                    <td width="8%">@Html.ActionLink(@p.contractnum, "EditContract", new { contractid = @p.contractid, 
+                                  queryKey = Request["pkey"] == null || Request["pkey"].ToString() == "" ? "all" : Request["pkey"],
+                                   queryValue = Request["pvalue"] == null || Request["pvalue"].ToString() == "" ? "" : Request["pvalue"] ,
+                                   sortkey = Request["sortkey"] == null || Request["sortkey"].ToString() == "" ? "" : Request["sortkey"],
+                                                                                          sorttype = Request["sorttype"] == null || Request["sorttype"].ToString() == "" ? "" : Request["sorttype"],
+                                  pageidx = Request["pageidx"] == null || Request["pageidx"].ToString() == "" ? "1" : Request["pageidx"]
+                              }) </td>
                     <td width="7%">@p.linker</td>
                     <td width="8%">@p.super</td>
                     <td width="9%">@p.superlinker</td>

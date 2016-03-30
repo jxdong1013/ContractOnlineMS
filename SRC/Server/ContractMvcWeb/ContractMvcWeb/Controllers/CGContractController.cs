@@ -140,7 +140,7 @@ namespace ContractMvcWeb.Controllers
         public ActionResult AddContract()
         {
             SetDropDownlist("未签合同");
-            return View();
+            return View(new ContractCG());
         }
 
         [HttpPost]
@@ -265,16 +265,27 @@ namespace ContractMvcWeb.Controllers
             return list;
         }
 
-        public ActionResult EditContract(int? contractid)
+        public ActionResult EditContract(int? contractid, string queryKey="all", string queryValue="", string sortkey="", string sorttype="", int pageidx=1 , int pagesize = 20)
         {
             if (contractid.HasValue)
             {
                 ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
                 ContractCG model = dbContext.GetModel(contractid.Value );
+                if (model != null)
+                {
+                    SetDropDownlist(model.payprogress);
+                    model.pkey = queryKey;
+                    model.pvalue = queryValue;
+                    model.sortkey = sortkey;
+                    model.sorttype = sorttype;
+                    model.pageidx = pageidx;
 
-                SetDropDownlist(model.payprogress);
-
-                return View(model);
+                    return View(model);
+                }
+                else
+                {
+                    return new RedirectResult("~/CGContract/ContractList");
+                }
             }
             else
             {

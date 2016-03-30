@@ -59,6 +59,7 @@ namespace ContractMvcWeb.Models.Beans
         private string _pvalue;
         //排序字段
         private string _sortkey;
+        private int _pageidx;
         
         public string sortkey
         {
@@ -81,6 +82,12 @@ namespace ContractMvcWeb.Models.Beans
         {
             get { return _pvalue; }
             set { _pvalue = value; }
+        }
+
+        public int pageidx
+        {
+            get { return _pageidx; }
+            set { _pageidx = value; }
         }
 
         //public int type

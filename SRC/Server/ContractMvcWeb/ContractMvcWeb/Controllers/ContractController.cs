@@ -267,14 +267,23 @@ namespace ContractMvcWeb.Controllers
         //        return View("ImportXYContract");
         //    }  
         //}
-         
-      
-        public ActionResult EditContract( int? contractid)
+
+
+        public ActionResult EditContract(int? contractid, string queryKey = "all", string queryValue = "", string sortkey = "", string sorttype = "", int pageidx = 1, int pagesize = 20)
         {
             if (contractid.HasValue)
             {
                 ContractMvcWeb.Models.ContractContext dbContext = new Models.ContractContext();
                 Contract model = dbContext.GetModel(contractid.Value);
+                if (model != null)
+                {
+                    model.pkey = queryKey;
+                    model.pvalue = queryValue;
+                    model.sortkey = sortkey;
+                    model.sorttype = sorttype;
+                    model.pageidx = pageidx;
+                }
+
                 return View(model);
             }
             else

@@ -123,7 +123,7 @@ namespace ContractMvcWeb.Controllers
         public ActionResult AddContract()
         {
             SetDropDownlist("未签合同");
-            return View();
+            return View(new ContractLX());
         }
 
         [HttpPost]
@@ -220,14 +220,30 @@ namespace ContractMvcWeb.Controllers
             return isok;
         }
 
-        public ActionResult EditContract(int? contractid)
+        public ActionResult EditContract(int? contractid, string queryKey = "all", string queryValue = "", string sortkey = "", string sorttype = "", int pageidx = 1, int pagesize = 20)
         {
             if (contractid.HasValue)
             {
                 ContractMvcWeb.Models.ContractLXContext dbContext = new Models.ContractLXContext();
                 ContractLX model = dbContext.GetModel(contractid.Value);
-                SetDropDownlist(model.payprogress);
-                return View(model);
+
+
+                if (model != null)
+                {
+                    SetDropDownlist(model.payprogress);
+                    model.pkey = queryKey;
+                    model.pvalue = queryValue;
+                    model.sortkey = sortkey;
+                    model.sorttype = sorttype;
+                    model.pageidx = pageidx;                    
+
+                    return View(model);
+                }
+                else
+                {
+                    return new RedirectResult("~/LXContract/ContractList");
+                }
+
             }
             else
             {

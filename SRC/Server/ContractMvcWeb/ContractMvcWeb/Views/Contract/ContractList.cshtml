@@ -183,7 +183,13 @@
 
                 <tr class=@(idx % 2==1 ? "active" : "info")>
                     <td width="1%"><input type="checkbox" value="" name="checkRow" /><input type="hidden" value="@p.contractid" name="hdcontractid" /></td>
-                    <td width="6%">@Html.ActionLink(@p.contractnum, "EditContract", new { contractid = @p.contractid })</td>
+                    <td width="6%">@Html.ActionLink(@p.contractnum, "EditContract", new { contractid = @p.contractid,
+                                                                                          queryKey = Request["pkey"] == null || Request["pkey"].ToString() == "" ? "all" : Request["pkey"],
+                                                                                          queryValue = Request["pvalue"] == null || Request["pvalue"].ToString() == "" ? "" : Request["pvalue"],
+                                                                                          sortkey = Request["sortkey"] == null || Request["sortkey"].ToString() == "" ? "" : Request["sortkey"],
+                                                                                          sorttype = Request["sorttype"] == null || Request["sorttype"].ToString() == "" ? "" : Request["sorttype"],
+                                                                                          pageidx = Request["pageidx"] == null || Request["pageidx"].ToString() == "" ? "1" : Request["pageidx"]
+                              })</td>
                     <td width="6%">@p.projectnum</td>
                     <td width="10%">@p.projectname</td>
                     <td width="7%">@p.projectmanager</td>

@@ -325,7 +325,13 @@ namespace ContractMvcWeb.Models.Beans
             get { return _pvalue; }
             set { _pvalue = value; }
         }
+        private int _pageidx = 1;
 
+        public int pageidx
+        {
+            get { return _pageidx; }
+            set { _pageidx = value; }
+        }
 
     }
 }
