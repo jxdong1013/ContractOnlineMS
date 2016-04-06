@@ -34,7 +34,7 @@
              Request["pkey"] == "all" ? "全文检索" :  
            Request["pkey"] == "seq" ? "采购编号" : Request["pkey"] == "department" ? "采购部门" : Request["pkey"] == "projectnum" ? "项目编号" :
            Request["pkey"] == "type" ? "采购类型" : Request["pkey"] == "super" ? "供货单位" :
-Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprogress" ? "支付进度" : ""
+Request["pkey"] == "total" ? "总价" : Request["pkey"] == "payprogress" ? "支付进度" : ""
                             ) <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
@@ -44,7 +44,7 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
                             <li><a href="#" onclick="selectonekey('项目编号', 'projectnum')">项目编号</a></li>
                             <li><a href="#" onclick="selectonekey('采购类型', 'type')">采购类型</a></li>
                             <li><a href="#" onclick="selectonekey('供货单位', 'super')">供货单位</a></li>
-                            <li><a href="#" onclick="selectonekey('结算金额', 'settleamount')">结算金额</a></li>
+                            <li><a href="#" onclick="selectonekey('总价', 'total')">总价</a></li>
                             <li><a href="#" onclick="selectonekey('支付进度', 'payprogress')">支付进度</a></li>
                         </ul>
                     </div>
@@ -108,9 +108,9 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
                 class="@( Request["sortkey"] == null || Request["sortkey"] != "supertel" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
                 供货联系电话
             </td>
-            <td width="8%" onclick="sort('settleamount')"
-                class="@( Request["sortkey"] == null || Request["sortkey"] != "settleamount" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
-                结算金额
+            <td width="8%" onclick="sort('total')"
+                class="@( Request["sortkey"] == null || Request["sortkey"] != "total" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
+                总价
             </td>
             <td width="8%">支付进度</td>
             <td width="7%">验收情况</td>
@@ -134,22 +134,24 @@ Request["pkey"] == "settleamount" ? "结算金额" : Request["pkey"] == "payprog
 
                 <tr class=@(idx % 2 == 1 ? "active" : "info")>
                     <td width="4%"><input type="checkbox" value="" name="checkRow" /><input type="hidden" value="@p.contractid" name="hdcontractid" /></td>
-                    <td width="8%">@p.seq</td>
+                    <td width="8%">@Html.ActionLink(@p.seq, "EditContract", new
+                              {
+                                  contractid = @p.contractid,
+                                  queryKey = Request["pkey"] == null || Request["pkey"].ToString() == "" ? "all" : Request["pkey"],
+                                  queryValue = Request["pvalue"] == null || Request["pvalue"].ToString() == "" ? "" : Request["pvalue"],
+                                  sortkey = Request["sortkey"] == null || Request["sortkey"].ToString() == "" ? "" : Request["sortkey"],
+                                  sorttype = Request["sorttype"] == null || Request["sorttype"].ToString() == "" ? "" : Request["sorttype"],
+                                  pageidx = Request["pageidx"] == null || Request["pageidx"].ToString() == "" ? "1" : Request["pageidx"]
+                              })</td>
                     <td width="8%">@p.department</td>
                     <td width="8%">@p.type</td>
                     <td width="8%">@p.projectnum</td>
-                    <td width="8%">@Html.ActionLink(@p.contractnum, "EditContract", new { contractid = @p.contractid, 
-                                  queryKey = Request["pkey"] == null || Request["pkey"].ToString() == "" ? "all" : Request["pkey"],
-                                   queryValue = Request["pvalue"] == null || Request["pvalue"].ToString() == "" ? "" : Request["pvalue"] ,
-                                   sortkey = Request["sortkey"] == null || Request["sortkey"].ToString() == "" ? "" : Request["sortkey"],
-                                                                                          sorttype = Request["sorttype"] == null || Request["sorttype"].ToString() == "" ? "" : Request["sorttype"],
-                                  pageidx = Request["pageidx"] == null || Request["pageidx"].ToString() == "" ? "1" : Request["pageidx"]
-                              }) </td>
+                    <td width="8%">@p.contractnum</td>
                     <td width="7%">@p.linker</td>
                     <td width="8%">@p.super</td>
                     <td width="9%">@p.superlinker</td>
                     <td width="8%">@p.supertel</td>
-                    <td width="8%">@p.settleamount</td>
+                    <td width="8%">@p.total</td>
                     <td width="8%">@p.payprogress</td>
                     <td width="7%">@p.validate</td>
 

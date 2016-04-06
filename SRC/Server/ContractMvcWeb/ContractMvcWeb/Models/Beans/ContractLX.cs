@@ -10,7 +10,7 @@ namespace ContractMvcWeb.Models.Beans
     /// </summary>
     public class ContractLX : ContractCG
     {
-        private string _summaryofbuy;
+        private string _summaryofbuy="";
 
         public string summaryofbuy
         {

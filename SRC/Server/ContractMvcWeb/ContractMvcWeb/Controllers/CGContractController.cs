@@ -157,10 +157,10 @@ namespace ContractMvcWeb.Controllers
                 if (isok == false) return View();
 
                 ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
-                bool isExist = dbContext.ExistContractByContractNumAndSeqAndprojectNum(model.contractnum, model.seq, model.projectnum);
+                bool isExist = dbContext.ExistContractBySeqAndContent(model.seq, model.content);
                 if (isExist)
                 {
-                    ModelState.AddModelError("e1", "合同编号，序号和项目编号已经存在，操作失败。");
+                    ModelState.AddModelError("e1", "采购编号和采购内容已经存在，操作失败。");
                     return View();
                 }
                 model.createtime = DateTime.Now;
@@ -189,11 +189,11 @@ namespace ContractMvcWeb.Controllers
             if (model == null) return false;
 
             bool isok = true;
-            if (string.IsNullOrEmpty(model.contractnum))
-            {
-                ModelState.AddModelError("ht1", "合同编号不能空。");
-                isok = false;
-            }
+            //if (string.IsNullOrEmpty(model.contractnum))
+            //{
+            //    ModelState.AddModelError("ht1", "合同编号不能空。");
+            //    isok = false;
+            //}
 
             if (string.IsNullOrEmpty(model.seq))
             {
@@ -308,10 +308,10 @@ namespace ContractMvcWeb.Controllers
                 ContractMvcWeb.Models.ContractCGContext dbContext = new Models.ContractCGContext();
                 contract.modifytime = DateTime.Now;
 
-                bool isExist = dbContext.ExistContractByContractNumAndSeqAndprojectNum(contract.contractnum, contract.seq, contract.projectnum, contract.contractid);
+                bool isExist = dbContext.ExistContractBySeqAndContent(contract.seq, contract.content, contract.contractid);
                 if (isExist)
                 {
-                    ModelState.AddModelError("error", "合同编号，序号和项目编号已经存在。");
+                    ModelState.AddModelError("error", "采购编号和采购内容已经存在。");
                     return View(  contract );
                 }
 

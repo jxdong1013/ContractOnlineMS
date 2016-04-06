@@ -258,11 +258,11 @@ namespace ContractMvcWeb.Models
             for (int i = 0; i < list.Count; i++)
             {
                 string msg = "";
-                if (string.IsNullOrEmpty(list[i].contractnum))
-                {
-                    isok = false;
-                    msg += "合同编号不能空";
-                }
+                //if (string.IsNullOrEmpty(list[i].contractnum))
+                //{
+                //    isok = false;
+                //    msg += "合同编号不能空";
+                //}
 
                 if (string.IsNullOrEmpty(list[i].seq))
                 {
@@ -273,15 +273,15 @@ namespace ContractMvcWeb.Models
                     }
                     msg += "采购编号不能空";
                 }
-                if (string.IsNullOrEmpty(list[i].projectnum))
-                {
-                    isok = false;
-                    if (msg != "")
-                    {
-                        msg += ",";
-                    }
-                    msg += "项目编号不能空";
-                }
+                //if (string.IsNullOrEmpty(list[i].projectnum))
+                //{
+                //    isok = false;
+                //    if (msg != "")
+                //    {
+                //        msg += ",";
+                //    }
+                //    msg += "项目编号不能空";
+                //}
                 if (string.IsNullOrEmpty(list[i].content))
                 {
                     isok = false;
@@ -367,10 +367,10 @@ namespace ContractMvcWeb.Models
             foreach (ContractLX c in list)
             {
                 idx++;
-                bool isExist = ExistContractByContractNumAndSeqAndprojectNum(c.contractnum, c.seq, c.projectnum);
+                bool isExist = ExistContractBySeqAndContent(c.seq, c.content );
                 if (isExist)
                 {
-                    bool isSuccess = UpdateByContractnumAndSeqAndProjectnum(c); // EditContractByProjectNumAndProjectName(c);
+                    bool isSuccess = UpdateBySeqAndContent(c); // EditContractByProjectNumAndProjectName(c);
                     updatecount += isSuccess ? 1 : 0;
                     fail += isSuccess ? 0 : 1;
                     if (isSuccess == false) errLines.Add(new BatchImportResult.ExcelErrorLine(idx.ToString(), "更新失败"));
@@ -393,9 +393,9 @@ namespace ContractMvcWeb.Models
         }
 
 
-        public bool ExistContractByContractNumAndSeqAndprojectNum(string contractnum, string seq, string projectnum)
+        public bool ExistContractBySeqAndContent(string seq, string content)
         {
-            string sql = string.Format(" select count(1) from t_contract_lx where projectnum='{0}' and seq='{1}' and contractnum='{2}'", projectnum, seq, contractnum);
+            string sql = string.Format(" select count(1) from t_contract_lx where seq='{0}' and content='{1}'", seq, content );
             object obj = MySqlHelper.GetSingle(sql);
             if (obj == null) return false;
             int count = 0;
@@ -403,9 +403,9 @@ namespace ContractMvcWeb.Models
             return count > 0 ? true : false;
         }
 
-        public bool ExistContractByContractNumAndSeqAndprojectNum(string contractnum, string seq, string projectnum, int contractid)
+        public bool ExistContractBySeqAndContent(string seq, string content, int contractid)
         {
-            string sql = string.Format(" select count(1) from t_contract_lx where contractid !={0} and projectnum='{1}' and seq='{2}' and contractnum='{3}'", contractid, projectnum, seq,contractnum );
+            string sql = string.Format(" select count(1) from t_contract_lx where contractid !={0} and seq='{1}' and content='{2}'", contractid,  seq,content );
             object obj = MySqlHelper.GetSingle(sql);
             if (obj == null) return false;
             int count = 0;
@@ -416,7 +416,7 @@ namespace ContractMvcWeb.Models
         /// <summary>
         /// 更新一条数据
         /// </summary>
-        public bool UpdateByContractnumAndSeqAndProjectnum(Models.Beans.ContractLX model)
+        public bool UpdateBySeqAndContent(Models.Beans.ContractLX model)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update t_contract_lx set ");
@@ -450,7 +450,7 @@ namespace ContractMvcWeb.Models
             strSql.Append("modifytime=@modifytime,");
             strSql.Append("summaryofbuy=@summaryofbuy,");
             strSql.Append("buytime=@buytime");
-            strSql.Append(" where contractnum=@contractnum2 and seq=@seq2 and projectnum=@projectnum2");
+            strSql.Append(" where seq=@seq2 and content=@content2");
             MySqlParameter[] parameters = {                    
 					new MySqlParameter("@seq", MySqlDbType.VarChar,50),
 					new MySqlParameter("@type", MySqlDbType.VarChar,100),
@@ -481,10 +481,9 @@ namespace ContractMvcWeb.Models
 					new MySqlParameter("@operatorName", MySqlDbType.VarChar,255),
                     new MySqlParameter("@modifytime",MySqlDbType.Timestamp),
                     new MySqlParameter("@summaryofbuy",MySqlDbType.VarChar,255),
-                    new MySqlParameter("@buytime",MySqlDbType.VarChar,255),
-                    new MySqlParameter("@contractnum2", MySqlDbType.VarChar,255),                    
+                    new MySqlParameter("@buytime",MySqlDbType.VarChar,255),                
                     new MySqlParameter("@seq2", MySqlDbType.VarChar,50),
-                    new MySqlParameter("@projectnum2", MySqlDbType.VarChar,50)
+                    new MySqlParameter("@content2", MySqlDbType.VarChar,255)
 					};
             parameters[0].Value = model.seq;
             parameters[1].Value = model.type;
@@ -516,9 +515,8 @@ namespace ContractMvcWeb.Models
             parameters[27].Value = DateTime.Now;
             parameters[28].Value = model.summaryofbuy;
             parameters[29].Value = model.buytime;
-            parameters[30].Value = model.contractnum;
-            parameters[31].Value = model.seq;
-            parameters[32].Value = model.projectnum;
+            parameters[30].Value = model.seq;
+            parameters[31].Value = model.content;
 
             int rows = MySqlHelper.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
