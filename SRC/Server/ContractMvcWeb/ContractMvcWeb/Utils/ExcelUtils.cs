@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.IO;
 using NPOI.SS.UserModel;
+using NPOI.SS.Util;
 
 namespace ContractMvcWeb.Utils
 {
@@ -365,7 +366,21 @@ namespace ContractMvcWeb.Utils
                         decimal total = 0;
                         if (row.GetCell(11) != null)
                         {
-                            decimal.TryParse(row.GetCell(11).ToString(), out total);
+                            //decimal.TryParse(row.GetCell(11).ToString(), out total);                            
+                            int rowspan=0;
+                            int colspan=0;
+                            int firstrow =0;
+                            int firstcol = 0;
+                            bool ismerged2 = GetMerginRowCol(sheet, row.RowNum, 11, out rowspan, out colspan,out firstrow, out firstcol);
+                            if (ismerged2)
+                            {
+                                string temp = sheet.GetRow(firstrow).GetCell(firstcol).ToString();
+                                decimal.TryParse(temp, out total);
+                            }
+                            else
+                            {
+                                decimal.TryParse(row.GetCell(11).ToString(), out total);
+                            }
                         }
                         model.total = total;
 
@@ -407,6 +422,53 @@ namespace ContractMvcWeb.Utils
                 }
             }
 
+        }
+
+        protected static bool GetMerginRowCol(ISheet sheet, int rowNum, int colNum, out int rowSpan, out int colSpan, out int firstRow , out int firstCol)
+        {
+            bool result = false;
+            rowSpan = 0;
+            colSpan = 0;
+            firstRow = 0;
+            firstCol = 0;
+            if ((rowNum < 1) || (colNum < 1)) return result;
+            int rowIndex = rowNum - 1;
+            int colIndex = colNum - 1;
+            int regionsCount = sheet.NumMergedRegions;
+            rowSpan = 1;
+            colSpan = 1;
+            firstRow = 0;
+            firstCol = 0;
+
+            for (int i = 0; i < regionsCount; i++)
+            {
+                CellRangeAddress range = sheet.GetMergedRegion(i);
+                sheet.IsMergedRegion(range);
+                //if (range.FirstRow == rowIndex && range.FirstColumn == colIndex)
+                //{
+                //    rowSpan = range.LastRow - range.FirstRow + 1;
+                //    colSpan = range.LastColumn - range.FirstColumn + 1;
+                //    break;
+                //}
+                if (range.FirstRow <= rowNum && range.LastRow >= rowNum && range.FirstColumn <= colNum && range.LastColumn>= colNum)
+                {
+                    rowSpan = range.LastRow - range.FirstRow + 1;
+                    colSpan = range.LastColumn - range.FirstColumn + 1;
+                    firstRow = range.FirstRow;
+                    firstCol = range.FirstColumn;
+                    result = true;
+                    break;
+                }
+            }
+            //try
+            //{
+                //result = sheet.GetRow(rowIndex).GetCell(colIndex).IsMergedCell;
+                //result = sheet.GetRow(rowNum).GetCell(colIndex).IsMergedCell;
+            //}
+            //catch
+            //{
+            //}
+            return result;
         }
 
 
