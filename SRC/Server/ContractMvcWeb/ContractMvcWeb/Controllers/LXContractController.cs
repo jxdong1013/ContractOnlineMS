@@ -281,7 +281,7 @@ namespace ContractMvcWeb.Controllers
                     return View( contract );
                 }
             }
-            return View();
+            return View(contract);
         }
 
 
