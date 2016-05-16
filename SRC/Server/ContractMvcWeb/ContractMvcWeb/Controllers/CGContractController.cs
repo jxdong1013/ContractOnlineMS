@@ -161,7 +161,7 @@ namespace ContractMvcWeb.Controllers
                 if (isExist)
                 {
                     ModelState.AddModelError("e1", "采购编号和采购内容已经存在，操作失败。");
-                    return View();
+                    return View(model);
                 }
                 model.createtime = DateTime.Now;
                 model.modifytime = model.createtime;
@@ -172,7 +172,7 @@ namespace ContractMvcWeb.Controllers
                 if (result == false)
                 {
                     ModelState.AddModelError("e2", "新增失败。");
-                    return View();
+                    return View(model);
                 }
 
                 return new RedirectResult("~/cgcontract/contractlist");
@@ -332,9 +332,16 @@ namespace ContractMvcWeb.Controllers
 
         protected void SetDropDownlist( string state)
         {
-            state = state.Trim();
+            state = String.IsNullOrEmpty(state) ?"": state.Trim();
             List<SelectListItem> items = new List<SelectListItem>();
+
             SelectListItem item = new SelectListItem();
+            item.Text = "";
+            item.Value = "";//((int)PayProgressEnum.FINISH).ToString();
+            item.Selected = state.Equals(""); //state == (int)PayProgressEnum.FINISH;
+            items.Add(item);
+
+            item = new SelectListItem();
             item.Text = "完成";
             item.Value = "完成";//((int)PayProgressEnum.FINISH).ToString();
             item.Selected = state.Equals("完成"); //state == (int)PayProgressEnum.FINISH;

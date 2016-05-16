@@ -302,9 +302,16 @@ namespace ContractMvcWeb.Controllers
 
         protected void SetDropDownlist(string state)
         {
-            state = state.Trim();
+            state = String.IsNullOrEmpty(state) ? "": state.Trim();
             List<SelectListItem> items = new List<SelectListItem>();
+
             SelectListItem item = new SelectListItem();
+            item.Text = "";
+            item.Value = "";//((int)PayProgressEnum.FINISH).ToString();
+            item.Selected = state.Equals(""); //state == (int)PayProgressEnum.FINISH;
+            items.Add(item);
+
+            item = new SelectListItem();
             item.Text = "完成";
             item.Value = "完成";//((int)PayProgressEnum.FINISH).ToString();
             item.Selected = state.Equals("完成"); //state == (int)PayProgressEnum.FINISH;

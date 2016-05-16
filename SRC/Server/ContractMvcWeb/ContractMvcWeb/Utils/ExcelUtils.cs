@@ -584,32 +584,32 @@ namespace ContractMvcWeb.Utils
             //row.RowStyle = style;
             row.Height = 26 * 20;
 
-            CreateCell(row, 0, "采购时间", CellType.String, style);
-            CreateCell(row, 1, "采购合同", CellType.String, style);
-            CreateCell(row, 2, "采购编号", CellType.String, style);
+            CreateCell(row, 0, "采购时间", CellType.String, style);            
+            CreateCell(row, 1, "采购编号", CellType.String, style);
+            CreateCell(row, 2, "项目编号", CellType.String, style);
             CreateCell(row, 3, "采购部门", CellType.String, style);
             CreateCell(row, 4, "采购联系人", CellType.String, style);
             CreateCell(row, 5, "联系电话", CellType.String, style);
-            CreateCell(row, 6, "项目编号", CellType.String, style);
-            CreateCell(row, 7, "经费来源", CellType.String, style);
-            CreateCell(row, 8, "采购类型", CellType.String, style);
-            CreateCell(row, 9, "采购内容", CellType.String, style);
-            CreateCell(row, 10, "数量", CellType.String, style);
-            CreateCell(row, 11, "单价", CellType.String, style);
-            CreateCell(row, 12, "小计", CellType.String, style);
-            CreateCell(row, 13, "总计", CellType.String, style);
-            CreateCell(row, 14, "预算金额", CellType.String, style);
+            CreateCell(row, 6, "采购类型", CellType.String, style);
+            CreateCell(row, 7, "采购内容", CellType.String, style);                       
+            CreateCell(row, 8, "数量", CellType.String, style);
+            CreateCell(row, 9, "单价", CellType.String, style);
+            CreateCell(row, 10, "小计", CellType.String, style);
+            CreateCell(row, 11, "总价", CellType.String, style);
+            CreateCell(row, 12, "验收情况", CellType.String, style);
+            CreateCell(row, 13, "登记位置", CellType.String, style);
+            CreateCell(row, 14, "合同编号", CellType.String, style);            
             CreateCell(row, 15, "供货单位", CellType.String, style);
             CreateCell(row, 16, "供货联系人", CellType.String, style);
-            CreateCell(row, 17, "联系电话", CellType.String, style);
-            CreateCell(row, 18, "结算金额", CellType.String, style);
-            CreateCell(row, 19, "赠送内容", CellType.String, style);
-            CreateCell(row, 20, "赠送价值", CellType.String, style);
-            CreateCell(row, 21, "验收情况", CellType.String, style);
-            CreateCell(row, 22, "记录位置", CellType.String, style);
-            CreateCell(row, 23, "支付进度", CellType.String, style);
-            CreateCell(row, 24, "分管部门", CellType.String, style);
-            CreateCell(row, 25, "备注", CellType.String, style);           
+            CreateCell(row, 17, "联系电话", CellType.String, style);            
+            CreateCell(row, 18, "赠送内容", CellType.String, style);
+            CreateCell(row, 19, "赠送价值", CellType.String, style);                   
+            CreateCell(row, 20, "分管部门", CellType.String, style);
+            CreateCell(row, 21, "备注", CellType.String, style);
+            CreateCell(row, 22, "支付进度", CellType.String, style);
+            CreateCell(row, 23, "预算金额", CellType.String, style);
+            CreateCell(row, 24, "经费来源", CellType.String, style);
+            CreateCell(row, 25, "结算金额", CellType.String, style);
             #endregion
 
             if (list != null && list.Count > 0)
@@ -620,32 +620,32 @@ namespace ContractMvcWeb.Utils
                     #region row
                     rowidx++;
                     row = sheet.CreateRow(rowidx);
-                    CreateCell(row, 0, model.buytime);
-                    CreateCell(row, 1, model.contractnum);
-                    CreateCell(row, 2, model.seq);
+                    CreateCell(row, 0, model.buytime);                   
+                    CreateCell(row, 1, model.seq);
+                    CreateCell(row, 2, model.projectnum);
                     CreateCell(row, 3, model.department);
                     CreateCell(row, 4, model.linker);
                     CreateCell(row, 5, model.tel);
-                    CreateCell(row, 6, model.projectnum);
-                    CreateCell(row, 7, model.fundsource);
-                    CreateCell(row, 8, model.type);
-                    CreateCell(row, 9, model.content);
-                    CreateCell(row, 10, model.count.ToString());
-                    CreateCell(row, 11, model.price.ToString());
-                    CreateCell(row, 12, model.subtotal.ToString());
-                    CreateCell(row, 13, model.total.ToString());
-                    CreateCell(row, 14, model.budgetamount);
+                    CreateCell(row, 6, model.type);
+                    CreateCell(row, 7, model.content);                                                
+                    CreateCell(row, 8, model.count.ToString());
+                    CreateCell(row, 9, model.price.ToString());
+                    CreateCell(row, 10, model.subtotal.ToString());
+                    CreateCell(row, 11, model.total.ToString());
+                    CreateCell(row, 12, model.validate);
+                    CreateCell(row, 13, model.place);
+                    CreateCell(row, 14, model.contractnum);                   
                     CreateCell(row, 15, model.super);
                     CreateCell(row, 16, model.superlinker);
-                    CreateCell(row, 17, model.supertel);
-                    CreateCell(row, 18, model.settleamount);
-                    CreateCell(row, 19, model.freecontent);
-                    CreateCell(row, 20, model.freevalue);
-                    CreateCell(row, 21, model.validate);
-                    CreateCell(row, 22, model.place);
-                    CreateCell(row, 23, model.payprogress);
-                    CreateCell(row, 24, model.chargedepartment);
-                    CreateCell(row, 25, model.remark);                  
+                    CreateCell(row, 17, model.supertel);                   
+                    CreateCell(row, 18, model.freecontent);
+                    CreateCell(row, 19, model.freevalue);
+                    CreateCell(row, 20, model.chargedepartment);
+                    CreateCell(row, 21, model.remark);
+                    CreateCell(row, 22, model.payprogress);
+                    CreateCell(row, 23, model.budgetamount);
+                    CreateCell(row, 24, model.fundsource);                    
+                    CreateCell(row, 25, model.settleamount);
                     #endregion
                 }
             }
@@ -681,28 +681,29 @@ namespace ContractMvcWeb.Utils
                     
             CreateCell(row, 3, "采购部门", CellType.String, style);
             CreateCell(row, 4, "采购联系人", CellType.String, style);
-            CreateCell(row, 5, "联系电话", CellType.String, style);
+            CreateCell(row, 5, "联系电话", CellType.String, style);            
             
-            CreateCell(row, 6, "经费来源", CellType.String, style);
-            CreateCell(row, 7, "采购类型", CellType.String, style);
-            CreateCell(row, 8, "采购内容", CellType.String, style);
-            CreateCell(row, 9, "单价", CellType.String, style);
-            CreateCell(row, 10, "数量", CellType.String, style);
-            CreateCell(row, 11, "总价", CellType.String, style);
-            CreateCell(row, 12, "采购合同", CellType.String, style);
-            CreateCell(row, 13, "采购纪要", CellType.String, style); 
-            CreateCell(row, 14, "预算金额", CellType.String, style);
-            CreateCell(row, 15, "供货单位", CellType.String, style);
-            CreateCell(row, 16, "供货联系人", CellType.String, style);
-            CreateCell(row, 17, "联系电话", CellType.String, style);
-            CreateCell(row, 18, "结算金额", CellType.String, style);
-            CreateCell(row, 19, "赠送内容", CellType.String, style);
-            CreateCell(row, 20, "赠送价值", CellType.String, style);
-            CreateCell(row, 21, "验收情况", CellType.String, style);
-            CreateCell(row, 22, "记录位置", CellType.String, style);
-            CreateCell(row, 23, "支付进度", CellType.String, style);
-            CreateCell(row, 24, "分管部门", CellType.String, style);
-            CreateCell(row, 25, "备注", CellType.String, style);
+            CreateCell(row, 6, "采购类型", CellType.String, style);
+            CreateCell(row, 7, "采购内容", CellType.String, style);
+            CreateCell(row, 8, "单价", CellType.String, style);
+            CreateCell(row, 9, "数量", CellType.String, style);
+            CreateCell(row, 10, "总价", CellType.String, style);
+            CreateCell(row, 11, "采购合同", CellType.String, style);
+            CreateCell(row, 12, "采购纪要", CellType.String, style);
+            CreateCell(row, 13, "验收情况", CellType.String, style);
+            CreateCell(row, 14, "供货单位", CellType.String, style);
+            CreateCell(row, 15, "供货联系人", CellType.String, style);
+            CreateCell(row, 16, "联系电话", CellType.String, style);
+            CreateCell(row, 17, "分管部门", CellType.String, style);
+            CreateCell(row, 18, "备注", CellType.String, style);
+            CreateCell(row, 19, "支付进度", CellType.String, style);
+            CreateCell(row, 20, "结算金额", CellType.String, style);
+            CreateCell(row, 21, "赠送内容", CellType.String, style);
+            CreateCell(row, 22, "赠送价值", CellType.String, style);            
+            CreateCell(row, 23, "记录位置", CellType.String, style);
+                        
+            CreateCell(row, 24, "预算金额", CellType.String, style);
+            CreateCell(row, 25, "经费来源", CellType.String, style);
             #endregion
 
             if (list != null && list.Count > 0)
@@ -719,28 +720,29 @@ namespace ContractMvcWeb.Utils
                                        
                     CreateCell(row, 3, model.department);
                     CreateCell(row, 4, model.linker);
-                    CreateCell(row, 5, model.tel);
+                    CreateCell(row, 5, model.tel);                    
                     
-                    CreateCell(row, 6, model.fundsource);
-                    CreateCell(row, 7, model.type);
-                    CreateCell(row, 8, model.content);
-                    CreateCell(row, 9, model.price.ToString());
-                    CreateCell(row, 10, model.count.ToString());
-                    CreateCell(row, 11, model.total.ToString());
-                    CreateCell(row, 12, model.contractnum);
-                    CreateCell(row, 13, model.summaryofbuy); 
-                    CreateCell(row, 14, model.budgetamount);
-                    CreateCell(row, 15, model.super);
-                    CreateCell(row, 16, model.superlinker);
-                    CreateCell(row, 17, model.supertel);
-                    CreateCell(row, 18, model.settleamount);
-                    CreateCell(row, 19, model.freecontent);
-                    CreateCell(row, 20, model.freevalue);
-                    CreateCell(row, 21, model.validate);
-                    CreateCell(row, 22, model.place);
-                    CreateCell(row, 23, model.payprogress);
-                    CreateCell(row, 24, model.chargedepartment);
-                    CreateCell(row, 25, model.remark);
+                    CreateCell(row, 6, model.type);
+                    CreateCell(row, 7, model.content);
+                    CreateCell(row, 8, model.price.ToString());
+                    CreateCell(row, 9, model.count.ToString());
+                    CreateCell(row, 10, model.total.ToString());
+                    CreateCell(row, 11, model.contractnum);
+                    CreateCell(row, 12, model.summaryofbuy);
+                    CreateCell(row, 13, model.validate);                    
+                    CreateCell(row, 14, model.super);
+                    CreateCell(row, 15, model.superlinker);
+                    CreateCell(row, 16, model.supertel);
+                    CreateCell(row, 17, model.chargedepartment);
+                    CreateCell(row, 18, model.remark);
+                    CreateCell(row, 19, model.payprogress);
+                    CreateCell(row, 20, model.settleamount);
+                    CreateCell(row, 21, model.freecontent);
+                    CreateCell(row, 22, model.freevalue);                    
+                    CreateCell(row, 23, model.place);
+                    CreateCell(row, 24, model.budgetamount);   
+                    CreateCell(row, 25, model.fundsource);
+                
                     #endregion
                 }
             }
