@@ -1,15 +1,23 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,IE=10,IE=9,IE=8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>@ViewBag.Title - RFID合同管理系统</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />     
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+
+
     @Styles.Render("~/Content/bootstrapcss")
     @Styles.Render("~/Content/bootstrapValidatorCss")
+
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+
     @Scripts.Render("~/bundles/jquery")
+    
+   
  
     @RenderSection("scripts", required: false)
     <style>

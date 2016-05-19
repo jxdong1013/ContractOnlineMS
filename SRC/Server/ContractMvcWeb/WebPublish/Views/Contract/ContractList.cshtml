@@ -22,17 +22,17 @@
     {
         <div class="">
             <div class="">
-                <div class="col-lg-2">
+                <div class="col-xs-2 col-lg-2 col-sm-2 col-md-2">
                     <input type="hidden" id="pkey" name="pkey" value=@(Request["pkey"]==null|| Request["pkey"].ToString()==""?"all":Request["pkey"]) />
                     <input type="hidden" id="sortkey" name="sortkey" value="@(Request["sortkey"]==null||Request["sortkey"].ToString()==""?"":Request["sortkey"])" />
                     <input type="hidden" id="sorttype" name="sorttype" value="@(Request["sorttype"]==null||Request["sorttype"].ToString()==""?"":Request["sorttype"])" />
 
                 </div>
-                <div class="input-group col-lg-8">
+                <div class="input-group col-xs-8 col-lg-8 col-md-8 col-sm-8">
                     <div class="input-group-btn">
                         <button id="btnOneQuery" name="btnOneQuery" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="全文检索">
                             @(Request["pkey"] == null || Request["pkey"].ToString() == "" ? "全文检索" :
-                            Request["pkey"] == "all" ?"全文检索"   :              
+                            Request["pkey"] == "all" ? "全文检索" :
            Request["pkey"] == "seq" ? "序号" : Request["pkey"] == "contractnum" ? "合同编号" : Request["pkey"] == "projectnum" ? "项目编号" :
            Request["pkey"] == "projectname" ? "项目名称" : Request["pkey"] == "contractplace" ? "存放位置(精确匹配)" :
            Request["pkey"] == "bcompany" ? "中标公司" : Request["pkey"] == "money" ? "中标金额(万元)" : ""
@@ -60,16 +60,25 @@
             </div>
 
             <div class="panel">
-                <div class="col-lg-8 col-md-8"></div>
-                <div class="col-xs-3 col-md-3">
+                <div class="col-xs-8 col-lg-8 col-md-8 col-sm-8"></div>
+                <div class="col-xs-3 col-lg-3  col-md-3 col-sm-3">
                     <p></p>
                     <p>
-                    @Html.ActionLink("导出Excel", "exportexcel", new { req = @Request["seq"], contractnum = @Request["contractnum"],
-                   projectnum = @Request["projectnum"], projectname = @Request["projectname"], rfid = @Request["rfid"],
-                   contractplace = @Request["contractplace"], bcompany = @Request["bcompany"], money = @Request["money"],
-                   pkey = @Request["pkey"], pvalue = Request["pvalue"] })
-                    <a id="btnDelete" href="#" onclick="deleterecord()" style="padding-left:15px;" >删除</a>
-                        </p>
+                        @Html.ActionLink("导出Excel", "exportexcel", new
+               {
+                   req = @Request["seq"],
+                   contractnum = @Request["contractnum"],
+                   projectnum = @Request["projectnum"],
+                   projectname = @Request["projectname"],
+                   rfid = @Request["rfid"],
+                   contractplace = @Request["contractplace"],
+                   bcompany = @Request["bcompany"],
+                   money = @Request["money"],
+                   pkey = @Request["pkey"],
+                   pvalue = Request["pvalue"]
+               })
+                        <a id="btnDelete" href="#" onclick="deleterecord()" style="padding-left:15px;">删除</a>
+                    </p>
                 </div>
 
             </div>
