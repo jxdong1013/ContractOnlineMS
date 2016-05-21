@@ -109,6 +109,8 @@ left: 274px;
 top: -28px;
 width: 70px;
 height: 26px;
+display:none;
+opacity:0;
 }
 
          .error_box {
