@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "采购合同查询";
+    ViewBag.Title = "协议合同查询";
     ViewBag.PageCode = "C2001";
 }
 @model ContractMvcWeb.Models.Beans.Page<ContractMvcWeb.Models.Beans.ContractCG> 
@@ -14,7 +14,7 @@
 </script>
 
 <div id="tablelist" class="panel panel-default">
-    <div class="panel-heading"><label>采购合同查询</label></div>
+    <div class="panel-heading"><label>协议合同查询</label></div>
     <div  class="panel-body">
         <input id="hdDeleteContract" type="hidden" value="~/cgcontract/DeleteContracts" />
 
@@ -24,8 +24,8 @@
             <div >
                 <div class="col-lg-2">
                     <input type="hidden" id="pkey" name="pkey" value=@(Request["pkey"]==null|| Request["pkey"].ToString()==""? "all" :Request["pkey"]) />
-                    <input type="hidden" id="sortkey" name="sortkey" value="@(Request["sortkey"]==null||Request["sortkey"].ToString()==""?"":Request["sortkey"])" />
-                    <input type="hidden" id="sorttype" name="sorttype" value="@(Request["sorttype"]==null||Request["sorttype"].ToString()==""?"":Request["sorttype"])" />
+                    <input type="hidden" id="sortkey" name="sortkey" value="@(Request["sortkey"] == null || Request["sortkey"].ToString() == "" ? "contractid" : Request["sortkey"])" />
+                    <input type="hidden" id="sorttype" name="sorttype" value="@(Request["sorttype"]==null||Request["sorttype"].ToString()==""?"desc":Request["sorttype"])" />
                 </div>
                 <div class="input-group col-lg-8">
                     <div class="input-group-btn">
@@ -77,44 +77,50 @@ Request["pkey"] == "total" ? "总价" : Request["pkey"] == "payprogress" ? "支�
 
        <table width="100%" style="margin-bottom:0px;" class="table">
         <tr class="info">
-            <td width="4%"><input id="ckbAll" type="checkbox" value="全选" onclick="selectall()" /></td>
-            <td width="8%" onclick="sort('seq')"
-                class=@( Request["sortkey"] == null || Request["sortkey"] != "seq" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
+            <td width="2%"><input id="ckbAll" type="checkbox" value="全选" onclick="selectall()" /></td>
+            <td width="4%" onclick="sort('contractid')"
+                class=@(  Request["sortkey"] == null || Request["sortkey"] == "" ? "sort_desc" : Request["sortkey"] != "contractid" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
+               ID
+            </td>
+            <td width="6%" onclick="sort('seq')"
+                class=@(  Request["sortkey"] == null ||  Request["sortkey"] != "seq" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
                 采购编号
             </td>
             <td width="8%" onclick="sort('department')"
                 class=@(  Request["sortkey"] == null || Request["sortkey"] != "department" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc") >
                 采购部门
             </td>
-            <td width="8%" onclick="sort('type')"
+            <td width="6%" onclick="sort('type')"
                 class=@(  Request["sortkey"] == null || Request["sortkey"] != "type" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
                 采购类型
             </td>
-            <td width="8%" onclick="sort('projectnum')"
+            <td width="8%" >
+                采购内容
+            </td>
+            <td width="7%" onclick="sort('projectnum')"
                 class=@(  Request["sortkey"] == null || Request["sortkey"] != "projectnum" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")>
                 项目编号
             </td>
-            <td width="8%" onclick="sort('contractnum')"
+            <td width="7%" onclick="sort('contractnum')"
                 class=@( Request["sortkey"]==null || Request["sortkey"] !="contractnum"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
                 合同编号
             </td>
-            <td width="7%" onclick="sort('linker')"
+            <td width="6%" onclick="sort('linker')"
                 class=@( Request["sortkey"]==null || Request["sortkey"] !="linker"?"sort":@Request["sorttype"]=="asc"?"sort_asc":"sort_desc")>
                 联系人
             </td>
             <td width="8%">供货单位</td>
-            <td width="10%">供货联系人</td>
+            <td width="8%">供货联系人</td>
             <td width="8%" onclick="sort('supertel')"
                 class="@( Request["sortkey"] == null || Request["sortkey"] != "supertel" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
                 供货联系电话
             </td>
-            <td width="8%" onclick="sort('total')"
+            <td width="6%" onclick="sort('total')"
                 class="@( Request["sortkey"] == null || Request["sortkey"] != "total" ? "sort" : @Request["sorttype"] == "asc" ? "sort_asc" : "sort_desc")">
                 总价
             </td>
             <td width="8%">支付进度</td>
             <td width="7%">验收情况</td>
-
         </tr>
     </table>
 
@@ -133,8 +139,9 @@ Request["pkey"] == "total" ? "总价" : Request["pkey"] == "payprogress" ? "支�
                 idx++;
 
                 <tr class=@(idx % 2 == 1 ? "active" : "info")>
-                    <td width="4%"><input type="checkbox" value="" name="checkRow" /><input type="hidden" value="@p.contractid" name="hdcontractid" /></td>
-                    <td width="8%">@Html.ActionLink(@p.seq, "EditContract", new
+                    <td width="2%"><input type="checkbox" value="" name="checkRow" /><input type="hidden" value="@p.contractid" name="hdcontractid" /></td>
+                    <td width="4%">@p.contractid</td>
+                    <td width="6%">@Html.ActionLink(@p.seq, "EditContract", new
                               {
                                   contractid = @p.contractid,
                                   queryKey = Request["pkey"] == null || Request["pkey"].ToString() == "" ? "all" : Request["pkey"],
@@ -144,14 +151,15 @@ Request["pkey"] == "total" ? "总价" : Request["pkey"] == "payprogress" ? "支�
                                   pageidx = Request["pageidx"] == null || Request["pageidx"].ToString() == "" ? "1" : Request["pageidx"]
                               })</td>
                     <td width="8%">@p.department</td>
-                    <td width="8%">@p.type</td>
-                    <td width="8%">@p.projectnum</td>
-                    <td width="8%">@p.contractnum</td>
-                    <td width="7%">@p.linker</td>
+                    <td width="6%">@p.type</td>
+                    <td width="8%">@p.content</td>
+                    <td width="7%">@p.projectnum</td>
+                    <td width="7%">@p.contractnum</td>
+                    <td width="6%">@p.linker</td>
                     <td width="8%">@p.super</td>
-                    <td width="9%">@p.superlinker</td>
+                    <td width="8%">@p.superlinker</td>
                     <td width="8%">@p.supertel</td>
-                    <td width="8%">@p.total</td>
+                    <td width="6%">@p.total</td>
                     <td width="8%">@p.payprogress</td>
                     <td width="7%">@p.validate</td>
 

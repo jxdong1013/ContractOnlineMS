@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "编辑采购合同信息";
+    ViewBag.Title = "编辑协议合同信息";
     ViewBag.PageCode = "C2004";
 }
 
 @model ContractMvcWeb.Models.Beans.ContractCG 
 
 <div class="content panel panel-default">
-    <div class="panel-heading"><label>编辑采购合同</label></div>
+    <div class="panel-heading"><label>编辑协议合同</label></div>
     <div class="panel-body">
 @using (Html.BeginForm("EditContract", "CGContract", new { contractid = Request["contractid"] }, FormMethod.Post, new { @class = "form-horizontal" }))
 {

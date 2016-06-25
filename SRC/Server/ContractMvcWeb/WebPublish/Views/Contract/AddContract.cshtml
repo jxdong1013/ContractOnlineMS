@@ -13,6 +13,7 @@
 @using (Html.BeginForm("AddContract", "Contract", FormMethod.Post, new { role = "form", @class = "form-horizontal" }))
 {
  @Html.AntiForgeryToken()
+    var items = (List<SelectListItem>)ViewData["payprogressItems"];
 
      <div class="form-group">
                         <div class="group">
@@ -156,7 +157,8 @@
                        <div class="group">
                             <label class="col-sm-2 col-md-1 control-label small" style="padding-right:5px;padding-left:0px;">进度</label>
                             <div class="col-sm-2 col-md-3" style="padding-left:5px;">
-                               @Html.TextBoxFor(m => m.progress, new { @class = "form-control" })
+                               @*@Html.TextBoxFor(m => m.progress, new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.progress, items, new { @class = "form-control" })
                             </div>
                         </div>
       </div>

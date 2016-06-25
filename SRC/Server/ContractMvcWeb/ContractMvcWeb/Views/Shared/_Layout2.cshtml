@@ -59,10 +59,15 @@
                     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4A515B', endColorstr='#3C4049');
                     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#4A515B', endColorstr='#3C4049')";*/
                     border-color: #2B2E33;
+
+
                 }
 
                     #main-nav.nav-tabs.nav-stacked > li.active > a, #main-nav.nav-tabs.nav-stacked > li > a:hover > span {
                         color: #FFF;
+
+
+                        background-color: #337ab7;
                     }
 
             #main-nav.nav-tabs.nav-stacked > li {
@@ -141,7 +146,7 @@
                     <li>
                         <a href="#cgmenu" class="nav-header @(ViewBag.PageCode.ToString().StartsWith("C200") ? "" : "collapsed")" aria-expanded=@(ViewBag.PageCode.ToString().StartsWith("C200") ? "true" : "false") data-toggle="collapse">
                             
-                            采购合同管理
+                            协议合同管理
                            @* <span class="pull-right glyphicon glyphicon-chevron-down"></span>*@
                         </a>
                         <ul id="cgmenu" class="nav nav-list secondmenu collapse @(ViewBag.PageCode.ToString().StartsWith("C200") ? "in" : "") " @(ViewBag.PageCode.ToString().StartsWith("C200") ? "aria-expanded=true" : "style = height:0px;")>

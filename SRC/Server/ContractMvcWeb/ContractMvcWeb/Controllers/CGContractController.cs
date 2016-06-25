@@ -19,7 +19,7 @@ namespace ContractMvcWeb.Controllers
             return View();
         }
 
-        public ActionResult ContractList(string pvalue, string pkey = "all", string sortkey = "", string sorttype = "", int pageidx = 1, int pagesize = 20)
+        public ActionResult ContractList(string pvalue, string pkey = "all", string sortkey = "contractid", string sorttype = "desc", int pageidx = 1, int pagesize = 20)
         {
             ContractCG query = new ContractCG();
             //
@@ -112,7 +112,7 @@ namespace ContractMvcWeb.Controllers
             string fileName = Server.MapPath("~/ExcelTemplate/XYTemplate.xls");
             if (System.IO.File.Exists(fileName))
             {
-                return File(fileName, "application/vnd.ms-excel", "采购合同导入模板.xls");
+                return File(fileName, "application/vnd.ms-excel", "协议合同导入模板.xls");
             }
             else
             {

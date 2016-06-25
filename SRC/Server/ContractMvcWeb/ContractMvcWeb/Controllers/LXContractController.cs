@@ -23,7 +23,7 @@ namespace ContractMvcWeb.Controllers
             return View();
         }
 
-        public ActionResult ContractList(string pvalue, string pkey = "all", string sortkey = "", string sorttype = "", int pageidx = 1, int pagesize = 20)
+        public ActionResult ContractList(string pvalue, string pkey = "all", string sortkey = "contractid", string sorttype = "desc", int pageidx = 1, int pagesize = 20)
         {
             ContractLX query = new ContractLX();
             //
